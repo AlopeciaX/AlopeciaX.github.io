@@ -22,7 +22,7 @@ user:
   pic: /assets/img/cat.jpg
   picAlt: "catbook"
   job: Unity / Unreal Engine / C# / C++
-  ?: hi.
+  about: hi.
 
 exclude:
   - README.md
