@@ -21,7 +21,7 @@ user:
   name: AlopeciaX
   pic: /assets/img/cat.jpg
   picAlt: "catbook"
-  job: collegian
+  job: University Student
   aboutme: true # comment this out if you don't need the 'about' page.
 
 exclude:
