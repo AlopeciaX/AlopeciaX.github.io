@@ -33,4 +33,5 @@ Then the number of pages in the category will be displayed.
 
 ## License
 
-[MIT License](https://opensource.org/licenses/MIT)
+This project is based on the [Catbook](https://github.com/starry99/catbook) theme, originally created by Starry99 and licensed under the MIT License.  
+The modifications and additional content by [AlopeciaX](https://github.com/AlopeciaX) are also licensed under the [MIT License](./LICENSE).  
