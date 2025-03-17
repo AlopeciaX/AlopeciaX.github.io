@@ -19,8 +19,8 @@ cusdis:
 
 user:
   name: AlopeciaX
-  pic: /assets/img/BaekSeoul_profile.jpg
-  picAlt: "catbook"
+  pic: /assets/img/BaekSeol_profile.jpg
+  picAlt: "devbook"
   job: University Student
   aboutme: true # comment this out if you don't need the 'about' page.
 
