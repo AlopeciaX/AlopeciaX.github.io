@@ -4,7 +4,7 @@ email: #gurutan247@gmail.com
 description: > # this means to ignore newlines until "baseurl"
   Sharing my game development journey
 
-baseurl: # the subpath of the site
+baseurl: "/Devbook" # the subpath of the site
 url: https://alopeciax.github.io/Devbook # the base hostname & protocol for your site
 
 permalink: /:year-:month/:title
@@ -13,9 +13,9 @@ timezone:
 favicon: /assets/img/favicon.ico
 
 google_analytics: #UA—XXXXXXXX-X
-disqus_shortname: #disqus shortname
+disqus_shortname: alopeciax #disqus shortname
 cusdis:
-    app_id: #your cusdis app_id
+    app_id: e4d6d238-9271-45d7-8bbc-a11b9e3e348a #your cusdis app_id
 
 user:
   name: AlopeciaX
@@ -35,7 +35,7 @@ defaults:
       type: posts
     values:
       layout: post
-      comment: true   
+      comments: true   
 
 markdown_ext: "markdown,mkdown,mkdn,mkd,md"
 markdown: kramdown 
