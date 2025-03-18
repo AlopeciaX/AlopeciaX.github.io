@@ -1,7 +1,7 @@
 ---
 title: GameAnalysis_001
 categories: [gameAnalysis]
-comments: false
+comments: true
 ---
 
 ## 0. Introduction
