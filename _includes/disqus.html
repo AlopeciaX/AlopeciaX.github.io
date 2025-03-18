@@ -7,8 +7,8 @@
 </div>
 
 <script>
-var disqus_loaded = true;
-var disqus_shortname = 'alopeciax'
+var disqus_loaded = false;
+var disqus_shortname = "{{ site.disqus_shortname }}"
 function disqus() {
     if (!disqus_loaded)  {
         disqus_loaded = true;
@@ -19,6 +19,9 @@ function disqus() {
         (document.getElementsByTagName("head")[0] ||
         document.getElementsByTagName("body")[0])
         .appendChild(e);
+
+        disqus_loaded = true; // 스크립트 로드 후 true로 변경
+     
         //Hide the button after opening
         document.getElementById("show-comments-button").style.display = "none";
     }
