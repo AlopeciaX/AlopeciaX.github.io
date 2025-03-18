@@ -15,7 +15,7 @@ favicon: /assets/img/favicon.ico
 google_analytics: #UA—XXXXXXXX-X
 disqus_shortname: alopeciax #disqus shortname
 cusdis:
-    app_id: e4d6d238-9271-45d7-8bbc-a11b9e3e348a #your cusdis app_id
+    app_id: #your cusdis app_id
 
 user:
   name: AlopeciaX
