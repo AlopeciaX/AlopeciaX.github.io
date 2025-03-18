@@ -8,7 +8,7 @@ baseurl: /Devbook # the subpath of the site
 url: https://alopeciax.github.io/Devbook # the base hostname & protocol for your site
 
 permalink: /:year-:month/:title
-timezone: Asia/Seoul  # 한국 시간 기준
+timezone: # 한국 시간 기준
 
 favicon: /assets/img/favicon.ico
 
