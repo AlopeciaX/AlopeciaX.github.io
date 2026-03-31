@@ -1,5 +1,7 @@
-# RSAC 2026 참관 보고
+# 네트워크 보안 개론
 
+	RSAC 2026 참관 보고
+	
 	주제: Power of Community
 	
 	생태계 중심 보안
@@ -24,4 +26,8 @@
 	ip막기->url막기
 	주기적으로 url을 차단해줌 f/w이
 	
+	wips: 무선에 대해 통제, 구성원이 아닌 mac주소가 접근 시 차단
 	
+	디폴트, 정적 라우팅 개념 정확하게 알기
+	
+	client - web brouser - internet - internet - ddos - firewall - ips - load balancer - web firewall - web server - reverse proxy server(was 선택) - cache server - app server1 - app server 2 - db server
