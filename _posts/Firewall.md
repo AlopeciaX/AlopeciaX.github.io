@@ -76,4 +76,6 @@
 	
 # 케이블과 인터페이스
 
+	bluemax firewall
 	
+	nicinfo
