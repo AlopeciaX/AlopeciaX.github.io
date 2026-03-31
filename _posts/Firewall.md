@@ -31,3 +31,9 @@
 	디폴트, 정적 라우팅 개념 정확하게 알기
 	
 	client - web brouser - internet - internet - ddos - firewall - ips - load balancer - web firewall - web server - reverse proxy server(was 선택) - cache server - app server1 - app server 2 - db server
+	
+	대학원 학벌 세탁
+	
+	ciso: 정보보호 최고 책임자
+	
+	
