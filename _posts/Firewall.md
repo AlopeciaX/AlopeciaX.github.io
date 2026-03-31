@@ -30,10 +30,34 @@
 	
 	디폴트, 정적 라우팅 개념 정확하게 알기
 	
-	client - web brouser - internet - internet - ddos - firewall - ips - load balancer - web firewall - web server - reverse proxy server(was 선택) - cache server - app server1 - app server 2 - db server
+	client - web brouser - internet - internet - ddos - firewall - ips - load balancer - web 
+	firewall - web server - reverse proxy server(was 선택) - cache server - app server1 - app
+	server 2 - db server
 	
-	대학원 학벌 세탁
+	대학원 학벌 세탁 - 석사
 	
 	ciso: 정보보호 최고 책임자
 	
+	well-known 포트 외우기(ssh:22, telnet:23, ftp:21, dns:53 ...)
+	약어도 외우기(ftp: file transfer protocol, ..)
 	
+	ad 사용자 기반 방화벽: 여러 대의 방화벽이 존재해도 ip대신 사용자 계정 또는 그룹을 기준으로 트래픽을 제어
+
+---
+# 네트워크 보안 장비의 역할과 종류
+
+	1. Packet Filter
+	2. Stateful Inspection
+	3. UTM
+	4. 사용자 ID 기반
+	5. 
+	   
+	네트웤 처리만을 곳
+	
+	-방화벽-
+	팔로알틴 - 1위(비쌈)
+	포티넷 - 2위
+	
+	국내
+	시큐알티
+	안랩
