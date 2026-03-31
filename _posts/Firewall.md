@@ -15,3 +15,13 @@
 	클라우드 데이터센터 vs ai 데이터센터
 	ai->gpu사용->전력많이발생
 	
+	네트워크 운영: fast
+	보안 운영: prevention
+	
+	megazon, ...
+	관제x
+	
+	ip막기->url막기
+	주기적으로 url을 차단해줌 f/w이
+	
+	
