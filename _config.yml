@@ -39,6 +39,8 @@ defaults:
 
 markdown_ext: "markdown,mkdown,mkdn,mkd,md"
 markdown: kramdown 
+kramdown:
+  link_defs: {}
 
 # Filtering Content
 show_drafts: null
