@@ -712,3 +712,30 @@ img {
         color: var(--footer_font_a);
     }
 }
+/* Tags
+   ========================================================================== */
+
+.tags_section {
+    margin-top: 1rem;
+    padding: 0 1rem;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+
+    @include mobile-only {
+        display: none;
+    }
+}
+
+.tag_item {
+    color: var(--nav_font);
+    font-size: 85%;
+    padding: 2px 0;
+
+    &:hover,
+    &:focus {
+        color: var(--nav_font_hover);
+    }
+}
+
+
