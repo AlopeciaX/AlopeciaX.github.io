@@ -73,7 +73,30 @@ reboot
 ![](../../../assets/images/Security/VM-Setup/2026-05-21-kali_korean/file-20260522004251517.png)
 
 	root는 영어로 바꿨지만 일반 계정은 한글로 바뀐걸 볼 수 있다.
-	
+
+![](../../../assets/images/Security/VM-Setup/2026-05-21-kali_korean/file-20260522004938660.png)
+
+	vi ~/.config/user-dirs.dirs 로 들어간다.
+
+![](../../../assets/images/Security/VM-Setup/2026-05-21-kali_korean/file-20260522004920015.png)
+
+	키보드로 :%d 를 입력한 뒤 밑의 코드를 붙여넣는다.
+	그리고 :wq 로 저장해준다.
+
+```bash
+XDG_DESKTOP_DIR="$HOME/Desktop"
+XDG_DOWNLOAD_DIR="$HOME/Downloads"
+XDG_TEMPLATES_DIR="$HOME/Templates"
+XDG_PUBLICSHARE_DIR="$HOME/Public"
+XDG_DOCUMENTS_DIR="$HOME/Documents"
+XDG_MUSIC_DIR="$HOME/Music"
+XDG_PICTURES_DIR="$HOME/Pictures"
+XDG_VIDEOS_DIR="$HOME/Videos"
+```
+
+![](../../../assets/images/Security/VM-Setup/2026-05-21-kali_korean/file-20260522005348871.png)
+
+	reboot해주고 확인해본다. 
 
 ![](../../../assets/images/Security/VM-Setup/2026-05-21-kali_korean/file-20260522000555102.png)
 
