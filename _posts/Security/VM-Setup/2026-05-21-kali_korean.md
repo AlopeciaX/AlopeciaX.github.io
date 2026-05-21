@@ -12,6 +12,7 @@ tags:
 ## Kali Linux 2026.1 설치 가이드 <3>
 
 **한글화**
+
 ```bash
 sudo apt install -y ibus ibus-hangul fonts-nanum*
 reboot
@@ -20,9 +21,6 @@ reboot
 ![](../../../assets/images/Security/VM-Setup/2026-05-21-kali_korean/file-20260521233420274.png)
 
 	일반 계정으로 접속
-\
-sudo apt install -y ibus ibus-hangul fonts-nanum*
-reboot
 
 ![](../../../assets/images/Security/VM-Setup/2026-05-21-kali_korean/file-20260522000555102.png)
 
