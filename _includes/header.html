@@ -30,7 +30,12 @@
       </ul>
       {% endfor %}
     </nav>
+    <!-- 태그 목록 추가 -->
+    <div class="tags_section">
+      {% for tag in site.tags %}
+      <a href="{{ site.baseurl }}/tags#{{ tag[0] }}" class="tag_item">#{{ tag[0] }}</a>
+      {% endfor %}
+    </div>    
   </div>
-
 </header>
 
