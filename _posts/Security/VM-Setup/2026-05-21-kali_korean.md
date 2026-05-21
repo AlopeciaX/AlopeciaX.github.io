@@ -49,15 +49,26 @@ reboot
 
 ![](../../../assets/images/Security/VM-Setup/2026-05-21-kali_korean/file-20260522003507512.png)
 
+![](../../../assets/images/Security/VM-Setup/2026-05-21-kali_korean/file-20260522003620060.png)
 
+	vi 사용법
+	키보드 i 입력 -> 방향키 아래 -> 기존에 있던 C지우고 ko_KR.UTF-8 넣기 -> esc -> 키보드 :wq 입력
+	i : insert 모드 (편집 가능하다)
+	:wq : 저장
 
+![](../../../assets/images/Security/VM-Setup/2026-05-21-kali_korean/file-20260522003849906.png)
 
+	reboot 해주기
 
+![](../../../assets/images/Security/VM-Setup/2026-05-21-kali_korean/file-20260522003952560.png)
 
+	한글 폰트로 바뀐걸 확인 가능하다
+	예전 이름 유지를 선택한다. (바꾸면 실습하기 힘들어짐)
 
+![](../../../assets/images/Security/VM-Setup/2026-05-21-kali_korean/file-20260522004039477.png)
 
-
-
+	한글도 안깨지고 잘 입력되는걸 볼 수 있다.
+	(vi로 .profile 수정안하면 한글 깨짐)
 
 
 
