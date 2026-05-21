@@ -9,84 +9,44 @@ tags:
   - install
 ---
 ---
-## Kali Linux 2026.1 설치 가이드 <2>
+## Kali Linux 2026.1 설치 가이드 <3>
 
-	VMware에 Kali를 추가했다면 설치 진행
+**한글화**
 
-![](../../../assets/images/Security/VM-Setup/2026-05-21-kali_VMadd/file-20260521180739466.png)
+![](../../../assets/images/Security/VM-Setup/2026-05-21-kali_korean/file-20260521232704508.png)
 
-	다운 받은 iso 파일을 CD/DVD에 넣어준다.
-	꼭 Connected at power on 버튼 눌러서 활성화해주기
+![](../../../assets/images/Security/VM-Setup/2026-05-21-kali_korean/file-20260521232839308.png)
 
-![](../../../assets/images/Security/VM-Setup/2026-05-21-kali_VMadd/file-20260521181242065.png)
-
-	Graphical install 선택
-
-![](../../../assets/images/Security/VM-Setup/2026-05-21-kali_VMadd/file-20260521181307812.png)
-
-	한국어 선택 후 다음 선택도 한국어로 설치
-
-![](../../../assets/images/Security/VM-Setup/2026-05-21-kali_VMadd/file-20260521181352626.png)
-
-![](../../../assets/images/Security/VM-Setup/2026-05-21-kali_VMadd/file-20260521181609474.png)
-
-![](../../../assets/images/Security/VM-Setup/2026-05-21-kali_VMadd/file-20260521181621630.png)
-
-![](../../../assets/images/Security/VM-Setup/2026-05-21-kali_VMadd/file-20260521181659401.png)
-
-	여기서 설정한 이름이 계정 입력할 때 쓰는 사용자 (id라고 보면된다.)
-
-![](../../../assets/images/Security/VM-Setup/2026-05-21-kali_VMadd/file-20260521181823327.png)
-
-![](../../../assets/images/Security/VM-Setup/2026-05-21-kali_VMadd/file-20260521181850761.png)
-
-![](../../../assets/images/Security/VM-Setup/2026-05-21-kali_VMadd/file-20260521181900643.png)
-
-![](../../../assets/images/Security/VM-Setup/2026-05-21-kali_VMadd/file-20260521181912472.png)
-
-![](../../../assets/images/Security/VM-Setup/2026-05-21-kali_VMadd/file-20260521181924403.png)
-
-	예 선택 후 계속
-
-![](../../../assets/images/Security/VM-Setup/2026-05-21-kali_VMadd/file-20260521181935676.png)
-
-	수정없이 그대로 계속
-
-![](../../../assets/images/Security/VM-Setup/2026-05-21-kali_VMadd/file-20260521182002648.png)
-
-	예 선택 후 계속
-
-![](../../../assets/images/Security/VM-Setup/2026-05-21-kali_VMadd/file-20260521182106179.png)
-
-![](../../../assets/images/Security/VM-Setup/2026-05-21-kali_VMadd/file-20260521182756895.png)
-
-![](../../../assets/images/Security/VM-Setup/2026-05-21-kali_VMadd/file-20260521182810268.png)
-
-![](../../../assets/images/Security/VM-Setup/2026-05-21-kali_VMadd/file-20260521182952894.png)
-
-	설치완료! 계속 누르면 됩니다.
-	다시 재부팅할텐데 가만히 있으면 로그인 창 나옵니다
-
-![](../../../assets/images/Security/VM-Setup/2026-05-21-kali_VMadd/file-20260521183054710.png)
-
-	이 상태에서 스냅샷 한번 찍고 나서 한글화 하는걸 추천
+	먼저 칼리에 들어오면 root 비번부터 설정해준다 그리고 재부팅 후 root로 로그인
 
 
-**스냅샷 방법**
+![](../../../assets/images/Security/VM-Setup/2026-05-21-kali_korean/file-20260521233039931.png)
 
-![](../../../assets/images/Security/VM-Setup/2026-05-21-kali_VMadd/file-20260521183139338.png)
+	2026.1 버전부터는 update를 하지 않으면 한글화가 안되는 것 같다.
 
-	먼저 실행중인 칼리를 꺼줍니다.
+![](../../../assets/images/Security/VM-Setup/2026-05-21-kali_korean/file-20260521233051385.png)
 
-![](../../../assets/images/Security/VM-Setup/2026-05-21-kali_VMadd/file-20260521183212657.png)
 
-	우클릭 -> Snapshot -> Take Snapshot
+![](../../../assets/images/Security/VM-Setup/2026-05-21-kali_korean/file-20260521233221691.png)
 
-![](../../../assets/images/Security/VM-Setup/2026-05-21-kali_VMadd/file-20260521183309550.png)
+![](../../../assets/images/Security/VM-Setup/2026-05-21-kali_korean/file-20260521233211797.png)
 
-	내용을 적고 Take Snapshot하면 끝
+	체크하고 OK
 
-![](../../../assets/images/Security/VM-Setup/2026-05-21-kali_VMadd/file-20260521183406044.png)
+![](../../../assets/images/Security/VM-Setup/2026-05-21-kali_korean/file-20260521233303255.png)
 
-	중간중간 스냅샷을 찍으며 이전 과정이나 초기로 되돌리고 싶을 때 스냅샷 찍어둔걸 클릭만하면 해당 시점으로 돌아갑니다.
+```bash
+cat << EOF >> ~/.xprofile
+export GTK_IM_MODULE=fcitx
+export QT_IM_MODULE=fcitx
+export XMODIFIERS="@im=fcitx"
+EOF
+```
 
+	코드를 그대로 복사해서 붙여넣기
+
+![](../../../assets/images/Security/VM-Setup/2026-05-21-kali_korean/file-20260521233345035.png)
+
+	그리고 reboot
+
+![](../../../assets/images/Security/VM-Setup/2026-05-21-kali_korean/file-20260521233420274.png)
