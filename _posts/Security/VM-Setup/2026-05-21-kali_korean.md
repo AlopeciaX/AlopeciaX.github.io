@@ -70,6 +70,19 @@ reboot
 	한글도 안깨지고 잘 입력되는걸 볼 수 있다.
 	(vi로 .profile 수정안하면 한글 깨짐)
 
+
+![](../../../assets/images/Security/VM-Setup/2026-05-21-kali_korean/file-20260522000555102.png)
+
+![](../../../assets/images/Security/VM-Setup/2026-05-21-kali_korean/file-20260522000705130.png)
+
+![](../../../assets/images/Security/VM-Setup/2026-05-21-kali_korean/file-20260522001135246.png)
+
+	배경화면뿐만 아니라 한글까지 잘 되는걸 볼 수 있다.
+
+
+---
+**일반계정의 root폴더 영문화?**
+
 ![](../../../assets/images/Security/VM-Setup/2026-05-21-kali_korean/file-20260522004251517.png)
 
 	root는 영어로 바꿨지만 일반 계정은 한글로 바뀐걸 볼 수 있다.
@@ -98,11 +111,4 @@ XDG_VIDEOS_DIR="$HOME/Videos"
 
 	reboot해주고 확인해본다. 
 
-![](../../../assets/images/Security/VM-Setup/2026-05-21-kali_korean/file-20260522000555102.png)
-
-![](../../../assets/images/Security/VM-Setup/2026-05-21-kali_korean/file-20260522000705130.png)
-
-![](../../../assets/images/Security/VM-Setup/2026-05-21-kali_korean/file-20260522001135246.png)
-
-	배경화면뿐만 아니라 한글까지 잘 되는걸 볼 수 있다.
-
+--> 업데이트 강제로 막고 mkdir로 새로 폴더 만들면 가능할거 같은데 Kali에서 일반계정은 거의 쓰지않고 root 계정을 주로 쓰므로로 패스하고 넘어가겠다.
