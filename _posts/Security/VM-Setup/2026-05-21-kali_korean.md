@@ -47,7 +47,7 @@ reboot
 
 ![](../../../assets/images/Security/VM-Setup/2026-05-21-kali_korean/file-20260522003420693.png)
 
-![](../../../assets/images/Security/VM-Setup/2026-05-21-kali_korean/file-20260522003507512.png)
+![](../../../assets/images/Security/VM-Setup/2026-05-21-kali_korean/file-20260522004131722.png)
 
 ![](../../../assets/images/Security/VM-Setup/2026-05-21-kali_korean/file-20260522003620060.png)
 
@@ -56,7 +56,7 @@ reboot
 	i : insert 모드 (편집 가능하다)
 	:wq : 저장
 
-![](../../../assets/images/Security/VM-Setup/2026-05-21-kali_korean/file-20260522003849906.png)
+![](../../../assets/images/Security/VM-Setup/2026-05-21-kali_korean/file-20260522004150692.png)
 
 	reboot 해주기
 
@@ -70,8 +70,10 @@ reboot
 	한글도 안깨지고 잘 입력되는걸 볼 수 있다.
 	(vi로 .profile 수정안하면 한글 깨짐)
 
+![](../../../assets/images/Security/VM-Setup/2026-05-21-kali_korean/file-20260522004251517.png)
 
-
+	root는 영어로 바꿨지만 일반 계정은 한글로 바뀐걸 볼 수 있다.
+	
 
 ![](../../../assets/images/Security/VM-Setup/2026-05-21-kali_korean/file-20260522000555102.png)
 
