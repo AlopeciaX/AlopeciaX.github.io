@@ -52,7 +52,8 @@ reboot
 ![](../../../assets/images/Security/VM-Setup/2026-05-21-kali_korean/file-20260522003620060.png)
 
 	vi 사용법
-	키보드 i 입력 -> 방향키 아래 -> 기존에 있던 C지우고 ko_KR.UTF-8 넣기 -> esc -> 키보드 :wq 입력
+	키보드 i 입력 -> 방향키 아래 -> 기존에 있던 C지우고 ko_KR.UTF-8 넣기
+	-> esc -> 키보드 :wq 입력
 	i : insert 모드 (편집 가능하다)
 	:wq : 저장
 
