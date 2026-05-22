@@ -84,32 +84,10 @@ reboot
 ---
 **일반계정의 root폴더 영문화?**
 
-![](../../../assets/images/Security/VM-Setup/2026-05-21-kali_korean/file-20260522004251517.png)
-
-	root는 영어로 바꿨지만 일반 계정은 한글로 바뀐걸 볼 수 있다.
-
-![](../../../assets/images/Security/VM-Setup/2026-05-21-kali_korean/file-20260522004938660.png)
-
-	vi ~/.config/user-dirs.dirs 로 들어간다.
-
-![](../../../assets/images/Security/VM-Setup/2026-05-21-kali_korean/file-20260522004920015.png)
-
-	키보드로 :%d 를 입력한 뒤 밑의 코드를 붙여넣는다.
-	그리고 :wq 로 저장해준다.
+![](../../../assets/images/Security/VM-Setup/2026-05-21-kali_korean/file-20260523031640351.png)
 
 ```bash
-XDG_DESKTOP_DIR="$HOME/Desktop"
-XDG_DOWNLOAD_DIR="$HOME/Downloads"
-XDG_TEMPLATES_DIR="$HOME/Templates"
-XDG_PUBLICSHARE_DIR="$HOME/Public"
-XDG_DOCUMENTS_DIR="$HOME/Documents"
-XDG_MUSIC_DIR="$HOME/Music"
-XDG_PICTURES_DIR="$HOME/Pictures"
-XDG_VIDEOS_DIR="$HOME/Videos"
+LC_ALL=C xdg-user-dirs-gtk-update
 ```
 
-![](../../../assets/images/Security/VM-Setup/2026-05-21-kali_korean/file-20260522005348871.png)
-
-	reboot해주고 확인해본다. 
-
---> 업데이트 강제로 막고 mkdir로 새로 폴더 만들면 가능할거 같은데 Kali에서 일반계정은 거의 쓰지않고 root 계정을 주로 쓰므로 패스하고 넘어가겠다.
+	해당 명령어를 입력하면 업데이트 클릭하면 영어로 바뀐다.
