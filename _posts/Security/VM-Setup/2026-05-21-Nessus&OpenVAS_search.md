@@ -26,6 +26,23 @@ systemctl restart nessusd
 ![](../../../assets/images/Security/VM-Setup/2026-05-21-Nessus&OpenVAS_search/file-20260523124621031.png)
 ![](../../../assets/images/Security/VM-Setup/2026-05-21-Nessus&OpenVAS_search/file-20260523124640722.png)
 
+![](../../../assets/images/Security/VM-Setup/2026-05-21-Nessus&OpenVAS_search/file-20260523131025495.png)
+
+![](../../../assets/images/Security/VM-Setup/2026-05-21-Nessus&OpenVAS_search/file-20260523131151176.png)
+
+![](../../../assets/images/Security/VM-Setup/2026-05-21-Nessus&OpenVAS_search/file-20260523131206650.png)
+
+![](../../../assets/images/Security/VM-Setup/2026-05-21-Nessus&OpenVAS_search/file-20260523131131915.png)
+
+	타겟 ip주소 입력
+
 
 
 **OpenVAS**
+
+
+
+
+![](../../../assets/images/Security/VM-Setup/2026-05-21-Nessus&OpenVAS_search/file-20260523131509516.png)
+
+	gvm-setup할때 admin/password 를 알려주는데 이거 꼭 기억하고 사이트에서 비번 바꿔주기
