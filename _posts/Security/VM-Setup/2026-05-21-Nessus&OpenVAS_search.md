@@ -40,8 +40,11 @@ systemctl restart nessusd
 
 **OpenVAS**
 
+```bash
+gvm-start
+```
 
-
+	접속 주소: https://127.0.0.1:9392
 
 ![](../../../assets/images/Security/VM-Setup/2026-05-21-Nessus&OpenVAS_search/file-20260523131509516.png)
 
