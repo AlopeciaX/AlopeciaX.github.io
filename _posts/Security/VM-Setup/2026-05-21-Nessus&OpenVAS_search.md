@@ -49,3 +49,8 @@ gvm-start
 ![](../../../assets/images/Security/VM-Setup/2026-05-21-Nessus&OpenVAS_search/file-20260523131509516.png)
 
 	gvm-setup할때 admin/password 를 알려주는데 이거 꼭 기억하고 사이트에서 비번 바꿔주기
+
+![](../../../assets/images/Security/VM-Setup/2026-05-21-Nessus&OpenVAS_search/file-20260523132227791.png)
+
+![](../../../assets/images/Security/VM-Setup/2026-05-21-Nessus&OpenVAS_search/file-20260523132315809.png)
+
