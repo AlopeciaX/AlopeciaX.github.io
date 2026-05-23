@@ -1,11 +1,12 @@
 ---
-title: 칼리 리눅스 한글화
-date: 2026-05-21
+title: Nessus&OpenVAS 설치
+date: 2026-05-23
 categories:
   - security
 comments: true
 tags:
-  - Kali
+  - Nessus
+  - OpenVAS
   - install
 ---
 ---

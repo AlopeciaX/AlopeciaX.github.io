@@ -13,9 +13,9 @@ tags:
 
 	user: vagrant / pw: vagrant
 
-![](../../../assets/images/Security/VM-Setup/2026-05-21-kali_korean%201%201/file-20260523113947009.png)
+![](../../../assets/images/Security/VM-Setup/2026-05-23-Metas3-ub1404_settings/file-20260523113947009.png)
 
-![](../../../assets/images/Security/VM-Setup/2026-05-21-kali_korean%201%201/file-20260523114925625.png)
+![](../../../assets/images/Security/VM-Setup/2026-05-23-Metas3-ub1404_settings/file-20260523114925625.png)
 
 ```bash
 sudo nano /etc/network/interfaces
