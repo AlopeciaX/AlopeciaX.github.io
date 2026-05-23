@@ -14,6 +14,12 @@ tags:
 
 **Nessus**
 
-	접속 주소: 
+```bash
+systemctl start nessusd
+```
+
+	접속 주소: https://127.0.0.1:8834
+
+
 
 **OpenVAS**
