@@ -41,6 +41,7 @@ systemctl restart nessusd
 **OpenVAS**
 
 ```bash
+gvm-check-setup
 gvm-start
 ```
 
