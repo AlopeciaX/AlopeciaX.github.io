@@ -27,3 +27,8 @@ tags:
 	3. Public Cloud + Private Cloud (Hybrid Cloud)
 		3.1. Multi Hybrid Cloud
 		3.2. 통합된 관리 환경
+
+
+**클라우드 최초**
+
+	1.AWS(Amazone Web Service): Black Friday, 
