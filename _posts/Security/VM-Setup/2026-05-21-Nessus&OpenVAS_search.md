@@ -15,7 +15,7 @@ tags:
 **Nessus**
 
 ```bash
-systemctl start nessusd
+systemctl enable --now nessusd
 
 # 만약 똑같이 안뜨면
 systemctl restart nessusd
