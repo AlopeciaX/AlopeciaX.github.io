@@ -32,3 +32,11 @@ tags:
 **클라우드 최초**
 
 	1.AWS(Amazone Web Service): Black Friday, 
+
+
+**Azure 사용법**
+
+	1. Resource 그룹 생성
+	2. 가상 네트워크 생성
+		2.1. 만약에 Azure Bastion 사용할거면 443포트 열어줘야하고, outbound로 ssh, rdp 열어줘야 함
+	3. 
