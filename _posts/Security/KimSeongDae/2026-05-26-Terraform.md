@@ -55,3 +55,9 @@ tags:
 
 
 ![](../../../assets/images/Security/KimSeongDae/2026-05-26-Terraform/file-20260526113444185.png)
+
+jhjang-bas-1
+4.217.135.171
+10.0.0.4
+jhjang
+jhjang.pub
