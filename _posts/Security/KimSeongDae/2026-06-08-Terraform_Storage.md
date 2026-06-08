@@ -134,3 +134,8 @@ exam1
 
 LVM(Logical Volumn Manager)
 - 파티션(LVM) → PV 생성 → VG 생성 → LV 생성 → 파일시스템 → 마운트 
+- PV 생성
+	#pvcreate / dev/sdb1 /dev/sdb2
+	#pvremove /dev/sdb1 /dev/sdb2
+	#pvs 
+	#pvdisplay
