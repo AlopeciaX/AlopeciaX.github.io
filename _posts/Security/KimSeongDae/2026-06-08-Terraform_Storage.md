@@ -129,3 +129,8 @@ exam1
 ![](../../../assets/images/Security/KimSeongDae/2026-06-08-Terraform_Storage/file-20260608114010192.png)
 
 이렇게 뜨면 삭제완료
+
+---
+
+LVM(Logical Volumn Manager)
+- 파티션(LVM) → PV 생성 → VG 생성 → LV 생성 → 파일시스템 → 마운트 
