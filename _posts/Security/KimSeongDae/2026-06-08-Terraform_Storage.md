@@ -58,3 +58,8 @@ mount에 사용되는 디렉토리를 Mount point
 ```bash
 lsblk
 ```
+
+sd: 스카시방식
+hd: 
+sr0: cdrom
+
