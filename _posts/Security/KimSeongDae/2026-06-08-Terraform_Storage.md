@@ -62,4 +62,21 @@ lsblk
 sd: 스카시방식
 hd: 
 sr0: cdrom
+![](../../../assets/images/Security/KimSeongDae/2026-06-08-Terraform_Storage/file-20260608102441460.png)
+
+![](../../../assets/images/Security/KimSeongDae/2026-06-08-Terraform_Storage/file-20260608102618281.png)
+
+하나의 sector 크기는 512byte
+
+##### 1. 3GB
+![](../../../assets/images/Security/KimSeongDae/2026-06-08-Terraform_Storage/file-20260608103845955.png)
+
+##### 2. 7GB
+![](../../../assets/images/Security/KimSeongDae/2026-06-08-Terraform_Storage/file-20260608103931909.png)
+
+
+![](../../../assets/images/Security/KimSeongDae/2026-06-08-Terraform_Storage/file-20260608104039241.png)
+
+파티션을 지우면 안에있는 데이터는 다 날라감
+
 
