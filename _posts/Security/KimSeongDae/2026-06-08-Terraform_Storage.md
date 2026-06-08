@@ -108,5 +108,24 @@ Y누르면 시그니처 삭제가능
 ![](../../../assets/images/Security/KimSeongDae/2026-06-08-Terraform_Storage/file-20260608111836639.png)
 
 
-![](../../../assets/images/Security/KimSeongDae/2026-06-08-Terraform_Storage/file-20260608111936703.png)
+![604](../../../assets/images/Security/KimSeongDae/2026-06-08-Terraform_Storage/file-20260608111936703.png)
 
+![](../../../assets/images/Security/KimSeongDae/2026-06-08-Terraform_Storage/file-20260608112115427.png)
+
+mount, de -Th 로 확인가능
+
+삭제순서
+umount /dev/sdb1 -> wipefs -a -f /dev/sdb1
+
+![](../../../assets/images/Security/KimSeongDae/2026-06-08-Terraform_Storage/file-20260608112326468.png)
+
+---
+exam1
+
+1. sdb 디스크를 3개의 파티션으로 분리
+
+![](../../../assets/images/Security/KimSeongDae/2026-06-08-Terraform_Storage/file-20260608113702002.png)
+
+![](../../../assets/images/Security/KimSeongDae/2026-06-08-Terraform_Storage/file-20260608114010192.png)
+
+이렇게 뜨면 삭제완료
