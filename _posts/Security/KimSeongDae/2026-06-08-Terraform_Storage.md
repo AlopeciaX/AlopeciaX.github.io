@@ -139,3 +139,19 @@ LVM(Logical Volumn Manager)
 	#pvremove /dev/sdb1 /dev/sdb2
 	#pvs 
 	#pvdisplay
+
+VG생성
+	#vgcreate 그룹명 pv명1 pv명2 .....
+	#vgremove 그룹명
+	#vgextend 그룹명 pv명10 .....
+	#vgreduce 그룹명 pv명 .....
+	#vgs
+	#vgdisplay
+
+LV 생성
+	#lvcreate 용량 -n vg명 lv명
+	#lvremove /dev/vg명/lv명
+	#lvextend + 3G /dev/vg명/lv명       기존 용량에 3G 추가
+	#lvextend 10G /dev/vg명/lv명        최종용량을 10G로 만들어라
+	#lvreduce -3G /dev/vg명/lv명         데이터가 깨질 수 있음
+	#lvreduce 3G /dev/vg명/lv명
