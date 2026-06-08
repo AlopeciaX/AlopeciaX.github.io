@@ -29,9 +29,32 @@ tags:
 	- 장점: 속도가 빠름(16Gbps), 안정적, 원거리 구성 가능
 	- 단점: 고가의 비용, 구성이 쉽지 않음(별도의 SAN Switch, HBA Card)
 
-![](../../../assets/images/Security/KimSeongDae/2026-06-08-Terraform_6%201/file-20260608094010428.png)
+![](../../../assets/images/Security/KimSeongDae/2026-06-08-Terraform_Storage/file-20260608094010428.png)
 
 
 ##### 2. Cloud Storage
 
-![](../../../assets/images/Security/KimSeongDae/2026-06-08-Terraform_6%201/file-20260608094458796.png)
+![](../../../assets/images/Security/KimSeongDae/2026-06-08-Terraform_Storage/file-20260608094458796.png)
+
+---
+
+### DISK
+
+##### 1. DISK 사용 절차
+
+![](../../../assets/images/Security/KimSeongDae/2026-06-08-Terraform_Storage/file-20260608095807065.png)
+
+1.4 파일시스템: 파일 및 디렉토리를 효과적으로 관리하는 시스템
+1.4.1 Windows: FAT16, FAT32, NTFS
+1.4.2 Linux: EXT2, EXT3, EXT4, XFS
+1.4.2.1 EXT3, EXT4: Journaling file system 파일이나 디렉토리를 생성, 삭제 시 Log를 기록 이 Log를 통해서 파일 복구 가능, 단 속도가 느려짐
+ext3의 느린 속도를 개선한 버전이 ext4
+
+1.5 Mount: Linux System에서는 물리적인 장치 사용하기 위해서는 반드시 디렉토리와 연결하는 작업이 필요
+
+mount에 사용되는 디렉토리를 Mount point
+
+
+```bash
+lsblk
+```
