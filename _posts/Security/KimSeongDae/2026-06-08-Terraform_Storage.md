@@ -80,3 +80,18 @@ sr0: cdrom
 파티션을 지우면 안에있는 데이터는 다 날라감
 
 
+![](../../../assets/images/Security/KimSeongDae/2026-06-08-Terraform_Storage/file-20260608104157157.png)
+
+
+---
+### 파일 시스템
+
+df: 파일시스템의 사용률
+du: 디스크 사용률
+
+![](../../../assets/images/Security/KimSeongDae/2026-06-08-Terraform_Storage/file-20260608105004920.png)
+
+![](../../../assets/images/Security/KimSeongDae/2026-06-08-Terraform_Storage/file-20260608105601339.png)
+
+mount -> 용량 문제 한계 -> lvm 도입 -> 용량 늘리기 쉬움
+
