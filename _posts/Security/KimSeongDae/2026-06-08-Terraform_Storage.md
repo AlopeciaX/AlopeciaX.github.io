@@ -95,3 +95,18 @@ du: 디스크 사용률
 
 mount -> 용량 문제 한계 -> lvm 도입 -> 용량 늘리기 쉬움
 
+삭제
+
+파일 시그니처가 남아있는걸 고려
+
+![](../../../assets/images/Security/KimSeongDae/2026-06-08-Terraform_Storage/file-20260608111604370.png)
+
+![](../../../assets/images/Security/KimSeongDae/2026-06-08-Terraform_Storage/file-20260608111743480.png)
+
+Y누르면 시그니처 삭제가능
+
+![](../../../assets/images/Security/KimSeongDae/2026-06-08-Terraform_Storage/file-20260608111836639.png)
+
+
+![](../../../assets/images/Security/KimSeongDae/2026-06-08-Terraform_Storage/file-20260608111936703.png)
+
