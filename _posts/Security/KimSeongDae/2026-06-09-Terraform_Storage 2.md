@@ -52,3 +52,30 @@ lvremove /dev/jhjang/jhjang3
 vgremove
 pvremove
 fdisk /dev/sdb -> d -> w
+
+---
+재생성
+
+![](../../../assets/images/Security/KimSeongDae/2026-06-09-Terraform_Storage%202/file-20260609104326940.png)
+
+이게 만들어지면 성공
+
+확장
+
+![](../../../assets/images/Security/KimSeongDae/2026-06-09-Terraform_Storage%202/file-20260609104525617.png)
+
+![](../../../assets/images/Security/KimSeongDae/2026-06-09-Terraform_Storage%202/file-20260609104713057.png)
+
+3.3 -> 4.3 넘어감
+
+![](../../../assets/images/Security/KimSeongDae/2026-06-09-Terraform_Storage%202/file-20260609105054797.png)
+
+자동으로 늘어나있음
+
+---
+삭제과정
+
+![](../../../assets/images/Security/KimSeongDae/2026-06-09-Terraform_Storage%202/file-20260609105302923.png)
+
+![](../../../assets/images/Security/KimSeongDae/2026-06-09-Terraform_Storage%202/file-20260609105345508.png)
+
