@@ -44,7 +44,7 @@ pvs
 ---
 삭제는거꾸로
 
-mount삭제 -> file system 삭제 -> lvm 삭제 -> volumn group 삭제
+mount삭제 -> file system 삭제 -> lvm 삭제 -> volumn group 삭제 -> pv 삭제 -> 파티션 삭제
 
 umount
 wipefs -a -f /dev/jhjang/jhjang1
