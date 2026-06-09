@@ -22,4 +22,22 @@ fdisk /dev/sdb
 
 ![](../../../assets/images/Security/KimSeongDae/2026-06-09-Terraform_Storage%202/file-20260609094718590.png)
 
-lv까지 만들어야
+- 선호방식
+lvscan 선호: 장치명도 나옴
+
+![](../../../assets/images/Security/KimSeongDae/2026-06-09-Terraform_Storage%202/file-20260609100021502.png)
+
+
+vgdisplay
+
+![](../../../assets/images/Security/KimSeongDae/2026-06-09-Terraform_Storage%202/file-20260609095827832.png)
+
+![](../../../assets/images/Security/KimSeongDae/2026-06-09-Terraform_Storage%202/file-20260609095827832.png)
+
+
+pvs
+
+
+
+아 3.39기가 남았구나 라고 생각
+
