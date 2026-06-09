@@ -41,3 +41,14 @@ pvs
 
 아 3.39기가 남았구나 라고 생각
 
+---
+삭제는거꾸로
+
+mount삭제 -> file system 삭제 -> lvm 삭제 -> volumn group 삭제
+
+umount
+wipefs -a -f /dev/jhjang/jhjang1
+lvremove /dev/jhjang/jhjang3
+vgremove
+pvremove
+fdisk /dev/sdb -> d -> w
