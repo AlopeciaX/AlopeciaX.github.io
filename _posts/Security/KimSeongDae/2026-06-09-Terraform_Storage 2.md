@@ -79,3 +79,10 @@ fdisk /dev/sdb -> d -> w
 
 ![](../../../assets/images/Security/KimSeongDae/2026-06-09-Terraform_Storage%202/file-20260609105345508.png)
 
+![](../../../assets/images/Security/KimSeongDae/2026-06-09-Terraform_Storage%202/file-20260609105619992.png)
+
+![](../../../assets/images/Security/KimSeongDae/2026-06-09-Terraform_Storage%202/file-20260609105739078.png)
+
+![](../../../assets/images/Security/KimSeongDae/2026-06-09-Terraform_Storage%202/file-20260609105813834.png)
+
+마무리로 fdisk /dev/sdc 삭제, fdisk /dev/sdb 삭제
