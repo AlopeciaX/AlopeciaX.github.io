@@ -87,3 +87,5 @@ fdisk /dev/sdb -> d -> w
 
 마무리로 fdisk /dev/sdc 삭제, fdisk /dev/sdb 삭제
 
+---
+
