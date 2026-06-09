@@ -12,9 +12,9 @@ tags:
 ---
 
 Disk     파티션        pv           vg         lv       사이즈        file system      mount point
-sdb       sdb1     /dev/sdb1    jhjang   jhjang1    3.3G
-                                jhjang2    3.3G
-                                jhjang3
+sdb       sdb1     /dev/sdb1    jhjang   jhjang1    3.3G            ext3               /f1
+                                jhjang2    3.3G            ext4               /f2
+                                jhjang3   나머지G         xfs                /f3
 
 
 fdisk /dev/sdb
@@ -86,3 +86,4 @@ fdisk /dev/sdb -> d -> w
 ![](../../../assets/images/Security/KimSeongDae/2026-06-09-Terraform_Storage%202/file-20260609105813834.png)
 
 마무리로 fdisk /dev/sdc 삭제, fdisk /dev/sdb 삭제
+
