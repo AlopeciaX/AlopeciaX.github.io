@@ -15,3 +15,5 @@ tags:
 dsdata
 
 csp - msp
+
+보고서 왼쪽맞춤 (장평맞춤x)
