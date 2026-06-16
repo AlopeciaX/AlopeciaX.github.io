@@ -291,3 +291,13 @@ docker exec -it h1 /bin/bash
 ![](../../../assets/images/Security/KimSeongDae/2026-06-15-Source설치,%20Docker설치/file-20260616115625589.png)
 
 public repository에 h1.0 이미지가 잘 올라간걸 확인 가능
+
+
+---
+
+## nginx 올려보기
+
+내용 바꾸고 -> n1.0
+
+docker run -itd -p 60580:80 --name n2 nginx
+docker exec -it n1 /bin/bash
