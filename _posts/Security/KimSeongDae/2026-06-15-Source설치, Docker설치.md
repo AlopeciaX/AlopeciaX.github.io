@@ -317,9 +317,27 @@ docker push alopeciax01/web:n1.0
 
 docker rmi alopeciax01/web:n1.0
 docker images
+
+docker rmi jhjang:h1.0
 ```
 
 ![](../../../assets/images/Security/KimSeongDae/2026-06-15-Source설치,%20Docker설치/file-20260616120643147.png)
 
 ![](../../../assets/images/Security/KimSeongDae/2026-06-15-Source설치,%20Docker설치/file-20260616120728590.png)
 
+n2.0 생성 완료
+
+![](../../../assets/images/Security/KimSeongDae/2026-06-15-Source설치,%20Docker설치/file-20260616122028329.png)
+
+삭제 순서는 전체 삭제 -> 이미지 삭제 순으로 진행하면됨
+
+![](../../../assets/images/Security/KimSeongDae/2026-06-15-Source설치,%20Docker설치/file-20260616122053736.png)
+
+언태그이름으로 생성된 이미지는 id로 삭제하면 됨
+
+```bash
+docker pull alopeciax01/web:h1.0
+docker images
+docker run -itd -p 60080:80 --name h1 alopeciax01/web:h1.0
+docker ps -a
+```
