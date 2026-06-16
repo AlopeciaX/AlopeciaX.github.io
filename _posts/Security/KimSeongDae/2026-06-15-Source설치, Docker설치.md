@@ -299,5 +299,27 @@ public repository에 h1.0 이미지가 잘 올라간걸 확인 가능
 
 내용 바꾸고 -> n1.0
 
-docker run -itd -p 60580:80 --name n2 nginx
+```bash
+docker run -itd -p 65280:80 --name n1 nginx
 docker exec -it n1 /bin/bash
+ls /usr/share/nginx/html/
+cat > /usr/share/nginx/html/index.html << eof
+<html>
+<body>
+<h1>JHJANG-DOCKER-NGINX</h1>
+</body>
+</html>
+eof
+exit
+docker commit n1 alopeciax/web:n1.0
+docker images
+docker push alopeciax01/web:n1.0
+
+docker rmi alopeciax01/web:n1.0
+docker images
+```
+
+![](../../../assets/images/Security/KimSeongDae/2026-06-15-Source설치,%20Docker설치/file-20260616120643147.png)
+
+![](../../../assets/images/Security/KimSeongDae/2026-06-15-Source설치,%20Docker설치/file-20260616120728590.png)
+
