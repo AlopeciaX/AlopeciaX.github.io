@@ -17,7 +17,7 @@ hadoop 빅데이터 시스템?
 
 bz2 > gz 30%
 
-![](../../../assets/images/Security/KimSeongDae/2026-06-15-Source설치,%20Docker설치/file-20260616092610756.png)
+![](../../../assets/images/Security/KimSeongDae/2026-06-16-Source설치,%20Docker설치/file-20260616092610756.png)
 
 https://downloads.apache.org/httpd/httpd-2.4.68.tar.bz2
 
@@ -28,16 +28,16 @@ dnf install -y wget, bzip2, tar
 
 
 
-![](../../../assets/images/Security/KimSeongDae/2026-06-15-Source설치,%20Docker설치/file-20260616093300047.png)
+![](../../../assets/images/Security/KimSeongDae/2026-06-16-Source설치,%20Docker설치/file-20260616093300047.png)
 
 유닉스 x86 돌아감 -> linux
 
 https://downloads.apache.org/apr/apr-1.7.6.tar.bz2
 https://downloads.apache.org/apr/apr-1.7.6.tar.gz
 
-![](../../../assets/images/Security/KimSeongDae/2026-06-15-Source설치,%20Docker설치/file-20260616094017753.png)
+![](../../../assets/images/Security/KimSeongDae/2026-06-16-Source설치,%20Docker설치/file-20260616094017753.png)
 
-![](../../../assets/images/Security/KimSeongDae/2026-06-15-Source설치,%20Docker설치/file-20260616094028641.png)
+![](../../../assets/images/Security/KimSeongDae/2026-06-16-Source설치,%20Docker설치/file-20260616094028641.png)
 
 https://downloads.apache.org/apr/apr-util-1.6.3.tar.bz2
 https://downloads.apache.org/apr/apr-util-1.6.3.tar.gz
@@ -50,19 +50,19 @@ tar xvfj로 압축해제
    make install
 ```
 
-![](../../../assets/images/Security/KimSeongDae/2026-06-15-Source설치,%20Docker설치/file-20260616094434083.png)
+![](../../../assets/images/Security/KimSeongDae/2026-06-16-Source설치,%20Docker설치/file-20260616094434083.png)
 
 dnf install -y gcc
 
-![](../../../assets/images/Security/KimSeongDae/2026-06-15-Source설치,%20Docker설치/file-20260616094742202.png)
+![](../../../assets/images/Security/KimSeongDae/2026-06-16-Source설치,%20Docker설치/file-20260616094742202.png)
 
-![](../../../assets/images/Security/KimSeongDae/2026-06-15-Source설치,%20Docker설치/file-20260616094840516.png)
+![](../../../assets/images/Security/KimSeongDae/2026-06-16-Source설치,%20Docker설치/file-20260616094840516.png)
 
-![](../../../assets/images/Security/KimSeongDae/2026-06-15-Source설치,%20Docker설치/file-20260616094901769.png)
+![](../../../assets/images/Security/KimSeongDae/2026-06-16-Source설치,%20Docker설치/file-20260616094901769.png)
 
-![](../../../assets/images/Security/KimSeongDae/2026-06-15-Source설치,%20Docker설치/file-20260616095034733.png)
+![](../../../assets/images/Security/KimSeongDae/2026-06-16-Source설치,%20Docker설치/file-20260616095034733.png)
 
-![](../../../assets/images/Security/KimSeongDae/2026-06-15-Source설치,%20Docker설치/file-20260616095130097.png)
+![](../../../assets/images/Security/KimSeongDae/2026-06-16-Source설치,%20Docker설치/file-20260616095130097.png)
 
 	make 시 오류 생김 -> 나중에 큰 문제생김
 
@@ -72,23 +72,23 @@ dns install -y expat-devel
 --> apr, apr-util 완료
 
 
-![](../../../assets/images/Security/KimSeongDae/2026-06-15-Source설치,%20Docker설치/file-20260616095416357.png)
+![](../../../assets/images/Security/KimSeongDae/2026-06-16-Source설치,%20Docker설치/file-20260616095416357.png)
 
-![](../../../assets/images/Security/KimSeongDae/2026-06-15-Source설치,%20Docker설치/file-20260616095443405.png)
+![](../../../assets/images/Security/KimSeongDae/2026-06-16-Source설치,%20Docker설치/file-20260616095443405.png)
 
-![](../../../assets/images/Security/KimSeongDae/2026-06-15-Source설치,%20Docker설치/file-20260616095524208.png)
+![](../../../assets/images/Security/KimSeongDae/2026-06-16-Source설치,%20Docker설치/file-20260616095524208.png)
 
 	pcre.org -> pcre -> 8.45 -> pcre-8.45.tar.bz2 (링크주소복사)
 	뒤에 /download가 붙을거임 그거 지우고 wget
 
 
-![](../../../assets/images/Security/KimSeongDae/2026-06-15-Source설치,%20Docker설치/file-20260616095651553.png)
+![](../../../assets/images/Security/KimSeongDae/2026-06-16-Source설치,%20Docker설치/file-20260616095651553.png)
 
 	tar xvfj pcre-..
 	./configure --prefix=/pcre
 
-![](../../../assets/images/Security/KimSeongDae/2026-06-15-Source설치,%20Docker설치/file-20260616095758429.png)
-![](../../../assets/images/Security/KimSeongDae/2026-06-15-Source설치,%20Docker설치/file-20260616095813784.png)
+![](../../../assets/images/Security/KimSeongDae/2026-06-16-Source설치,%20Docker설치/file-20260616095758429.png)
+![](../../../assets/images/Security/KimSeongDae/2026-06-16-Source설치,%20Docker설치/file-20260616095813784.png)
 
 	c++도 설치
 
@@ -97,7 +97,7 @@ make || make install: make 실패시 make install 실행
 make; make install: make 끝나면 성공/실패 유무 상관없이 make install
 
 
-![](../../../assets/images/Security/KimSeongDae/2026-06-15-Source설치,%20Docker설치/file-20260616100118751.png)
+![](../../../assets/images/Security/KimSeongDae/2026-06-16-Source설치,%20Docker설치/file-20260616100118751.png)
 
 	왜 없지 -> 경로잘못됨
 
@@ -106,14 +106,14 @@ https://downloads.apache.org/httpd/httpd-2.4.68.tar.gz
 
 
 
-![](../../../assets/images/Security/KimSeongDae/2026-06-15-Source설치,%20Docker설치/file-20260616100214828.png)
+![](../../../assets/images/Security/KimSeongDae/2026-06-16-Source설치,%20Docker설치/file-20260616100214828.png)
 
 	make && make install 실행
 
 https://sourceforge.net/projects/pcre/files/pcre/8.45/pcre-8.45.tar.bz2
 https://sourceforge.net/projects/pcre/files/pcre/8.45/pcre-8.45.tar.gz
 
-![](../../../assets/images/Security/KimSeongDae/2026-06-15-Source설치,%20Docker설치/file-20260616100335865.png)
+![](../../../assets/images/Security/KimSeongDae/2026-06-16-Source설치,%20Docker설치/file-20260616100335865.png)
 
 	expat-devel을 나중에 설치해서 생기는 문제 -> 젤 먼저 설치해야 함
 
@@ -128,24 +128,24 @@ dnf install -y wget tar gcc gcc-c++ expat-devel
 
 
 
-![](../../../assets/images/Security/KimSeongDae/2026-06-15-Source설치,%20Docker설치/file-20260616102752976.png)
+![](../../../assets/images/Security/KimSeongDae/2026-06-16-Source설치,%20Docker설치/file-20260616102752976.png)
 ./configure --prefix=/web/apr
 ./configure --prefix=/web/aprutil --with-apr=/web/apr
 ./configure --prefix=/web/pcre
 ./configure --prefix=/usr/local/apache2 --with-apr=/web/apr --with-apr-util=/web/aprutil --with-pcre=/web/pcre/bin/pcre-config
 
-![](../../../assets/images/Security/KimSeongDae/2026-06-15-Source설치,%20Docker설치/file-20260616103539673.png)
+![](../../../assets/images/Security/KimSeongDae/2026-06-16-Source설치,%20Docker설치/file-20260616103539673.png)
 
-![](../../../assets/images/Security/KimSeongDae/2026-06-15-Source설치,%20Docker설치/file-20260616103904263.png)
+![](../../../assets/images/Security/KimSeongDae/2026-06-16-Source설치,%20Docker설치/file-20260616103904263.png)
 
 
-![](../../../assets/images/Security/KimSeongDae/2026-06-15-Source설치,%20Docker설치/file-20260616103712520.png)
+![](../../../assets/images/Security/KimSeongDae/2026-06-16-Source설치,%20Docker설치/file-20260616103712520.png)
 
 
 ##### 환경변수 설정
-![](../../../assets/images/Security/KimSeongDae/2026-06-15-Source설치,%20Docker설치/file-20260616104336079.png)
+![](../../../assets/images/Security/KimSeongDae/2026-06-16-Source설치,%20Docker설치/file-20260616104336079.png)
 
-![](../../../assets/images/Security/KimSeongDae/2026-06-15-Source설치,%20Docker설치/file-20260616104508987.png)
+![](../../../assets/images/Security/KimSeongDae/2026-06-16-Source설치,%20Docker설치/file-20260616104508987.png)
 
 경로 지정없이 바로 시작 가능
 
@@ -177,9 +177,9 @@ https://downloads.apache.org/httpd/httpd-2.4.68.tar.gz
 https://sourceforge.net/projects/pcre/files/pcre/8.45/pcre-8.45.tar.bz2
 https://sourceforge.net/projects/pcre/files/pcre/8.45/pcre-8.45.tar.gz
 
-![](../../../assets/images/Security/KimSeongDae/2026-06-15-Source설치,%20Docker설치/file-20260616105904387.png)
+![](../../../assets/images/Security/KimSeongDae/2026-06-16-Source설치,%20Docker설치/file-20260616105904387.png)
 
-![](../../../assets/images/Security/KimSeongDae/2026-06-15-Source설치,%20Docker설치/file-20260616105950945.png)
+![](../../../assets/images/Security/KimSeongDae/2026-06-16-Source설치,%20Docker설치/file-20260616105950945.png)
 
 ```bash
 cd apr-1.7.6
@@ -212,7 +212,7 @@ firewall-cmd --add-port=80/tcp
 vi /usr/local/apache2/htdocs/index.html
 ```
 
-![](../../../assets/images/Security/KimSeongDae/2026-06-15-Source설치,%20Docker설치/file-20260616112637245.png)
+![](../../../assets/images/Security/KimSeongDae/2026-06-16-Source설치,%20Docker설치/file-20260616112637245.png)
 
 	source설치 후 web 구동 성공
 
@@ -246,11 +246,11 @@ docker exec -it h1 /bin/bash
 echo 'JHJANG-DOCKER-WEB' > htdocs/index.html
 ```
 
-![](../../../assets/images/Security/KimSeongDae/2026-06-15-Source설치,%20Docker설치/file-20260616114028752.png)
+![](../../../assets/images/Security/KimSeongDae/2026-06-16-Source설치,%20Docker설치/file-20260616114028752.png)
 
 ##### it works -> 메인페이지변경 -> 이미지화
 
-![](../../../assets/images/Security/KimSeongDae/2026-06-15-Source설치,%20Docker설치/file-20260616114404087.png)
+![](../../../assets/images/Security/KimSeongDae/2026-06-16-Source설치,%20Docker설치/file-20260616114404087.png)
 
 먼저 로그인
 
@@ -261,34 +261,34 @@ docker ps -a
 docker exec -it h1 /bin/bash
 ```
 
-![](../../../assets/images/Security/KimSeongDae/2026-06-15-Source설치,%20Docker설치/file-20260616114858300.png)
+![](../../../assets/images/Security/KimSeongDae/2026-06-16-Source설치,%20Docker설치/file-20260616114858300.png)
 
 
 ##### 이미지 생성 시 주의할 점
 
-![](../../../assets/images/Security/KimSeongDae/2026-06-15-Source설치,%20Docker설치/file-20260616114939789.png)
+![](../../../assets/images/Security/KimSeongDae/2026-06-16-Source설치,%20Docker설치/file-20260616114939789.png)
 
-![](../../../assets/images/Security/KimSeongDae/2026-06-15-Source설치,%20Docker설치/file-20260616115020838.png)
+![](../../../assets/images/Security/KimSeongDae/2026-06-16-Source설치,%20Docker설치/file-20260616115020838.png)
 
-![](../../../assets/images/Security/KimSeongDae/2026-06-15-Source설치,%20Docker설치/file-20260616115035871.png)
+![](../../../assets/images/Security/KimSeongDae/2026-06-16-Source설치,%20Docker설치/file-20260616115035871.png)
 
 해당 이미지를 다른 사람과 공유하기 위해 hub.docker.com에 업로드 하고 싶음
 
 ##### 리포지토리 제작
 
-![](../../../assets/images/Security/KimSeongDae/2026-06-15-Source설치,%20Docker설치/file-20260616115228249.png)
+![](../../../assets/images/Security/KimSeongDae/2026-06-16-Source설치,%20Docker설치/file-20260616115228249.png)
 
-![](../../../assets/images/Security/KimSeongDae/2026-06-15-Source설치,%20Docker설치/file-20260616115330529.png)
+![](../../../assets/images/Security/KimSeongDae/2026-06-16-Source설치,%20Docker설치/file-20260616115330529.png)
 
 이미지의 이름을 바꿔줘야함
 
-![](../../../assets/images/Security/KimSeongDae/2026-06-15-Source설치,%20Docker설치/file-20260616115524683.png)
+![](../../../assets/images/Security/KimSeongDae/2026-06-16-Source설치,%20Docker설치/file-20260616115524683.png)
 
 해쉬값이 동일하면 이미지는 하나만 가지고 있음
 
-![](../../../assets/images/Security/KimSeongDae/2026-06-15-Source설치,%20Docker설치/file-20260616115605918.png)
+![](../../../assets/images/Security/KimSeongDae/2026-06-16-Source설치,%20Docker설치/file-20260616115605918.png)
 
-![](../../../assets/images/Security/KimSeongDae/2026-06-15-Source설치,%20Docker설치/file-20260616115625589.png)
+![](../../../assets/images/Security/KimSeongDae/2026-06-16-Source설치,%20Docker설치/file-20260616115625589.png)
 
 public repository에 h1.0 이미지가 잘 올라간걸 확인 가능
 
@@ -321,17 +321,17 @@ docker images
 docker rmi jhjang:h1.0
 ```
 
-![](../../../assets/images/Security/KimSeongDae/2026-06-15-Source설치,%20Docker설치/file-20260616120643147.png)
+![](../../../assets/images/Security/KimSeongDae/2026-06-16-Source설치,%20Docker설치/file-20260616120643147.png)
 
-![](../../../assets/images/Security/KimSeongDae/2026-06-15-Source설치,%20Docker설치/file-20260616120728590.png)
+![](../../../assets/images/Security/KimSeongDae/2026-06-16-Source설치,%20Docker설치/file-20260616120728590.png)
 
 n2.0 생성 완료
 
-![](../../../assets/images/Security/KimSeongDae/2026-06-15-Source설치,%20Docker설치/file-20260616122028329.png)
+![](../../../assets/images/Security/KimSeongDae/2026-06-16-Source설치,%20Docker설치/file-20260616122028329.png)
 
 삭제 순서는 전체 삭제 -> 이미지 삭제 순으로 진행하면됨
 
-![](../../../assets/images/Security/KimSeongDae/2026-06-15-Source설치,%20Docker설치/file-20260616122053736.png)
+![](../../../assets/images/Security/KimSeongDae/2026-06-16-Source설치,%20Docker설치/file-20260616122053736.png)
 
 언태그이름으로 생성된 이미지는 id로 삭제하면 됨
 
