@@ -1,11 +1,12 @@
 ---
-title: 외부강사님 실습3
+title: Bluemax 방화벽 실습 - HA 이중화, IPSec VPN
 date: 2026-04-02
 categories:
   - security
 comments: true
 tags:
-  - 방화벽
+  - bluemax
+  - ipsec
 ---
 	이중화, dr
 	

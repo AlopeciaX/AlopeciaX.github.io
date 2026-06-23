@@ -1,11 +1,12 @@
 ---
-title: 외부강사님 실습2
+title: Bluemax 방화벽 실습 - 브릿지 모드, VPN
 date: 2026-04-01
 categories:
   - security
 comments: true
 tags:
-  - 방화벽
+  - bluemax
+  - vpn
 ---
 
 

@@ -1,16 +1,17 @@
 ---
-title: 외부강사님 실습1
+title: Bluemax 방화벽 초기 설정 실습 - NAT, 정책
 date: 2026-03-31
 categories:
   - security
 comments: true
 tags:
-  - 방화벽
+  - bluemax
+  - nat
 ---
 ---
 
 
-![](../../../assets/images/Security/Instructor/2026-03-31-외부강사님실습1/file-20260331182120001.png)
+![](../../../assets/images/Security/Instructor/2026-03-31-firewall-bluemax-01/file-20260331182120001.png)
 
 # 실습순서
 

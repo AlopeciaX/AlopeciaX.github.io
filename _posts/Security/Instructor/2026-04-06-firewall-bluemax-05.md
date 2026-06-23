@@ -1,15 +1,16 @@
 ---
-title: 외부강사님 실습5
+title: Bluemax 방화벽 실습 - URL 차단, 메일 서버
 date: 2026-04-06
 categories:
   - security
 comments: true
 tags:
-  - 방화벽
+  - bluemax
+  - "#url차단"
 ---
 FTP, 메인서버에 대한 실습
 
-![](../../../assets/images/Security/Instructor/2026-04-06-외부강사님실습5/file-20260406093309000.png)
+![](../../../assets/images/Security/Instructor/2026-04-06-firewall-bluemax-05/file-20260406093309000.png)
 pop3 110
 imap 143
 
