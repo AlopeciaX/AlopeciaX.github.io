@@ -1,11 +1,13 @@
 ---
-title: 1. 옵시디언 깃허브 연동
+title: Obsidian + GitHub 블로그 연동 가이드
 date: 2026-03-23
 categories:
   - github
 comments: true
 tags:
-  - 깃허브
+  - "#obsidian"
+  - "#git"
+---
 ---
 # Obsidian + GitHub Blog
 

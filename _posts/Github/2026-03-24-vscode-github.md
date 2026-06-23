@@ -1,11 +1,12 @@
 ---
-title: 2. vscode 깃허브 연동
-date: 2026-03-23
+title: VSCode + GitHub 연동 및 CI/CD 설정
+date: 2026-03-24
 categories:
   - github
 comments: true
 tags:
-  - 깃허브
+  - "#vscode"
+  - "#git"
 ---
 
 ---
