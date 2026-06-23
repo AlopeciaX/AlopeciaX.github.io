@@ -1,11 +1,11 @@
 ---
-title: 0. 깃허브 하위 폴더 생성
+title: GitHub 하위 폴더 생성하기
 date: 2025-04-21
 categories:
   - github
 comments: true
 tags:
-  - 깃허브
+  - "#git"
 ---
 
 
