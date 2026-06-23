@@ -1,0 +1,273 @@
+---
+title: Docker 네트워크 설정 및 실습
+date: 2026-06-18
+categories:
+  - cloud
+comments: true
+tags:
+  - docker
+---
+---
+
+##### docker network 하기 전 이해
+
+![](../../../assets/images/Cloud/KimSeongDae/2026-06-18-docker-network/file-20260618092321713.png)
+
+브릿지
+
+![](../../../assets/images/Cloud/KimSeongDae/2026-06-18-docker-network/file-20260618092336714.png)
+
+호스트
+
+---
+
+##### docker - host 인터페이스 확인
+
+```bash
+docker rm -f [이름]
+docker ps -a
+docker run -itd --name a1 alpine
+docker exec a1 ip a
+docker ps
+ip a
+docker inspect a1
+```
+
+![](../../../assets/images/Cloud/KimSeongDae/2026-06-18-docker-network/file-20260618092906029.png)
+
+---
+
+##### docker network 통신확인
+
+```bash
+docker network ls
+docker exec a1 ping 172.17.0.3
+docker exec a1 ping 172.17.0.2
+
+docker rm -f $(docker ps -aq) #지우는 명령어
+```
+
+![](../../../assets/images/Cloud/KimSeongDae/2026-06-18-docker-network/file-20260618093411319.png)
+
+브릿지는 개수 증가 가능, host는 1개만
+
+![](../../../assets/images/Cloud/KimSeongDae/2026-06-18-docker-network/file-20260618093520766.png)
+
+동일 네트워크기 떄문에 서로 통신이 됨
+
+---
+
+##### docker network 추가
+
+```bash
+docker run -itd --name a1 alpine
+
+docker run -itd --net jhjang --name aa1 alpine
+docker inspect aa1
+docker exec aa1 ip a
+
+docker run -itd --net jhjang1 --name aaa1 alpine
+docker insepct aaa1
+docker exec aaa1 ip a
+```
+
+![](../../../assets/images/Cloud/KimSeongDae/2026-06-18-docker-network/file-20260618093835979.png)
+
+임의로 생성
+
+![](../../../assets/images/Cloud/KimSeongDae/2026-06-18-docker-network/file-20260618094058472.png)
+
+지정생성
+
+---
+##### 통신 가능하게 만들기
+```bash
+docker network connect jhjang a1
+docker inspect a1
+docker exec a1 ping 172.18.0.2
+
+docker network connect jhjang1 a1
+docker inspect a1
+docker exec a1 ping 192.168.0.2
+```
+
+![](../../../assets/images/Cloud/KimSeongDae/2026-06-18-docker-network/file-20260618100604944.png)
+
+![](../../../assets/images/Cloud/KimSeongDae/2026-06-18-docker-network/file-20260618100617358.png)
+
+---
+##### host 테스트
+
+```bash
+docker run -itd -p 60080:80 --net host --name h1 httpd
+docker ps -a
+docker inspect h1 #h1의 ip가 부여되지않음
+curl localhost
+
+firewall-cmd --add-port=80/tcp
+```
+
+추가하면 방화벽열어줘야 함
+호스트카드를 실행시키면 무조건 다른 포트를 쓰는 컨테이너를 생성해줘야함
+
+![](../../../assets/images/Cloud/KimSeongDae/2026-06-18-docker-network/file-20260618100055851.png)
+
+60080 포트로 지정해도 80포트로 나옴 -> 호스트카드는 다른 포트로 지정x
+
+
+---
+
+##### 복습
+
+브릿지는 여러개 가능 / 호스트는 1개만
+
+![](../../../assets/images/Cloud/KimSeongDae/2026-06-18-docker-network/file-20260618104538693.png)
+
+생성하면 이니셜로된 bridege가 추가된걸 볼 수 있음
+
+![](../../../assets/images/Cloud/KimSeongDae/2026-06-18-docker-network/file-20260618104819242.png)
+
+ip가 얼마일까?
+
+172.17.0.2로 예상 -> 172.17.0.1은 게이트웨이니까 그 다음걸 받음
+
+![](../../../assets/images/Cloud/KimSeongDae/2026-06-18-docker-network/file-20260618105002624.png)
+
+![](../../../assets/images/Cloud/KimSeongDae/2026-06-18-docker-network/file-20260618105347473.png)
+
+연결도 확인
+
+![](../../../assets/images/Cloud/KimSeongDae/2026-06-18-docker-network/file-20260618105425970.png)
+
+마지막으로 bridge 어댑터 통신확인
+그리고 삭제
+
+```bash
+docker rm -f $(docker ps -aq)
+docker network rm jhjang
+docker network ls
+```
+
+
+---
+
+##### http도 테스트
+
+![](../../../assets/images/Cloud/KimSeongDae/2026-06-18-docker-network/file-20260618111750934.png)
+
+잘되는걸 확인
+
+##### nginx도 테스트
+
+![](../../../assets/images/Cloud/KimSeongDae/2026-06-18-docker-network/file-20260618111830135.png)
+
+---
+
+##### vim으로 html파일 복사해서 넘겨주기
+
+```bash
+dnf install -y vim
+alias vi='vim' #이걸로 해도되고
+vi .bashrc #여기서 alias vi='vim'추가해도됨
+vi index.html
+```
+
+![](../../../assets/images/Cloud/KimSeongDae/2026-06-18-docker-network/file-20260618112315876.png)
+
+![](../../../assets/images/Cloud/KimSeongDae/2026-06-18-docker-network/file-20260618112435771.png)
+
+브릿지는 iptables가 방화벽을 알아서 열여줌 대신 연결을 해줘야 외부와 통신가능
+호스트는 방화벽을 직접열어줘야함 대신 연결이되어있어서 외부와 통신가능
+
+vim 편집기 다른이름저장 :w index1.html
+![](../../../assets/images/Cloud/KimSeongDae/2026-06-18-docker-network/file-20260618112756714.png)
+
+호스트 어댑터는 동일한 ip를 사용하면 안됨
+
+
+![](../../../assets/images/Cloud/KimSeongDae/2026-06-18-docker-network/file-20260618113059209.png)
+
+네트워크 driver로 주면안되고 name으로 줘야함 (default: bridge?)
+![](../../../assets/images/Cloud/KimSeongDae/2026-06-18-docker-network/file-20260618113147197.png)
+
+ip와 gateway가 없는데 어떻게 접속할까? -> 외부에선 접근 불가
+
+하지만 내부인 우리는 docker exec -it a3 /bin/sh로는 접속가능
+
+![](../../../assets/images/Cloud/KimSeongDae/2026-06-18-docker-network/file-20260618113204143.png)
+
+---
+
+##### container 사이끼리 복사
+
+![](../../../assets/images/Cloud/KimSeongDae/2026-06-18-docker-network/file-20260618113824453.png)
+
+불가능
+
+---
+
+##### alpine vs nginx vs httpd vs busybox ...
+
+alpine이 거의 모든 명령어 지원
+nginx, httpd 는 핑명령어조차없음
+
+![](../../../assets/images/Cloud/KimSeongDae/2026-06-18-docker-network/file-20260618114302328.png)
+
+
+---
+
+##### mysql
+
+![](../../../assets/images/Cloud/KimSeongDae/2026-06-18-docker-network/file-20260618115457772.png)
+
+```bash
+sudo dnf install -y mysql
+docker inspect m2
+mysql -h 172.17.0.2 -uroot -pIt12345!
+```
+
+
+
+---
+##### wordpress
+
+![](../../../assets/images/Cloud/KimSeongDae/2026-06-18-docker-network/file-20260618121652063.png)
+
+1.내부3306열어줌
+2.vm포트포워딩3306내부로연결
+3.윈도우방화벽3306열어줌
+4.짝꿍호스트로mysql접속
+
+
+
+
+
+
+
+
+
+---
+
+## aws cli
+
+![](../../../assets/images/Cloud/KimSeongDae/2026-06-18-docker-network/file-20260618101936451.png)
+
+![](../../../assets/images/Cloud/KimSeongDae/2026-06-18-docker-network/file-20260618102005362.png)
+
+[https://awscli.amazonaws.com/AWSCLIV2-2.0.30.msi](https://awscli.amazonaws.com/AWSCLIV2-2.0.30.msi)
+
+![](../../../assets/images/Cloud/KimSeongDae/2026-06-18-docker-network/file-20260618102149477.png)
+
+
+![](../../../assets/images/Cloud/KimSeongDae/2026-06-18-docker-network/file-20260618102310314.png)
+
+![](../../../assets/images/Cloud/KimSeongDae/2026-06-18-docker-network/file-20260618102431577.png)
+
+Access key ID: 아이디
+Secret access key: 패스워드
+
+![](../../../assets/images/Cloud/KimSeongDae/2026-06-18-docker-network/file-20260618102705972.png)
+
+https://registry.terraform.io/providers/hashicorp/aws/latest/docs
+
+![](../../../assets/images/Cloud/KimSeongDae/2026-06-18-docker-network/file-20260618103841313.png)

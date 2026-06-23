@@ -1,0 +1,254 @@
+---
+title: Azure + Terraform 실습 (2) - 리소스 그룹 자동화
+date: 2026-05-27
+categories:
+  - cloud
+comments: true
+tags:
+  - azure
+  - terraform
+---
+---
+
+## 오늘 목표
+
+> Azure + Terraform 으로 스크립트화 시켜보기
+
+### 1. 리소스 그룹 생성
+
+![](../../../assets/images/Cloud/KimSeongDae/2026-05-27-azure-terraform-02/file-20260527093026928.png)
+
+	유효성 검사 통과하면 만들기
+
+
+### 2. 가상 네트워크 생성(1)
+
+![](../../../assets/images/Cloud/KimSeongDae/2026-05-27-azure-terraform-02/file-20260527093240177.png)
+
+##### 2.1. 서브넷 추가
+
+![](../../../assets/images/Cloud/KimSeongDae/2026-05-27-azure-terraform-02/file-20260527093843639.png)
+
+	NAT 게이트웨이: Outbound 설정만 적용
+	NSG: VM에 할당된 네트워크 인터페이스(우선적용), 서브넷에 설정 가능
+
+![](../../../assets/images/Cloud/KimSeongDae/2026-05-27-azure-terraform-02/file-20260527094259659.png)
+
+	유효성 검사 통과하면 만들기
+
+
+### 2. 가상네트워크 생성(2)
+
+![](../../../assets/images/Cloud/KimSeongDae/2026-05-27-azure-terraform-02/file-20260527094632469.png)
+
+![](../../../assets/images/Cloud/KimSeongDae/2026-05-27-azure-terraform-02/file-20260527094804667.png)
+
+
+### 3.1. 공용IP 주소 생성
+
+![](../../../assets/images/Cloud/KimSeongDae/2026-05-27-azure-terraform-02/file-20260527095023977.png)
+
+![](../../../assets/images/Cloud/KimSeongDae/2026-05-27-azure-terraform-02/file-20260527095133192.png)
+
+	jhjang-load1-pubip 도 똑같이 생성
+
+
+### 3.2. 공용IP 접두사 만들기
+
+![](../../../assets/images/Cloud/KimSeongDae/2026-05-27-azure-terraform-02/file-20260527095358742.png)
+
+	20.249.112.162/31 생성된 공용 IP 복사
+	주소 2개이므로 162,163 할당 가능
+
+![](../../../assets/images/Cloud/KimSeongDae/2026-05-27-azure-terraform-02/file-20260527095506900.png)
+
+![](../../../assets/images/Cloud/KimSeongDae/2026-05-27-azure-terraform-02/file-20260527095658015.png)
+
+	수동 지정 시 ip주소가 범위 내에 없으면 오류뜸
+
+
+### 4. 가상머신 생성
+
+##### 4.1. bas1
+
+![](../../../assets/images/Cloud/KimSeongDae/2026-05-27-azure-terraform-02/file-20260527101714376.png)
+
+![](../../../assets/images/Cloud/KimSeongDae/2026-05-27-azure-terraform-02/file-20260527101700472.png)
+
+![](../../../assets/images/Cloud/KimSeongDae/2026-05-27-azure-terraform-02/file-20260527101926295.png)
+
+![](../../../assets/images/Cloud/KimSeongDae/2026-05-27-azure-terraform-02/file-20260527102104203.png)
+
+![](../../../assets/images/Cloud/KimSeongDae/2026-05-27-azure-terraform-02/file-20260527102450537.png)
+
+![](../../../assets/images/Cloud/KimSeongDae/2026-05-27-azure-terraform-02/file-20260527102558992.png)
+
+![](../../../assets/images/Cloud/KimSeongDae/2026-05-27-azure-terraform-02/file-20260527103019948.png)
+
+	유효성 검사 통과 시 만들기
+
+
+##### 4.2. web1-1
+
+![](../../../assets/images/Cloud/KimSeongDae/2026-05-27-azure-terraform-02/file-20260527103218615.png)
+
+	web이니 공용 ip 없음
+
+
+##### 4.3. bas2
+
+![](../../../assets/images/Cloud/KimSeongDae/2026-05-27-azure-terraform-02/file-20260527103538785.png)
+
+```bash
+#! /bin/bash
+
+setenforce 0
+grubby --update-kernel --args selinux=0
+echo -e "개인키"> /home/jhjang/.ssh/id_rsa
+chmod 700 /home/jhjang/.ssh/id_rsa
+```
+
+	고급에 스크립트 추가
+
+##### 4.4. web2-1
+
+	똑같이 제작
+
+
+### 5. nsg만들기
+
+![](../../../assets/images/Cloud/KimSeongDae/2026-05-27-azure-terraform-02/file-20260527104754238.png)
+
+![](../../../assets/images/Cloud/KimSeongDae/2026-05-27-azure-terraform-02/file-20260527104936418.png)
+
+	우선순위는 100번이 최소이며 낮을수록 우선순위가 높다
+
+![](../../../assets/images/Cloud/KimSeongDae/2026-05-27-azure-terraform-02/file-20260527105716476.png)
+
+	그리고 vm 가서 찾아보기
+			jhjang-bas1 | jhjang-web1-1 | jhjang-bas2 | jhjang-web2-1
+	pri ip     10.0.0.4      10.0.2.4      192.168.0.4    192.168.0.20
+	pub ip      x.x.x.x                      x.x.x.x
+	jhjang
+
+### 6. xshell 접속 테스트
+
+![](../../../assets/images/Cloud/KimSeongDae/2026-05-27-azure-terraform-02/file-20260527110645526.png)
+
+	ssh 접속 성공
+	물리pc 파워쉘에서 SCP .\.ssh\id_rsa jhjang@공개키:/home/jhjang/.ssh/ 입력
+
+![](../../../assets/images/Cloud/KimSeongDae/2026-05-27-azure-terraform-02/file-20260527111600953.png)
+
+	개인키가 생기고 권한을 부여한 뒤 web1-1로 ssh 접속을 시도한 결과 성공
+	아까 bas2는 고급에서 스크립트로 개인키 넣는 부분까지 추가했으므로 해당 과정 수행할 필요 없음
+
+![](../../../assets/images/Cloud/KimSeongDae/2026-05-27-azure-terraform-02/file-20260527113638903.png)
+
+	chown으로 root에서 jhjang로 소유자를 변경해줘야 접속 가능
+
+### 7. nat 게이트웨이 생성
+
+![](../../../assets/images/Cloud/KimSeongDae/2026-05-27-azure-terraform-02/file-20260527113759645.png)
+
+![](../../../assets/images/Cloud/KimSeongDae/2026-05-27-azure-terraform-02/file-20260527113836682.png)
+
+![](../../../assets/images/Cloud/KimSeongDae/2026-05-27-azure-terraform-02/file-20260527114224208.png)
+
+
+![](../../../assets/images/Cloud/KimSeongDae/2026-05-27-azure-terraform-02/file-20260527115113208.png)
+
+![](../../../assets/images/Cloud/KimSeongDae/2026-05-27-azure-terraform-02/file-20260527115222582.png)
+
+	인터넷이 잘 되는걸 볼 수 있다.
+	Azure는 핑이 되는게 보이지않는다. 하지만 AWS는 핑이 된다.
+
+
+> **구성 원리**
+   물리pc(개인키) -- bastion(개인키, 공개키) -- web(공개키)
+   vnet은 서로 다른 네트워크면 통신이 안됨 -> peering하면 서로 연결도 가능
+
+
+---
+
+## 테라폼
+
+> 여러가지 클라우드에 대하여 배포관리
+
+	1. Azure Portal 에서 구독 키 복사해놓기
+	2. Azure CLI 설치
+	3. 테라폼 하시코프 검색 -> Developer -> 테라폼 AMD64 설치
+	4. registry.terraform.io (미리 접속하기)
+	5. C:\01_IaC 경로를 등록해줘야 함
+		5.1. 우선 01_IaC폴더에 terraform.exe 넣기
+		5.2. sysdm.cpl -> 고급 -> 환경변수 -> 시스템변수 Path -> C:\01_IaC\ 추가
+		5.3. 새로운 cmd창에서 terraform 입력 -> 메시지 나오면 성공
+	6. cmd 창에서 az 입력 
+		6.1. az login
+	7. 코드 작성은 vs code로 작성
+
+![](../../../assets/images/Cloud/KimSeongDae/2026-05-27-azure-terraform-02/file-20260527140555342.png)
+
+![](../../../assets/images/Cloud/KimSeongDae/2026-05-27-azure-terraform-02/file-20260527140736938.png)
+
+
+### 테라폼 실습
+
+1. IaC(Infrastructure As Code)
+	1.1. 자동화
+	1.2. 멱등성(몇 만번을 실행해도 동일한 결과값을 보장한다.)
+	1.3. 휴먼 에러 방지
+	1.4. 경제적 이득 증가
+2. IaC 도구 종류
+	2.1. 구성관리
+		2.1.1. Puppet
+		2.1.2. Ceaf
+		2.1.3. Saultstack
+		2.1.4. Ansible
+	2.2. 구성관리
+		2.2.1. Terraform: 다양한 플랫폼에서 사용
+
+```bash
+# 테라폼 cmd 명령어
+terraform init
+terraform plan # 테라폼 실행
+terraform apply # 테라폼 추가
+terraform destroy
+
+terraform apply --auto-approve # 자동으로 yes 눌러줌
+```
+
+##### 00_init.tf
+
+![](../../../assets/images/Cloud/KimSeongDae/2026-05-27-azure-terraform-02/file-20260527141447947.png)
+
+
+##### 01_rg.tf
+
+![](../../../assets/images/Cloud/KimSeongDae/2026-05-27-azure-terraform-02/file-20260527145722702.png)
+
+
+##### 02_vnet.tf
+
+![](../../../assets/images/Cloud/KimSeongDae/2026-05-27-azure-terraform-02/file-20260527144204870.png)
+
+![](../../../assets/images/Cloud/KimSeongDae/2026-05-27-azure-terraform-02/file-20260527144242146.png)
+
+
+##### 03_sub.tf
+
+![](../../../assets/images/Cloud/KimSeongDae/2026-05-27-azure-terraform-02/file-20260527145327153.png)
+
+
+
+
+
+---
+
+Azure는 자동으로 인터넷 게이트웨이가 붙는다.
+AWS는 인터넷 게이트를 직접 붙여줘야 한다.
+
+
+![](../../../assets/images/Cloud/KimSeongDae/2026-05-27-azure-terraform-02/file-20260527145829865.png)
+
+	만약에 깃허브 업로드를 하면 이건 빼고 해야됨

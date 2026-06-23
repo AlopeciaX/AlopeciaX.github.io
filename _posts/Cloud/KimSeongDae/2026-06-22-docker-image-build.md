@@ -1,0 +1,104 @@
+---
+title: Docker 이미지 빌드 및 HAProxy 설정
+date: 2026-06-22
+categories:
+  - cloud
+comments: true
+tags:
+  - docker
+---
+---
+
+![](../../../assets/images/Cloud/KimSeongDae/2026-06-22-docker-image-build/file-20260622093546319.png)
+
+### rocky9-4
+```bash
+vi /etc/haproxy/haproxy.cfg
+systemctl restart haproxy
+ss -nat
+firewall-cmd --add-port={80,8080}/tcp
+firewall-cmd --list-all
+```
+
+ip설정 확인
+![](../../../assets/images/Cloud/KimSeongDae/2026-06-22-docker-image-build/file-20260622094044851.png)
+
+rocky9-1 확인
+![](../../../assets/images/Cloud/KimSeongDae/2026-06-22-docker-image-build/file-20260622095133027.png)
+
+rocky9-2 확인
+![](../../../assets/images/Cloud/KimSeongDae/2026-06-22-docker-image-build/file-20260622101000726.png)
+
+vi /etc/haproxy/haproxy.cfg
+![](../../../assets/images/Cloud/KimSeongDae/2026-06-22-docker-image-build/file-20260622105442017.png)
+
+![](../../../assets/images/Cloud/KimSeongDae/2026-06-22-docker-image-build/file-20260622105500977.png)
+
+ss -nat
+![](../../../assets/images/Cloud/KimSeongDae/2026-06-22-docker-image-build/file-20260622105645947.png)
+
+로드밸런싱 확인
+![](../../../assets/images/Cloud/KimSeongDae/2026-06-22-docker-image-build/file-20260622105727628.png)
+![](../../../assets/images/Cloud/KimSeongDae/2026-06-22-docker-image-build/file-20260622105734258.png)
+
+### rocky9-1
+```bash
+nmtui #ip주소 수정
+systemctl restart docker
+
+docker images
+docker run -itd -p 65080:80 --name n1 nginx
+docker run -itd -p 65180:80 --name n2 nginx
+docker ps -a
+
+vi index1.html
+vi index2.html
+
+docker cp index1.html n1:/usr/share/nginx/html/index.html
+docker cp index2.html n2:/usr/share/nginx/html/index.html
+```
+
+![](../../../assets/images/Cloud/KimSeongDae/2026-06-22-docker-image-build/file-20260622094239159.png)
+
+### rocky9-2
+```bash
+nmtui
+systemctl restart docker
+
+docker images
+docker run -itd -p 65080:80 --name h1 httpd
+docker run -itd -p 65180:80 --name h2 httpd
+
+vi index1.html
+vi index2.html
+
+docker cp index1.html h1:/usr/local/apache2/htdocs/index.html
+docker cp index2.html h2:/usr/local/apache2/htdocs/index.html
+```
+
+![](../../../assets/images/Cloud/KimSeongDae/2026-06-22-docker-image-build/file-20260622094403458.png)
+
+
+---
+
+# Dockerfile
+
+컨테이너는 프로세스 단위로 동작함
+컨테이너는 기본적으로 하나의 프로세스만 실행됨
+/bin/bash 실행 후 httpd 실행이 될까? -> NO
+
+```bash
+mkdir /http
+cd /http/
+vi Dockerfile #무조건 Dockerfile이름 써야함
+docker build -t jhjang/http:1.0 .
+
+docker images
+docker run -itd -p 60080:80 --name sh1 jhjang/http:1.0
+docker ps -a
+```
+
+vi Dockerfile
+![](../../../assets/images/Cloud/KimSeongDae/2026-06-22-docker-image-build/file-20260622121228657.png)
+
+![](../../../assets/images/Cloud/KimSeongDae/2026-06-22-docker-image-build/file-20260622115932170.png)

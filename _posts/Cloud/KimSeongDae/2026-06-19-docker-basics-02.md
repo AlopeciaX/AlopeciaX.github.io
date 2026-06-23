@@ -1,0 +1,246 @@
+---
+title: Docker 기초 (2) - Rocky Linux에 Docker 설치
+date: 2026-06-19
+categories:
+  - cloud
+comments: true
+tags:
+  - docker
+---
+---
+
+## docker 설치
+
+##### rocky 9-3
+```bash
+dnf -y install dnf-plugins-core
+dnf config-manager --add-repo https://download.docker.com/linux/centos/docker-ce.repo
+dnf -y install docker-ce docker-ce-cli containerd.io docker-buildx-plugin docker-compose-plugin
+systemctl enable --now docker
+docker load -i all.tar
+```
+
+##### rocky 9-1
+```bash
+docker save -o all.tar alpine busybox httpd mysql:8.0 nginx rockylinux/rockylinux wordpress
+scp all.tar root@10.0.0.13:/root/
+```
+
+---
+
+## mysql 접속
+
+##### rocky9-1
+```bash
+docker run -itd -e MYSQL_ROOT_PASSWORD=It12345! -e MYSQL_DATASE=word --name m1 mysql:8.0
+mysql -uroot -pIt12345! -h 172.17.0.2
+
+docker run -itd -p 60080:80 \ -e WORDPRESS_DB_HOST=172.17.0.2 \ -e WORDPRESS_DB_USER=root \ -e WORDPRESS_DB_PASSWORD=It12345! \ -e WORDPRESS_DB_NAME=word \ --name w1 wordpress
+
+docker run -itd -p 60180:80 \ -e WORDPRESS_DB_HOST=172.17.0.2 \ -e WORDPRESS_DB_USER=root \ -e WORDPRESS_DB_PASSWORD=It12345! \ -e WORDPRESS_DB_NAME=word \ --name w2 wordpress
+
+docker exec w1 ls -al /var/www/html/ #index.html이 있다면 dnf로 설치한거
+
+vi index.html
+vi index1.html
+
+docker cp index.html w1:/var/www/html/
+docker cp index1.html w2:/var/www/html/index.html/
+```
+
+![](../../../assets/images/Cloud/KimSeongDae/2026-06-19-docker-basics-02/file-20260619093742157.png)
+
+![](../../../assets/images/Cloud/KimSeongDae/2026-06-19-docker-basics-02/file-20260619094504242.png)
+
+
+
+---
+
+## HAProxy 설정
+
+> 0.0.0.11:60080 이라 적는게 너무 싫음 -> HAProxy사용하면됨
+
+##### rocky9-4
+```bash
+vi /etc/haproxy/haproxy.cfg
+systemctl start haproxy
+firewall-cmd --add-port=80/tcp
+```
+
+![](../../../assets/images/Cloud/KimSeongDae/2026-06-19-docker-basics-02/file-20260619094735921.png)
+
+---
+
+![](../../../assets/images/Cloud/KimSeongDae/2026-06-19-docker-basics-02/file-20260619095145155.png)
+
+##### rocky9-1, rocky9-2
+```bash
+docker rm -f $(docker ps -aq)
+docker ps
+docker run -itd -p 65080:80 -e WORDPRESS_DB_HOST=10.0.0.13 -e WORDPRESS_DB_USER=root -e WORDPRESS_DB_PASSWORD=It12345! -e WORDPRESS_DB_NAME=word --name w1 wordpress
+```
+
+##### rocky9-3
+```bash
+docker run -itd --net host -e MYSQL_ROOT_PASSWORD=It12345! -e MYSQL_DATABASE=word --name m1 mysql:8.0
+docker ps
+firewall-cmd --add-port=3306/tcp
+```
+
+
+##### rocky9-4
+```bash
+vi /etc/haproxy/haproxy.cfg
+systemctl restart haproxy
+```
+
+![](../../../assets/images/Cloud/KimSeongDae/2026-06-19-docker-basics-02/file-20260619100015536.png)
+
+
+@ 번외 @
+```bash
+docker exec w1 sh -c "echo $HOSTNAME > /var/www/html/index.html"
+```
+
+![](../../../assets/images/Cloud/KimSeongDae/2026-06-19-docker-basics-02/file-20260619100250908.png)
+
+![](../../../assets/images/Cloud/KimSeongDae/2026-06-19-docker-basics-02/file-20260619100300230.png)
+
+로드밸런서 기능 수행 확인
+
+---
+## docker 네트워크
+
+##### rocky9-1
+```bash
+docker run -itd --name a1 alpine
+docker run -itd --link a1 --name a2 alpine
+docker ps
+docker exec a2 ping a1 #핑이 됨 /etc/hosts에 등록되었기 때문
+docker exec a2 cat /etc/hosts
+```
+
+![](../../../assets/images/Cloud/KimSeongDae/2026-06-19-docker-basics-02/file-20260619102500460.png)
+
+/etc/hosts에 a1이 등록되었기 때문에 핑이 됨
+
+
+## 양방향 핑 테스트
+
+```bash
+docker run -itd --add-host a2:172.17.0.3 --name a1 alpine
+docker exec a1 cat /etc/hosts
+
+docker run -itd --add-host a1:172.17.0.2 --name a2 alpine
+docker exec a2 cat /etc/hosts
+
+docker exec a1 ping a2
+docker exec a2 ping a1
+```
+![](../../../assets/images/Cloud/KimSeongDae/2026-06-19-docker-basics-02/file-20260619103402008.png)
+
+---
+
+## docker volume
+
+```bash
+docker volume
+docker volume ls
+docker volume create www
+ls -al /var/lib/docker/volume/www/_data
+docker run -itd -v www:/test --name a1 alpine
+touch /var/lib/docker/volumes/www/_data/test.txt #host에 만들어도 마운트되서 container에도 만들어짐
+cat >> /var/lib/docker/volumes/www/_data/test.txt << eof
+cat /var/lib/docker/volumes/www/_data/test.txt << eof
+cat /var/lib/docker/volumes/www/_data/test.txt
+docker exec -it a1 /bin/sh
+cat /var/lib/docker/volumes/www/_data/test.txt
+docker rm -f a1
+ls /var/lib/docker/volumes/www/_data/
+
+docker volume ls
+docker volume rm www
+docker volume ls
+```
+
+
+---
+
+## volume 설정
+
+```bash
+docker run -itd -p 60080:80 -v www:/usr/local/apache2/htdocs --name h1 httpd
+vi /var/lib/docker/volumes/www/_data/index.html
+
+docker run -itd -p 60180:80 --volumes-from h1 --name h2 httpd
+
+docker ps
+```
+
+
+---
+
+## mysql 권한
+
+```bash
+grant all privileges on *.* to 'jhjang'@'%';
+```
+
+container의 lifestyle과 host의 lifestyle은 달라야한다.
+
+---
+
+1.모든컨테이너삭제, docker 관리하는 모든 볼륨 삭제
+2.mysql이미지를 이용해서 m1 컨테이너 생성, 도커에서 관리하는 볼륨 sql과 마운트
+3.wordpress이미지를 이용해서 w1컨테이너 생성, 외부 포트는 65080으로 설정
+4.wordpress사이트접속 후 구성절차 진행 후 메인 페이지에 글 작성하기. (캡쳐)
+5.m1컨테이너 삭제(캡쳐)
+6.mysql 이미지를 이용해서 m2 컨테이너 생성, 단 도커에서 관리하는 볼륨 sql과 연결하면 컨테이너는 바로 실행됨(캡쳐)
+7.wordpress페이지 접속 후 이전 4번에서 작성한 글 확인(캡쳐)
+
+
+
+```bash
+#1단계
+docker rm -f $(docker ps -aq)
+docker volume rm sql www
+
+#2단계
+docker run -itd -v sql:/var/lib/mysql -e MYSQL_ROOT_PASSWORD=It12345! -e MYSQL_DATABASE=word -e MYSQL_USER=jhjang -e MYSQL_PASSWORD=It12345@ --name m1 mysql:8.0
+
+#3단계
+docker run -itd -p 65080:80 -e WORDPRESS_DB_HOST=172.17.0.2 -e WORDPRESS_DB_USER=jhjang -e WORDPRESS_DB_PASSWORD=It12345@ -e WORDPRESS_DB_NAME=word --name w1 wordpress
+
+#4단계
+
+#5단계
+docker rm -f m1
+docker ps
+
+#6단계
+docker run -itd -v sql:/var/lib/mysql -e MYSQL_ROOT_PASSWORD=It12345! -e MYSQL_DATABASE=word -e MYSQL_USER=jhjang -e MYSQL_PASSWORD=It12345@ --name m2 mysql:8.0
+docker ps
+
+#7단계
+docker run -itd -v sql:/var/lib/mysql -e MYSQL_ROOT_PASSWORD=It12345! -e MYSQL_DATABASE=word -e MYSQL_USER=jhjang -e MYSQL_PASSWORD=It12345@ --name m2 mysql:8.0
+```
+
+- 1단계
+![](../../../assets/images/Cloud/KimSeongDae/2026-06-19-docker-basics-02/file-20260619114253584.png)
+
+
+![](../../../assets/images/Cloud/KimSeongDae/2026-06-19-docker-basics-02/file-20260619114855424.png)
+
+- 4단계
+![](../../../assets/images/Cloud/KimSeongDae/2026-06-19-docker-basics-02/file-20260619120319970.png)
+
+![](../../../assets/images/Cloud/KimSeongDae/2026-06-19-docker-basics-02/file-20260619120347642.png)
+
+- 5단계
+![](../../../assets/images/Cloud/KimSeongDae/2026-06-19-docker-basics-02/file-20260619120549675.png)
+
+- 6단계
+![](../../../assets/images/Cloud/KimSeongDae/2026-06-19-docker-basics-02/file-20260619120838720.png)
+
+- 7단계
+![](../../../assets/images/Cloud/KimSeongDae/2026-06-19-docker-basics-02/file-20260619120938464.png)
