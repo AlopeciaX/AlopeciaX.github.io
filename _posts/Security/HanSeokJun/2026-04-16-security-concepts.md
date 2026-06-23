@@ -1,8 +1,11 @@
 ---
-title: Kali의 Nessus로 metasploitable2 취약점 파악
+title: 정보보안 개념 - 교착상태, 정보자산, 위협
 date: 2026-04-16
 categories:
+  - security
 comments: true
+tags:
+  - 이론
 ---
 ---
 

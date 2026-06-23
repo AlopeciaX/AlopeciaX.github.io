@@ -1,8 +1,11 @@
 ---
-title: Kali의 Nessus로 metasploitable2 취약점 파악
+title: 쇼핑몰(Coremall) 모의해킹 개요
 date: 2026-04-17
 categories:
+  - security
 comments: true
+tags:
+  - 웹취약점
 ---
 ---
 

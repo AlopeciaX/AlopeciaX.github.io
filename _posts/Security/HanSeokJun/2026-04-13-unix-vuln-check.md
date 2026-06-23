@@ -1,11 +1,12 @@
 ---
-title: Kali의 Nessus로 metasploitable2 취약점 파악
+title: UNIX 취약점 점검 - startx, crontab, r계열 서비스
 date: 2026-04-13
 categories:
   - security
 comments: true
 tags:
-  - Nessus
+  - unix
+  - 취약점진단
 ---
 ---
 

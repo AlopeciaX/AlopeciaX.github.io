@@ -1,9 +1,12 @@
 ---
-title: Kali의 Nessus로 metasploitable2 취약점 파악
+title: 암호화 알고리즘 정리 - AES, RSA, DSA, ECC
 date: 2026-04-14
 categories:
+  - security
 comments: true
 tags:
+  - "#암호화"
+  - 이론
 ---
 
 ---

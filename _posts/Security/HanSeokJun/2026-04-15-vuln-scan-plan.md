@@ -1,8 +1,11 @@
 ---
-title: Kali의 Nessus로 metasploitable2 취약점 파악
+title: 취약점 진단 계획 - 대상 시스템 및 보고서 기준
 date: 2026-04-15
 categories:
+  - security
 comments: true
+tags:
+  - 취약점진단
 ---
 ---
 
