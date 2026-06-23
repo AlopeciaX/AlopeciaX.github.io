@@ -1,9 +1,12 @@
 ---
-title: 과목2 - 네트워크 보안
+title: 네트워크 보안 이론 - DDOS, IDS/IPS, IPSec
 date: 2026-03-26
 categories:
-  - cloud
+  - security
 comments: true
+tags:
+  - "#네트워크보안"
+  - "#이론"
 ---
 ---
 

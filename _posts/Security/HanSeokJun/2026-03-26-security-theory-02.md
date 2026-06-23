@@ -1,9 +1,12 @@
 ---
-title: 정보보안기사 실기
+title: 정보보안 이론 - 암호화, SysInternals
 date: 2026-03-26
 categories:
-  - cloud
+  - security
 comments: true
+tags:
+  - 정보보안
+  - "#이론"
 ---
 ---
 

@@ -1,8 +1,12 @@
 ---
-title: kali와 metasploitable2 연결
+title: Kali + Metasploitable2 연결 및 모의해킹 입문
 date: 2026-03-27
 categories:
+  - security
 comments: true
+tags:
+  - Kali
+  - metasploitable
 ---
 ---
 
@@ -10,9 +14,9 @@ comments: true
 
 <실습 목적>
 
-![](../../../assets/images/Security/HanSeokJun/2026-03-27-security_004/file-20260327161054003.png)
+![](../../../assets/images/Security/HanSeokJun/2026-03-27-kali-metasploitable2/file-20260327161054003.png)
 
-![](../../../assets/images/Security/HanSeokJun/2026-03-27-security_004/file-20260327160640002.png)
+![](../../../assets/images/Security/HanSeokJun/2026-03-27-kali-metasploitable2/file-20260327160640002.png)
 
 	상대방의 root 권한을 탈취해오는 과정
 	
@@ -36,7 +40,7 @@ comments: true
 	- 게이트웨이: 192.168.20.2 (nat)
 
 
-![](../../../assets/images/Security/HanSeokJun/2026-03-27-security_004/file-20260327155311000.png)
+![](../../../assets/images/Security/HanSeokJun/2026-03-27-kali-metasploitable2/file-20260327155311000.png)
 # Kali 설정
 
 	ip 주소: 192.168.20.25
@@ -44,7 +48,7 @@ comments: true
 
 # Metasploitable2 설정
 
-![](../../../assets/images/Security/HanSeokJun/2026-03-27-security_004/file-20260327155327001.png)
+![](../../../assets/images/Security/HanSeokJun/2026-03-27-kali-metasploitable2/file-20260327155327001.png)
 
 	ip 주소: 192.168.20.26
 	gateway: 192.168.20.2
