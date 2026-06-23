@@ -1,11 +1,11 @@
 ---
-title: Bluemax 방화벽 초기 설정 - NAT, 정책
+title: Bluemax 방화벽 초기 설정 - NAT, 정책 설정
 date: 2026-03-31
 categories:
   - security
 comments: true
 tags:
-  - bluemax
+  - 방화벽
   - nat
 ---
 ---

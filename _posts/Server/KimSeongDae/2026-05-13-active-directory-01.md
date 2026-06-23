@@ -6,6 +6,7 @@ categories:
 comments: true
 tags:
   - 윈도우
+  - activeDirectory
 ---
 ---
 # Active Directory
@@ -54,7 +55,7 @@ Active Directory는 철저하게 DNS에 포함됨
 
 
 
-![](../../../assets/images/Security/KimSeongDae/2026-05-13-active-directory-01/file-20260513102417288.png)
+![](../../../assets/images/Server/KimSeongDae/2026-05-13-active-directory-01/file-20260513102417288.png)
 
 	DNS 체크는 해두는게 좋음
 	패스워드는 길게?
@@ -64,26 +65,26 @@ Active Directory는 철저하게 DNS에 포함됨
 	이걸 식별할줄 알아야함
 
 
-![](../../../assets/images/Security/KimSeongDae/2026-05-13-active-directory-01/file-20260513103645944.png)
+![](../../../assets/images/Server/KimSeongDae/2026-05-13-active-directory-01/file-20260513103645944.png)
 
 	이 형태를 유지해야 Active Directory가 잘 만들어진거
 	
 	회색은 위임이다. _msdcs는 위에 _msdcd.jhjang.local을 위임한거
 
 
-![](../../../assets/images/Security/KimSeongDae/2026-05-13-active-directory-01/file-20260513103933599.png)
+![](../../../assets/images/Server/KimSeongDae/2026-05-13-active-directory-01/file-20260513103933599.png)
 
 	이러면 nslookup으로 잘 찾음
 
 
-![](../../../assets/images/Security/KimSeongDae/2026-05-13-active-directory-01/file-20260513104726817.png)
+![](../../../assets/images/Server/KimSeongDae/2026-05-13-active-directory-01/file-20260513104726817.png)
 
 	만약에 이름을 모를경우 .\administrator 입력 숨겨놓은 로컬계정으로 계정입력
 	-> active directory 활성화안됨 -> 복구모드기때문
 	
 	local logon이기 때문에 domain controller에서는 로그인할 수 없음
 
-![](../../../assets/images/Security/KimSeongDae/2026-05-13-active-directory-01/file-20260513104936415.png)
+![](../../../assets/images/Server/KimSeongDae/2026-05-13-active-directory-01/file-20260513104936415.png)
 
 안전 부팅 항목을 체크해제 후 재시작하면 됨
 
@@ -91,7 +92,7 @@ Active Directory는 철저하게 DNS에 포함됨
 gpedit.msc
 
 
-![](../../../assets/images/Security/KimSeongDae/2026-05-13-active-directory-01/file-20260513111834002.png)
+![](../../../assets/images/Server/KimSeongDae/2026-05-13-active-directory-01/file-20260513111834002.png)
 
 	로컬도 가지고 관리자도 가지도록 설정 가능
 
@@ -152,15 +153,15 @@ mem1은 멤버 컨트롤러이므로 로컬 + 도메인 둘 다 로그인됨
 
 멤버서버만들고 로컬계정쓴다? -> 관리자계정안쓰겠다의미?
 그래서 도메인계정으로 접속해야 관리자 권한받을 수 있음
-![](../../../assets/images/Security/KimSeongDae/2026-05-13-active-directory-01/file-20260513122435583.png)
+![](../../../assets/images/Server/KimSeongDae/2026-05-13-active-directory-01/file-20260513122435583.png)
 도메인 계정으로 접속해야 a사용자 인증없이 추가 가능
 
 만약 aa사용자 추가 후 일반사용자로 로그인
 과연 앱설치가될까?
-![](../../../assets/images/Security/KimSeongDae/2026-05-13-active-directory-01/file-20260513122631572.png)
+![](../../../assets/images/Server/KimSeongDae/2026-05-13-active-directory-01/file-20260513122631572.png)
 `네트워크 변경`
 
-![](../../../assets/images/Security/KimSeongDae/2026-05-13-active-directory-01/file-20260513122702176.png)
+![](../../../assets/images/Server/KimSeongDae/2026-05-13-active-directory-01/file-20260513122702176.png)
 `앱 설치`
 
 --> 불가능하다.
@@ -213,7 +214,7 @@ hmail 사용
 
 ---
 멤버
-![](../../../assets/images/Security/KimSeongDae/2026-05-13-active-directory-01/file-20260513150745916.png)
+![](../../../assets/images/Server/KimSeongDae/2026-05-13-active-directory-01/file-20260513150745916.png)
 도메인 계정으로 설치 시 이미 세팅되어있음
 
 ---
@@ -238,9 +239,9 @@ a.com
 busan.a.com
 daejeon.a.com
 
-![](../../../assets/images/Security/KimSeongDae/2026-05-13-active-directory-01/file-20260513151606149.png)
+![](../../../assets/images/Server/KimSeongDae/2026-05-13-active-directory-01/file-20260513151606149.png)
 
-![](../../../assets/images/Security/KimSeongDae/2026-05-13-active-directory-01/file-20260513151905650.png)
+![](../../../assets/images/Server/KimSeongDae/2026-05-13-active-directory-01/file-20260513151905650.png)
 
 포레스트가 2016이니 2016보다 같거나 같아야함
 NetBios이름이 다 떨어뜨리고 busan만 남기게됨
@@ -273,7 +274,7 @@ Install-ADDSDomain `
 본사 - 지사 ... 이런관계실습예정
 
 
-![](../../../assets/images/Security/KimSeongDae/2026-05-13-active-directory-01/file-20260513153211818.png)
+![](../../../assets/images/Server/KimSeongDae/2026-05-13-active-directory-01/file-20260513153211818.png)
 
 
 
@@ -285,11 +286,11 @@ dns설정
 트러스트 관계 확인(부모-자식)
 
 
-![](../../../assets/images/Security/KimSeongDae/2026-05-13-active-directory-01/file-20260513153917531.png)
+![](../../../assets/images/Server/KimSeongDae/2026-05-13-active-directory-01/file-20260513153917531.png)
 `같은 도메인`
 
 
-![](../../../assets/images/Security/KimSeongDae/2026-05-13-active-directory-01/file-20260513154035974.png)
+![](../../../assets/images/Server/KimSeongDae/2026-05-13-active-directory-01/file-20260513154035974.png)
 `다른 도메인`
 
 서울 -> 부산은 되지만 (완벽통제)
@@ -301,9 +302,9 @@ dns설정
 ---
 
 실습
-![](../../../assets/images/Security/KimSeongDae/2026-05-13-active-directory-01/file-20260513154443386.png)
+![](../../../assets/images/Server/KimSeongDae/2026-05-13-active-directory-01/file-20260513154443386.png)
 
-![](../../../assets/images/Security/KimSeongDae/2026-05-13-active-directory-01/file-20260513154451961.png)
+![](../../../assets/images/Server/KimSeongDae/2026-05-13-active-directory-01/file-20260513154451961.png)
 
 
 ---
@@ -383,14 +384,14 @@ Install-ADDSForest `
 
 아래 형태를 유지해야 Active Directory가 정상적으로 구성된 것이다.
 
-![DNS 위임 구조](../../../assets/images/Security/KimSeongDae/2026-05-13-active-directory-01/file-20260513103645944.png)
+![DNS 위임 구조](../../../assets/images/Server/KimSeongDae/2026-05-13-active-directory-01/file-20260513103645944.png)
 
 > 회색 항목 = **위임(Delegation)**  
 > `_msdcs`는 `_msdcs.jhjang.local`을 위임한 것
 
 아래와 같이 구성되면 `nslookup`으로 정상 조회된다.
 
-![nslookup 정상 확인](../../../assets/images/Security/KimSeongDae/2026-05-13-active-directory-01/file-20260513103933599.png)
+![nslookup 정상 확인](../../../assets/images/Server/KimSeongDae/2026-05-13-active-directory-01/file-20260513103933599.png)
 
 ---
 
@@ -404,13 +405,13 @@ dcdiag /test:dns
 
 ## 로컬 로그인 / 복구 모드
 
-![복구 모드 로그인](../../../assets/images/Security/KimSeongDae/2026-05-13-active-directory-01/file-20260513104726817.png)
+![복구 모드 로그인](../../../assets/images/Server/KimSeongDae/2026-05-13-active-directory-01/file-20260513104726817.png)
 
 - 이름을 모를 경우 `.\administrator` 입력 → 숨겨진 로컬 계정으로 접근
 - Active Directory 활성화 안 됨 → **복구 모드이기 때문**
 - DC는 **Local Logon 불가** (Domain Logon 전용)
 
-![안전 부팅 해제](../../../assets/images/Security/KimSeongDae/2026-05-13-active-directory-01/file-20260513104936415.png)
+![안전 부팅 해제](../../../assets/images/Server/KimSeongDae/2026-05-13-active-directory-01/file-20260513104936415.png)
 
 > 💡 안전 부팅 항목 체크 해제 후 재시작하면 정상 부팅 가능
 
@@ -424,7 +425,7 @@ dcdiag /test:dns
 | `ncpa.cpl` | 네트워크 어댑터 설정 (DNS 주소 변경) |
 | `sysdm.cpl` | 시스템 속성 (도메인/작업그룹 변경) |
 
-![gpedit 설정](../../../assets/images/Security/KimSeongDae/2026-05-13-active-directory-01/file-20260513111834002.png)
+![gpedit 설정](../../../assets/images/Server/KimSeongDae/2026-05-13-active-directory-01/file-20260513111834002.png)
 
 ---
 
@@ -451,15 +452,15 @@ dcdiag /test:dns
 
 ### 도메인 계정으로 접속 시
 
-![도메인 계정 접속](../../../assets/images/Security/KimSeongDae/2026-05-13-active-directory-01/file-20260513122435583.png)
+![도메인 계정 접속](../../../assets/images/Server/KimSeongDae/2026-05-13-active-directory-01/file-20260513122435583.png)
 
 도메인 계정으로 접속 시 사용자 인증 없이 추가 가능
 
 ### 일반 사용자로 로그인 시 제한
 
-![네트워크 변경 불가](../../../assets/images/Security/KimSeongDae/2026-05-13-active-directory-01/file-20260513122631572.png)
+![네트워크 변경 불가](../../../assets/images/Server/KimSeongDae/2026-05-13-active-directory-01/file-20260513122631572.png)
 
-![앱 설치 불가](../../../assets/images/Security/KimSeongDae/2026-05-13-active-directory-01/file-20260513122702176.png)
+![앱 설치 불가](../../../assets/images/Server/KimSeongDae/2026-05-13-active-directory-01/file-20260513122702176.png)
 
 > ❌ **네트워크 변경 불가 / 앱 설치 불가**
 
@@ -477,7 +478,7 @@ dcdiag /test:dns
 
 도메인 계정으로 설치 시 이미 세팅된 상태로 제공된다.
 
-![hmail 멤버 설정](../../../assets/images/Security/KimSeongDae/2026-05-13-active-directory-01/file-20260513150745916.png)
+![hmail 멤버 설정](../../../assets/images/Server/KimSeongDae/2026-05-13-active-directory-01/file-20260513150745916.png)
 
 ---
 
@@ -521,9 +522,9 @@ a.com
 └── daejeon.a.com
 ```
 
-![자식 도메인 구성](../../../assets/images/Security/KimSeongDae/2026-05-13-active-directory-01/file-20260513151606149.png)
+![자식 도메인 구성](../../../assets/images/Server/KimSeongDae/2026-05-13-active-directory-01/file-20260513151606149.png)
 
-![자식 도메인 설정](../../../assets/images/Security/KimSeongDae/2026-05-13-active-directory-01/file-20260513151905650.png)
+![자식 도메인 설정](../../../assets/images/Server/KimSeongDae/2026-05-13-active-directory-01/file-20260513151905650.png)
 
 > ⚠️ 포레스트 기능 수준이 2016이므로 **같거나 낮은 수준**으로 설정  
 > NetBIOS 이름은 서브도메인만 남김 (예: `BUSAN`)
@@ -558,7 +559,7 @@ Install-ADDSDomain `
 
 상대방의 주 영역을 내 서버에서 **보조 영역(Secondary Zone)** 으로 가져오면, 별도로 쿼리하지 않아도 된다.
 
-![DNS 보조 영역 설정](../../../assets/images/Security/KimSeongDae/2026-05-13-active-directory-01/file-20260513153211818.png)
+![DNS 보조 영역 설정](../../../assets/images/Server/KimSeongDae/2026-05-13-active-directory-01/file-20260513153211818.png)
 
 > 📌 다음 실습 예정: 본사-지사 관계에서 보조 영역 가져오기
 
@@ -568,11 +569,11 @@ Install-ADDSDomain `
 
 ### 같은 도메인
 
-![같은 도메인 Trust](../../../assets/images/Security/KimSeongDae/2026-05-13-active-directory-01/file-20260513153917531.png)
+![같은 도메인 Trust](../../../assets/images/Server/KimSeongDae/2026-05-13-active-directory-01/file-20260513153917531.png)
 
 ### 다른 도메인
 
-![다른 도메인 Trust](../../../assets/images/Security/KimSeongDae/2026-05-13-active-directory-01/file-20260513154035974.png)
+![다른 도메인 Trust](../../../assets/images/Server/KimSeongDae/2026-05-13-active-directory-01/file-20260513154035974.png)
 
 | 방향 | 가능 여부 | 이유 |
 |------|----------|------|
@@ -583,9 +584,9 @@ Install-ADDSDomain `
 
 ## 실습 결과
 
-![실습 결과 1](../../../assets/images/Security/KimSeongDae/2026-05-13-active-directory-01/file-20260513154443386.png)
+![실습 결과 1](../../../assets/images/Server/KimSeongDae/2026-05-13-active-directory-01/file-20260513154443386.png)
 
-![실습 결과 2](../../../assets/images/Security/KimSeongDae/2026-05-13-active-directory-01/file-20260513154451961.png)
+![실습 결과 2](../../../assets/images/Server/KimSeongDae/2026-05-13-active-directory-01/file-20260513154451961.png)
 
 
 ![](../../../assets/images/Security/KimSeongDae/2026-05-13-security_023%20(1)/file-20260513160523814.png)

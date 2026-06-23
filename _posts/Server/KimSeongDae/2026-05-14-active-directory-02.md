@@ -1,12 +1,12 @@
 ---
-title: Active Directory
+title: Active Directory 구성 실습 (2)
 date: 2026-05-14
 categories:
-  - security
+  - server
 comments: true
 tags:
   - 윈도우
-  - ActiveDirectory
+  - activeDirectory
 ---
 ---
 ## 복습
@@ -159,28 +159,28 @@ Install-ADDSDomain `
 	
 	
 	
-![](../../../assets/images/Security/KimSeongDae/2026-05-14-security_024/file-20260514121557420.png)
+![](../../../assets/images/Server/KimSeongDae/2026-05-14-active-directory-02/file-20260514121557420.png)
 
-![](../../../assets/images/Security/KimSeongDae/2026-05-14-security_024/file-20260514121626518.png)
+![](../../../assets/images/Server/KimSeongDae/2026-05-14-active-directory-02/file-20260514121626518.png)
 
 이러면 부산 서버에 사용자 및 컴퓨터 부분에 Computers에 등록됨
 
-![](../../../assets/images/Security/KimSeongDae/2026-05-14-security_024/file-20260514121750406.png)
+![](../../../assets/images/Server/KimSeongDae/2026-05-14-active-directory-02/file-20260514121750406.png)
 
 	부산쪽으로 로그인 성공
 
-![](../../../assets/images/Security/KimSeongDae/2026-05-14-security_024/file-20260514121831279.png)
+![](../../../assets/images/Server/KimSeongDae/2026-05-14-active-directory-02/file-20260514121831279.png)
 
 	일반사용자라 바꿀수없음
 
-![](../../../assets/images/Security/KimSeongDae/2026-05-14-security_024/file-20260514121903679.png)
+![](../../../assets/images/Server/KimSeongDae/2026-05-14-active-directory-02/file-20260514121903679.png)
 
 	하지만 관리자 id입력해서 연결
 
 
 ad에서 공유폴더생성
 
-![](../../../assets/images/Security/KimSeongDae/2026-05-14-security_024/file-20260514122026960.png)
+![](../../../assets/images/Server/KimSeongDae/2026-05-14-active-directory-02/file-20260514122026960.png)
 
 	Test_aa 사용자 추가해줌
 
@@ -189,7 +189,7 @@ ad에서 공유폴더생성
 수정: 파일 생성 삭제, 이름 변경 가능 내용 변경 가능
 -> 정확하게 알기
 
-![](../../../assets/images/Security/KimSeongDae/2026-05-14-security_024/file-20260514122254357.png)
+![](../../../assets/images/Server/KimSeongDae/2026-05-14-active-directory-02/file-20260514122254357.png)
 
 	부산 사용자로도 로그인이 됨됨
 
@@ -217,14 +217,14 @@ FSMO
 			그룹 정책의 시작점
 			Infra Structure Master: 상호 참조하는 개체의 이름 변경 사항 추적
 
-![](../../../assets/images/Security/KimSeongDae/2026-05-14-security_024/file-20260514103708654.png)
+![](../../../assets/images/Server/KimSeongDae/2026-05-14-active-directory-02/file-20260514103708654.png)
 `netdom query fsmo`
 
 	포리스트에 처음 만들어지는 dns는 무조건 얘가 가지고 있음
 
 강제로 점유 시도?
 
-![](../../../assets/images/Security/KimSeongDae/2026-05-14-security_024/file-20260514104000892.png)
+![](../../../assets/images/Server/KimSeongDae/2026-05-14-active-directory-02/file-20260514104000892.png)
 `작업 마스터 권한 넘기기`
 
 	왜 필요할까?
@@ -240,10 +240,10 @@ FSMO
 
 
 	1. `regsvr32 schmmgmt.dll`
-![](../../../assets/images/Security/KimSeongDae/2026-05-14-security_024/file-20260514104833521.png)
+![](../../../assets/images/Server/KimSeongDae/2026-05-14-active-directory-02/file-20260514104833521.png)
 
 
-![](../../../assets/images/Security/KimSeongDae/2026-05-14-security_024/file-20260514104906877.png)
+![](../../../assets/images/Server/KimSeongDae/2026-05-14-active-directory-02/file-20260514104906877.png)
 
 	다른 이름으로 저장 -> 바탕화면(AD)
 
@@ -274,7 +274,7 @@ Connect to server w2k22-ad.jhjang.local #전송할 대상 서버
 
 
 
-![](../../../assets/images/Security/KimSeongDae/2026-05-14-security_024/file-20260514105038027.png)
+![](../../../assets/images/Server/KimSeongDae/2026-05-14-active-directory-02/file-20260514105038027.png)
 
 	모든 권한이 mem1에게 넘겨진걸 볼 수 있다.
 
@@ -299,10 +299,10 @@ Connect to server w2k22-ad.jhjang.local #전송할 대상 서버
 지역의 administrator 엔터프라이즈,스키마권한이없음
 그래서 본사 관리자로 바꿔서 삭제해야함
 
-![](../../../assets/images/Security/KimSeongDae/2026-05-14-security_024/file-20260514122842259.png)
+![](../../../assets/images/Server/KimSeongDae/2026-05-14-active-directory-02/file-20260514122842259.png)
 
 강제 삭제했을 경우 재설치할 때 도메인으로 승격할 때 문제가 생김
-![](../../../assets/images/Security/KimSeongDae/2026-05-14-security_024/file-20260514140835826.png)
+![](../../../assets/images/Server/KimSeongDae/2026-05-14-active-directory-02/file-20260514140835826.png)
 
 
 도메인 및 트러스트는 ntdsutil로 지울 수 있음
@@ -340,7 +340,7 @@ mem3가서 자식 busan 재생성 시도
 멤버서버로 만들기 위해 active directory, dns 역할 및 기능 제거 하고
 로컬서버에서 ad 도메인 가입
 
-![](../../../assets/images/Security/KimSeongDae/2026-05-14-security_024/file-20260514151335141.png)
+![](../../../assets/images/Server/KimSeongDae/2026-05-14-active-directory-02/file-20260514151335141.png)
 w-10, w-11은 ad의 도메인과 연결 (설정할때 .\test로 로그인 후 설정, 비번x)
 w2k22-mem1, w2k22-mem2는 ad의 도메인과 연결 후 멤버서버 설정
 
@@ -348,11 +348,11 @@ w2k22-mem1, w2k22-mem2는 ad의 도메인과 연결 후 멤버서버 설정
 
 	ad의 자원을 가져다 쓰기 위해서
 
-![](../../../assets/images/Security/KimSeongDae/2026-05-14-security_024/file-20260514154402406.png)
+![](../../../assets/images/Server/KimSeongDae/2026-05-14-active-directory-02/file-20260514154402406.png)
 
 	ad의 자원인 계정을 가져다쓸 수 있는걸 확인할 수 있다.
 
-![](../../../assets/images/Security/KimSeongDae/2026-05-14-security_024/file-20260514154555579.png)
+![](../../../assets/images/Server/KimSeongDae/2026-05-14-active-directory-02/file-20260514154555579.png)
 `w10`
 
 	일반사용자 계정으로도 도메인에 가입할 수 있다.
@@ -363,7 +363,7 @@ a라는 계정이 w10에서만 관리자 계정을 가지게 하려면 어떻게
 	local 관리자그룹에 a계정을 넣어줘야함
 	
 	compmgmt.msc에서추가
-![](../../../assets/images/Security/KimSeongDae/2026-05-14-security_024/file-20260514160834290.png)
+![](../../../assets/images/Server/KimSeongDae/2026-05-14-active-directory-02/file-20260514160834290.png)
 
 이런식으로 추가해주면됨
 
@@ -372,27 +372,27 @@ a라는 계정이 w10에서만 관리자 계정을 가지게 하려면 어떻게
 
 
 
-![](../../../assets/images/Security/KimSeongDae/2026-05-14-security_024/file-20260514161514141.png)
+![](../../../assets/images/Server/KimSeongDae/2026-05-14-active-directory-02/file-20260514161514141.png)
 
-![](../../../assets/images/Security/KimSeongDae/2026-05-14-security_024/file-20260514161533525.png)
+![](../../../assets/images/Server/KimSeongDae/2026-05-14-active-directory-02/file-20260514161533525.png)
 
 a, W-10은 admin / b, W-11은 sales에 넣음
 
-![](../../../assets/images/Security/KimSeongDae/2026-05-14-security_024/file-20260514162113544.png)
+![](../../../assets/images/Server/KimSeongDae/2026-05-14-active-directory-02/file-20260514162113544.png)
 
 컴퓨터 구성: 해당 컴퓨터만 따라다님 계정상관X
 사용자 구성: 계정을 따라다님 컴퓨터상관X
 
 
 
-![](../../../assets/images/Security/KimSeongDae/2026-05-14-security_024/file-20260514162428447.png)
+![](../../../assets/images/Server/KimSeongDae/2026-05-14-active-directory-02/file-20260514162428447.png)
 
 	경로 작성 제대로
 
 
 기존GPO연결 -> 배경화면_admin
 
-![](../../../assets/images/Security/KimSeongDae/2026-05-14-security_024/file-20260514163857144.png)
+![](../../../assets/images/Server/KimSeongDae/2026-05-14-active-directory-02/file-20260514163857144.png)
 
 
 

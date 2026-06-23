@@ -1,15 +1,11 @@
 ---
-title: 모의침투 실습 / GVM 설치
+title: Kali Linux와 MITRE ATT&CK 프레임워크
 date: 2026-05-19
 categories:
   - security
 comments: true
 tags:
-  - 모의침투
-  - GVM
-  - Metasploit
-  - Nmap
-  - Kali
+  - 보안이론
 ---
 
 ---

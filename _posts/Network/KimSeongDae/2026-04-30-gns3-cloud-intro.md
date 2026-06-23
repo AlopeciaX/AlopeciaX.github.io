@@ -6,7 +6,6 @@ categories:
 comments: true
 tags:
   - gns3
-  - cloud
 ---
 ---
 
@@ -62,9 +61,9 @@ vm workstation은 같은 네트워크끼리 가능
 -> gns3로 분리해서 실습하기 위해 사용
 
 
-![](../../../assets/images/Security/KimSeongDae/2026-04-30-gns3-cloud-intro/file-20260430110156000.png)
+![](../../../assets/images/Network/KimSeongDae/2026-04-30-gns3-cloud-intro/file-20260430110156000.png)
 
-![](../../../assets/images/Security/KimSeongDae/2026-04-30-gns3-cloud-intro/file-20260430115414001.png)
+![](../../../assets/images/Network/KimSeongDae/2026-04-30-gns3-cloud-intro/file-20260430115414001.png)
 
 만약에 안될경우
 1. 자신의 게이트웨이로 핑이 가는지 확인 --> 주소 설정 문제
@@ -73,7 +72,7 @@ vm workstation은 같은 네트워크끼리 가능
 
 라우터는 목적지 주소만 가지고 판단 송신지주소는 별로안중요함
 
-![](../../../assets/images/Security/KimSeongDae/2026-04-30-gns3-cloud-intro/file-20260430152941002.png)
+![](../../../assets/images/Network/KimSeongDae/2026-04-30-gns3-cloud-intro/file-20260430152941002.png)
 
 만약에 껐다 켜서 안될경우
 1. rocky같은 경우는 nmtui로 인터넷 재연결

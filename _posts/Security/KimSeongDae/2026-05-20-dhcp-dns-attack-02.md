@@ -1,15 +1,11 @@
 ---
-title: 모의침투 실습 / ARP Poisoning & 취약점 개념
+title: DHCP/DNS 공격 실습
 date: 2026-05-20
 categories:
   - security
 comments: true
 tags:
-  - 모의침투
-  - Ettercap
-  - Wireshark
-  - DHCP
-  - DNS
+  - 모의해킹
 ---
 
 ---
@@ -239,20 +235,20 @@ ettercap -G &
 
 echo 0 > /proc/sys/net/ipv6/conf/all/disable_ipv6
 
-![](../../../assets/images/Security/KimSeongDae/2026-05-20-security_028%201/file-20260520151719691.png)
+![](../../../assets/images/Security/KimSeongDae/2026-05-20-dhcp-dns-attack-02/file-20260520151719691.png)
 
-![](../../../assets/images/Security/KimSeongDae/2026-05-20-security_028%201/file-20260520152922366.png)
+![](../../../assets/images/Security/KimSeongDae/2026-05-20-dhcp-dns-attack-02/file-20260520152922366.png)
 
 
-![](../../../assets/images/Security/KimSeongDae/2026-05-20-security_028%201/file-20260520152858669.png)
+![](../../../assets/images/Security/KimSeongDae/2026-05-20-dhcp-dns-attack-02/file-20260520152858669.png)
 
 dns
 캐시 -> etc/hosts
 
 
-![](../../../assets/images/Security/KimSeongDae/2026-05-20-security_028%201/file-20260520154145990.png)
+![](../../../assets/images/Security/KimSeongDae/2026-05-20-dhcp-dns-attack-02/file-20260520154145990.png)
 
-![](../../../assets/images/Security/KimSeongDae/2026-05-20-security_028%201/file-20260520154159486.png)
+![](../../../assets/images/Security/KimSeongDae/2026-05-20-dhcp-dns-attack-02/file-20260520154159486.png)
 
 systemctl enable --now named
 firewall-cmd --permanent --add-port=53/{tcp,udp}
@@ -273,11 +269,11 @@ firewall-cmd --reload
 	10.10.34.133 -> dns서버 
 	10.10.34.134 -> kali 공격자
 
-![](../../../assets/images/Security/KimSeongDae/2026-05-20-security_028%201/file-20260520183202450.png)
+![](../../../assets/images/Security/KimSeongDae/2026-05-20-dhcp-dns-attack-02/file-20260520183202450.png)
 
 	실습 구상도?
 
-![](../../../assets/images/Security/KimSeongDae/2026-05-20-security_028%201/file-20260520175221174.png)
+![](../../../assets/images/Security/KimSeongDae/2026-05-20-dhcp-dns-attack-02/file-20260520175221174.png)
 
 	성공화면
 
@@ -288,9 +284,9 @@ firewall-cmd --reload
 
 **내 역할 dns**
 
-![](../../../assets/images/Security/KimSeongDae/2026-05-20-security_028%201/file-20260520175339122.png)
+![](../../../assets/images/Security/KimSeongDae/2026-05-20-dhcp-dns-attack-02/file-20260520175339122.png)
 
-![](../../../assets/images/Security/KimSeongDae/2026-05-20-security_028%201/file-20260520175321936.png)
+![](../../../assets/images/Security/KimSeongDae/2026-05-20-dhcp-dns-attack-02/file-20260520175321936.png)
 
 	meta3의 주소를 설정한다. brk.local은 meta3주소에 ns설정을 한 것이기 때문에
 	ipv4(호스트 A)로 meta3의 ipv4 주소를 적어준다. 그리고 ns1에는 dns주소를 적어준다.

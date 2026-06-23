@@ -5,8 +5,7 @@ categories:
   - security
 comments: true
 tags:
-  - bluemax
-  - dlp
+  - 방화벽
 ---
 ---
 	DLP

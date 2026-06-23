@@ -1,11 +1,12 @@
 ---
-title: Active Directory
+title: Active Directory - Kali 설치 및 MITRE ATT&CK
 date: 2026-05-19
 categories:
-  - security
+  - server
 comments: true
 tags:
-  - 모의침투
+  - 윈도우
+  - activeDirectory
 ---
 ---
 **칼리 설치**
@@ -13,9 +14,9 @@ tags:
 	apt autoremove -y fcitx5 fcitx5-hangul
 
 
-![](../../../assets/images/Security/KimSeongDae/2026-05-19-security_027/file-20260519095328862.png)
+![](../../../assets/images/Server/KimSeongDae/2026-05-19-active-directory-05/file-20260519095328862.png)
 
-![](../../../assets/images/Security/KimSeongDae/2026-05-19-security_027/file-20260519095530068.png)
+![](../../../assets/images/Server/KimSeongDae/2026-05-19-active-directory-05/file-20260519095530068.png)
 
 	Kali의 목차는 MITRE ATT&CK의 목차와 완벽하게 일치한다.
 
@@ -40,9 +41,9 @@ nmap -sT -v -O -p0-65535 10.0.0.31 > metas3.txt
 snmp-check 10.0.0.31
 ```
 
-![](../../../assets/images/Security/KimSeongDae/2026-05-19-security_027/file-20260519104234781.png)
+![](../../../assets/images/Server/KimSeongDae/2026-05-19-active-directory-05/file-20260519104234781.png)
 
-![](../../../assets/images/Security/KimSeongDae/2026-05-19-security_027/file-20260519104333912.png)
+![](../../../assets/images/Server/KimSeongDae/2026-05-19-active-directory-05/file-20260519104333912.png)
 
 	해결방법
 	public -> 다른이름 으로 변경
@@ -79,7 +80,7 @@ netstat -na
 ---
 **플래그 획득**
 
-![](../../../assets/images/Security/KimSeongDae/2026-05-19-security_027/file-20260519122844395.png)
+![](../../../assets/images/Server/KimSeongDae/2026-05-19-active-directory-05/file-20260519122844395.png)
 
 	숨겨진 파일을 찾아내는 과정
 	해당 실습에서는 16진수로 이루어진 png파일을 사이트의 개발자모드에서 찾아내 헥사값 

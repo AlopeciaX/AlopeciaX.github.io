@@ -1,12 +1,13 @@
 ---
-title: Active Directory
+title: Active Directory - DHCP 이중화 구성
 date: 2026-05-15
 categories:
-  - security
+  - server
 comments: true
 tags:
   - 윈도우
-  - DHCP
+  - activeDirectory
+  - dhcp
 ---
 ---
 
@@ -18,11 +19,11 @@ tags:
 
 **주 DHCP, 보조 DHCP**
 
-![](../../../assets/images/Security/KimSeongDae/2026-05-15-security_025/file-20260515092633661.png)
+![](../../../assets/images/Server/KimSeongDae/2026-05-15-active-directory-03/file-20260515092633661.png)
 
 	도메인 컨트롤러의 Administrator 계정을 사용
 
-![](../../../assets/images/Security/KimSeongDae/2026-05-15-security_025/file-20260515092824349.png)
+![](../../../assets/images/Server/KimSeongDae/2026-05-15-active-directory-03/file-20260515092824349.png)
 
 	다른 서버를 추가해서 하나의 관리 콘솔엥서 관리 가능(추가하지마셈 기능만 알아두기)
 
@@ -35,7 +36,7 @@ mem1: 고급 -> 분할범위
 
 보통 7:3으로 나누고 추가된 dhcp서버에 100밀리초 지연 시간 부여
 
-![](../../../assets/images/Security/KimSeongDae/2026-05-15-security_025/file-20260515093814681.png)
+![](../../../assets/images/Server/KimSeongDae/2026-05-15-active-directory-03/file-20260515093814681.png)
 
 	보조 dhcp가서 활성화 꼭 시켜주기
 
@@ -44,7 +45,7 @@ mem1: 고급 -> 분할범위
 
 **failover cluster**
 
-![](../../../assets/images/Security/KimSeongDae/2026-05-15-security_025/file-20260515094322797.png)
+![](../../../assets/images/Server/KimSeongDae/2026-05-15-active-directory-03/file-20260515094322797.png)
 
 	로드밸런싱이 가능하다
 
@@ -60,13 +61,13 @@ failover 클릭 -> 50대50으로 설정 -> 완료
 IIS 구성 공유(mem1, mem2 동일한 구성)
 DFS 복제 (mem1 contents, mem2로 복제)
 
-![](../../../assets/images/Security/KimSeongDae/2026-05-15-security_025/file-20260515103031287.png)
+![](../../../assets/images/Server/KimSeongDae/2026-05-15-active-directory-03/file-20260515103031287.png)
 
 	도메인의 사용자를 넣을 땐 저렇게 넣어야 한다.
 
 
 
-![](../../../assets/images/Security/KimSeongDae/2026-05-15-security_025/file-20260515104144580.png)
+![](../../../assets/images/Server/KimSeongDae/2026-05-15-active-directory-03/file-20260515104144580.png)
 
 	보안된 항목만이 체크되어있어서 자동으로 동적 업데이트 된다.
 
@@ -79,28 +80,28 @@ DFS 복제 (mem1 contents, mem2로 복제)
 </html>
 ```
 
-![](../../../assets/images/Security/KimSeongDae/2026-05-15-security_025/file-20260515105307099.png)
+![](../../../assets/images/Server/KimSeongDae/2026-05-15-active-directory-03/file-20260515105307099.png)
 
-![](../../../assets/images/Security/KimSeongDae/2026-05-15-security_025/file-20260515105504496.png)
+![](../../../assets/images/Server/KimSeongDae/2026-05-15-active-directory-03/file-20260515105504496.png)
 
 
 
-![](../../../assets/images/Security/KimSeongDae/2026-05-15-security_025/file-20260515112003072.png)
+![](../../../assets/images/Server/KimSeongDae/2026-05-15-active-directory-03/file-20260515112003072.png)
 
 
 구성복제를 위한 과정
 
 	mem1에 20_config폴더 생성
 
-![](../../../assets/images/Security/KimSeongDae/2026-05-15-security_025/file-20260515112257911.png)
+![](../../../assets/images/Server/KimSeongDae/2026-05-15-active-directory-03/file-20260515112257911.png)
 
 
-![](../../../assets/images/Security/KimSeongDae/2026-05-15-security_025/file-20260515112233270.png)
+![](../../../assets/images/Server/KimSeongDae/2026-05-15-active-directory-03/file-20260515112233270.png)
 
 
 	mem2에서
 
-![](../../../assets/images/Security/KimSeongDae/2026-05-15-security_025/file-20260515112434150.png)
+![](../../../assets/images/Server/KimSeongDae/2026-05-15-active-directory-03/file-20260515112434150.png)
 
 	DFS복제
 
@@ -111,7 +112,7 @@ dfs관리->복제
 ---
 그룹정책
 
-![](../../../assets/images/Security/KimSeongDae/2026-05-15-security_025/file-20260515122429888.png)
+![](../../../assets/images/Server/KimSeongDae/2026-05-15-active-directory-03/file-20260515122429888.png)
 
 제어판 잠금
 
@@ -121,12 +122,12 @@ dfs관리->복제
 
 **edge차단**
 
-![](../../../assets/images/Security/KimSeongDae/2026-05-15-security_025/file-20260515142402422.png)
+![](../../../assets/images/Server/KimSeongDae/2026-05-15-active-directory-03/file-20260515142402422.png)
 
 
 "C:\Program Files (x86)\Microsoft\Edge\Application\msedge.exe" 해당경로를 차단
 
-![](../../../assets/images/Security/KimSeongDae/2026-05-15-security_025/file-20260515142647890.png)
+![](../../../assets/images/Server/KimSeongDae/2026-05-15-active-directory-03/file-20260515142647890.png)
 
 
 **스크립트**
@@ -135,7 +136,7 @@ dfs관리->복제
 ```
 
 
-![](../../../assets/images/Security/KimSeongDae/2026-05-15-security_025/file-20260515151218194.png)
+![](../../../assets/images/Server/KimSeongDae/2026-05-15-active-directory-03/file-20260515151218194.png)
 
 
 **프로필**
@@ -147,7 +148,7 @@ dfs관리->복제
 **폴더 리드렉션**
 
 
-![](../../../assets/images/Security/KimSeongDae/2026-05-15-security_025/file-20260515153641327.png)
+![](../../../assets/images/Server/KimSeongDae/2026-05-15-active-directory-03/file-20260515153641327.png)
 
 
 어느시스템이든 일관성있게 사용 가능하다.
@@ -165,7 +166,7 @@ dfs관리->복제
 	cold: 필수 정보시스템만 준비, 수주일-수개월
 
 
-![](../../../assets/images/Security/KimSeongDae/2026-05-15-security_025/file-20260515143823446.png)
+![](../../../assets/images/Server/KimSeongDae/2026-05-15-active-directory-03/file-20260515143823446.png)
 
 문제1. 그림속의 ! 가 의미하는 바가 무엇인가?
 

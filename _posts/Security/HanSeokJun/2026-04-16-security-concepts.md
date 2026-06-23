@@ -5,7 +5,7 @@ categories:
   - security
 comments: true
 tags:
-  - 이론
+  - 보안이론
 ---
 ---
 

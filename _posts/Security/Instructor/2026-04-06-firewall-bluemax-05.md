@@ -5,8 +5,7 @@ categories:
   - security
 comments: true
 tags:
-  - bluemax
-  - url차단
+  - 방화벽
 ---
 FTP, 메인서버에 대한 실습
 

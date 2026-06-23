@@ -1,11 +1,11 @@
 ---
-title: 모의침투 실습 / GVM 설치
-date: 2026-05-19
+title: DHCP Starvation & DNS Spoofing 공격 개념
+date: 2026-05-20
 categories:
   - security
 comments: true
 tags:
-  - 모의침투
+  - 모의해킹
 ---
 ---
 
@@ -52,32 +52,32 @@ ettercap -G &
 	지구본 -> ARP Poisoning
 	view -> connections
 
-![](../../../assets/images/Security/KimSeongDae/2026-05-20-security_028/file-20260520105329186.png)
+![](../../../assets/images/Security/KimSeongDae/2026-05-20-dhcp-dns-attack-01/file-20260520105329186.png)
 
 	arp -a
 
-![](../../../assets/images/Security/KimSeongDae/2026-05-20-security_028/file-20260520105926137.png)
+![](../../../assets/images/Security/KimSeongDae/2026-05-20-dhcp-dns-attack-01/file-20260520105926137.png)
 
 meta3
-![](../../../assets/images/Security/KimSeongDae/2026-05-20-security_028/file-20260520110955113.png)
+![](../../../assets/images/Security/KimSeongDae/2026-05-20-dhcp-dns-attack-01/file-20260520110955113.png)
 
 w10
-![](../../../assets/images/Security/KimSeongDae/2026-05-20-security_028/file-20260520111020194.png)
+![](../../../assets/images/Security/KimSeongDae/2026-05-20-dhcp-dns-attack-01/file-20260520111020194.png)
 
 kali
-![](../../../assets/images/Security/KimSeongDae/2026-05-20-security_028/file-20260520111214539.png)
+![](../../../assets/images/Security/KimSeongDae/2026-05-20-dhcp-dns-attack-01/file-20260520111214539.png)
 
-![](../../../assets/images/Security/KimSeongDae/2026-05-20-security_028/file-20260520111841909.png)
+![](../../../assets/images/Security/KimSeongDae/2026-05-20-dhcp-dns-attack-01/file-20260520111841909.png)
 
-![](../../../assets/images/Security/KimSeongDae/2026-05-20-security_028/file-20260520113113615.png)
+![](../../../assets/images/Security/KimSeongDae/2026-05-20-dhcp-dns-attack-01/file-20260520113113615.png)
 
-![](../../../assets/images/Security/KimSeongDae/2026-05-20-security_028/file-20260520112731426.png)
+![](../../../assets/images/Security/KimSeongDae/2026-05-20-dhcp-dns-attack-01/file-20260520112731426.png)
 
-![](../../../assets/images/Security/KimSeongDae/2026-05-20-security_028/file-20260520114730605.png)
+![](../../../assets/images/Security/KimSeongDae/2026-05-20-dhcp-dns-attack-01/file-20260520114730605.png)
 
 	리눅스에 기본적으로 내장된걸로 해야 다른 곳에서 사용 가능?
 
-![](../../../assets/images/Security/KimSeongDae/2026-05-20-security_028/file-20260520115746594.png)
+![](../../../assets/images/Security/KimSeongDae/2026-05-20-dhcp-dns-attack-01/file-20260520115746594.png)
 
 	%PNG 부터 시작하도록 다 지워줌
 

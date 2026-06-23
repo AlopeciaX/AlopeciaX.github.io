@@ -5,8 +5,7 @@ categories:
   - security
 comments: true
 tags:
-  - 웹취약점
-  - nmap
+  - 모의해킹
 ---
 ---
 

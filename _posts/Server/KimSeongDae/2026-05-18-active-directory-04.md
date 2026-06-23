@@ -1,17 +1,17 @@
 ---
-title: Active Directory
+title: Active Directory - 폴더 리디렉션, 로밍 프로파일
 date: 2026-05-18
 categories:
-  - security
+  - server
 comments: true
 tags:
   - 윈도우
-  - 모의침투
+  - activeDirectory
 ---
 ---
 리디렉션?
 
-![](../../../assets/images/Security/KimSeongDae/2026-05-18-security_026/file-20260518092255320.png)
+![](../../../assets/images/Server/KimSeongDae/2026-05-18-active-directory-04/file-20260518092255320.png)
 
 	루트 경로를 \\\10.0.0.22\41_pro
 	설정 독점 권한 제거, 사용자 프로필 위치로 리디렉션으로 변경
@@ -30,16 +30,16 @@ tags:
 	
 	도메인 관리자가 만든 앱은 설치가능
 
-![](../../../assets/images/Security/KimSeongDae/2026-05-18-security_026/file-20260518094415010.png)
+![](../../../assets/images/Server/KimSeongDae/2026-05-18-active-directory-04/file-20260518094415010.png)
 
-![](../../../assets/images/Security/KimSeongDae/2026-05-18-security_026/file-20260518094701751.png)
+![](../../../assets/images/Server/KimSeongDae/2026-05-18-active-directory-04/file-20260518094701751.png)
 
 	안에 게시로 설정한 앱이 존재함을 확인 가능
 
 
 할당
 
-![](../../../assets/images/Security/KimSeongDae/2026-05-18-security_026/file-20260518095140323.png)
+![](../../../assets/images/Server/KimSeongDae/2026-05-18-active-directory-04/file-20260518095140323.png)
 
 	할당 하면 바로 설치 가능
 
@@ -114,9 +114,9 @@ bastion 서버란?
 
 	내부로 통하는 유일한 길
 
-![](../../../assets/images/Security/KimSeongDae/2026-05-18-security_026/file-20260518113410280.png)
+![](../../../assets/images/Server/KimSeongDae/2026-05-18-active-directory-04/file-20260518113410280.png)
 
-![](../../../assets/images/Security/KimSeongDae/2026-05-18-security_026/file-20260518142952963.png)
+![](../../../assets/images/Server/KimSeongDae/2026-05-18-active-directory-04/file-20260518142952963.png)
 
 	Rocky9-1: NAT, Host-only
 	Rocky9-2, 9-3: Host-only
@@ -227,9 +227,9 @@ firewall-cmd --reload
 	root / It1 로 로그인
 	vi /etc/sysconfig/network-scripts/ifcfg-eth0
 
-![](../../../assets/images/Security/KimSeongDae/2026-05-18-security_026/file-20260518162017815.png)
+![](../../../assets/images/Server/KimSeongDae/2026-05-18-active-directory-04/file-20260518162017815.png)
 
-![](../../../assets/images/Security/KimSeongDae/2026-05-18-security_026/file-20260518162134533.png)
+![](../../../assets/images/Server/KimSeongDae/2026-05-18-active-directory-04/file-20260518162134533.png)
 
 service httpd start
 service mysqld start
@@ -246,15 +246,15 @@ service mysqld start
 
 2. CentOS5.3_WebServer
 
-![](../../../assets/images/Security/KimSeongDae/2026-05-18-security_026/file-20260518232323464.png)
+![](../../../assets/images/Server/KimSeongDae/2026-05-18-active-directory-04/file-20260518232323464.png)
 
 3. Metasploitable_ub1404
 
-![](../../../assets/images/Security/KimSeongDae/2026-05-18-security_026/file-20260518232356727.png)
+![](../../../assets/images/Server/KimSeongDae/2026-05-18-active-directory-04/file-20260518232356727.png)
 
 4. Kali2026.1
 
-![](../../../assets/images/Security/KimSeongDae/2026-05-18-security_026/file-20260518232404759.png)
+![](../../../assets/images/Server/KimSeongDae/2026-05-18-active-directory-04/file-20260518232404759.png)
 
 
 

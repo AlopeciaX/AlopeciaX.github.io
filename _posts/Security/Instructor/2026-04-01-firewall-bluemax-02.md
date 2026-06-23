@@ -5,7 +5,7 @@ categories:
   - security
 comments: true
 tags:
-  - bluemax
+  - 방화벽
   - vpn
 ---
 

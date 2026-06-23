@@ -5,13 +5,12 @@ categories:
   - network
 comments: true
 tags:
-  - wordpress
-  - proxy
+  - 네트워크
 ---
 ---
 # 오늘의 목표
 
-![](../../../assets/images/Security/KimSeongDae/2026-05-11-wordpress-proxy/file-20260511092514690.png)
+![](../../../assets/images/Network/KimSeongDae/2026-05-11-wordpress-proxy/file-20260511092514690.png)
 
 
 ### Wordpress
@@ -133,10 +132,10 @@ show databases;
 robots.txt: 검색 엔진에 대한 가시성 부분
 
 
-![](../../../assets/images/Security/KimSeongDae/2026-05-11-wordpress-proxy/file-20260511103619322.png)
+![](../../../assets/images/Network/KimSeongDae/2026-05-11-wordpress-proxy/file-20260511103619322.png)
 `10.0.0.12 접속화면`
 
-![](../../../assets/images/Security/KimSeongDae/2026-05-11-wordpress-proxy/file-20260511113923808.png)
+![](../../../assets/images/Network/KimSeongDae/2026-05-11-wordpress-proxy/file-20260511113923808.png)
 
 ```bash
 scp word.sh root@10.0.0.13:/root/
@@ -259,7 +258,7 @@ DB: 팀원 rocky9-4
 
 팀명.html
 
-![](../../../assets/images/Security/KimSeongDae/2026-05-11-wordpress-proxy/file-20260511160754488.png)
+![](../../../assets/images/Network/KimSeongDae/2026-05-11-wordpress-proxy/file-20260511160754488.png)
 
 health.html -> 팀명.html
 

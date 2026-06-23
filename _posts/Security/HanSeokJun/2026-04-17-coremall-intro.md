@@ -5,7 +5,7 @@ categories:
   - security
 comments: true
 tags:
-  - 웹취약점
+  - 모의해킹
 ---
 ---
 
