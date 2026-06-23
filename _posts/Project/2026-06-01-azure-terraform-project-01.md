@@ -1,12 +1,12 @@
 ---
-title: Azure테라폼
+title: Azure + Terraform 프로젝트 (1) - 아키텍쳐 설계
 date: 2026-05-22
 categories:
-  - security
+  - project
 comments: true
 tags:
-  - 모의침투
-  - 취약점진단
+  - azure
+  - terraform
 ---
 방화벽
 온프레미스환경 - 렉에다 구현
@@ -22,9 +22,9 @@ bastion mysql클라이언트 설치 가능
 보안적인 측면들도 고려
 
 
-![](../../assets/images/_posts/Project/2026-06-01-Azure테라폼프로젝트/file-20260602092431364.png)
+![](../../assets/images/_posts/Project/2026-06-01-azure-terraform-project-01/file-20260602092431364.png)
 
-![](../../assets/images/_posts/Project/2026-06-01-Azure테라폼프로젝트/file-20260602153333073.png)
+![](../../assets/images/_posts/Project/2026-06-01-azure-terraform-project-01/file-20260602153333073.png)
 
 	draw.io
 

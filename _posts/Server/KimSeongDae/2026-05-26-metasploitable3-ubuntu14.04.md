@@ -12,9 +12,9 @@ tags:
 
 	user: vagrant / pw: vagrant
 
-![](../../../assets/images/Network/VM-Setup/2026-05-26-metasploitable3-ubuntu14.04/file-20260523113947009.png)
+![](../../../assets/images/Server/KimSeongDae/2026-05-26-metasploitable3-ubuntu14.04/file-20260523113947009.png)
 
-![](../../../assets/images/Network/VM-Setup/2026-05-26-metasploitable3-ubuntu14.04/file-20260523114925625.png)
+![](../../../assets/images/Server/KimSeongDae/2026-05-26-metasploitable3-ubuntu14.04/file-20260523114925625.png)
 
 ```bash
 sudo nano /etc/network/interfaces

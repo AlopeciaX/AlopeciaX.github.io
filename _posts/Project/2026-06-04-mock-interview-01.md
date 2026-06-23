@@ -1,12 +1,11 @@
 ---
-title: Azure테라폼
+title: 모의면접 준비 (1) - 자기소개, 지원동기
 date: 2026-06-04
 categories:
-  - security
+  - project
 comments: true
 tags:
-  - 모의침투
-  - 취약점진단
+  - 면접
 ---
 ---
 지식, 기술, 역량

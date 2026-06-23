@@ -1,15 +1,14 @@
 ---
-title: Nmap으로 구멍 조사
+title: Nmap 포트 스캔 결과 - Metasploitable3
 date: 2026-05-25
 categories:
-  - security
+  - project
 comments: true
 tags:
-  - 모의침투
-  - 취약점진단
+  - 모의해킹
 ---
 ---
-![](../../assets/images/_posts/Project/2026-05-25-Nmap/시스템모의침투보고서_장준혁2.docx)
+![](../../assets/images/_posts/Project/2026-05-25-nmap-portscan/시스템모의침투보고서_장준혁2.docx)
 
 
 **Windows**

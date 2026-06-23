@@ -1,12 +1,12 @@
 ---
-title: Azure테라폼
+title: Azure + Terraform 프로젝트 (2) - Terraform 코드 작성
 date: 2026-06-08
 categories:
-  - security
+  - project
 comments: true
 tags:
-  - 모의침투
-  - 취약점진단
+  - azure
+  - terraform
 ---
 ---
 

@@ -1,12 +1,11 @@
 ---
-title: Azure테라폼
+title: 모의면접 준비 (2) - 역량, 포부
 date: 2026-06-05
 categories:
-  - security
+  - project
 comments: true
 tags:
-  - 모의침투
-  - 취약점진단
+  - 면접
 ---
 ---
 
