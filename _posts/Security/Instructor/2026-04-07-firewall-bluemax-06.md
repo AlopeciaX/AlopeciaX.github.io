@@ -1,11 +1,12 @@
 ---
-title: Bluemax 방화벽 실습 - 최종 정리
+title: Bluemax 방화벽 - DLP, 패킷 분석
 date: 2026-04-07
 categories:
   - security
 comments: true
 tags:
   - bluemax
+  - dlp
 ---
 ---
 	DLP

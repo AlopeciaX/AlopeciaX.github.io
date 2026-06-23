@@ -1,5 +1,5 @@
 ---
-title: Bluemax 방화벽 초기 설정 실습 - NAT, 정책
+title: Bluemax 방화벽 초기 설정 - NAT, 정책
 date: 2026-03-31
 categories:
   - security

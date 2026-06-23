@@ -1,5 +1,5 @@
 ---
-title: Bluemax 방화벽 실습 - HA 이중화, IPSec VPN
+title: Bluemax 방화벽 - HA 이중화, IPSec VPN
 date: 2026-04-02
 categories:
   - security

@@ -1,5 +1,5 @@
 ---
-title: Bluemax 방화벽 실습 - URL 차단, 메일 서버
+title: Bluemax 방화벽 - URL 차단, 메일 서버 FTP
 date: 2026-04-06
 categories:
   - security

@@ -1,5 +1,5 @@
 ---
-title: Bluemax 방화벽 실습 - 보안 장비 구조
+title: Bluemax 방화벽 - 보안 장비 구조와 직무
 date: 2026-04-03
 categories:
   - security
