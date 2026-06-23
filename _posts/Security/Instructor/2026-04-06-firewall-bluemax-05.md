@@ -6,7 +6,7 @@ categories:
 comments: true
 tags:
   - bluemax
-  - "#url차단"
+  - url차단
 ---
 FTP, 메인서버에 대한 실습
 
