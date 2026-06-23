@@ -5,7 +5,7 @@ categories:
   - github
 comments: true
 tags:
-  - "#git"
+  - git
 ---
 ---
 

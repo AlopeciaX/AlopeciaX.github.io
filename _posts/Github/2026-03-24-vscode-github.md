@@ -5,8 +5,8 @@ categories:
   - github
 comments: true
 tags:
-  - "#vscode"
-  - "#git"
+  - vscode
+  - git
 ---
 
 ---

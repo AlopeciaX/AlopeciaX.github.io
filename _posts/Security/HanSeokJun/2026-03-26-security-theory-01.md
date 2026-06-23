@@ -5,8 +5,8 @@ categories:
   - security
 comments: true
 tags:
-  - "#네트워크보안"
-  - "#이론"
+  - 네트워크보안
+  - 이론
 ---
 ---
 

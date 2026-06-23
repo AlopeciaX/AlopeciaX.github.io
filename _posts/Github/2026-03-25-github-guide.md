@@ -5,8 +5,8 @@ categories:
   - github
 comments: true
 tags:
-  - "#powershell"
-  - "#git"
+  - powershell
+  - git
 ---
 ---
 

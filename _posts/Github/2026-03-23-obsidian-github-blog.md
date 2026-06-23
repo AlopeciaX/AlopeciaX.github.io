@@ -5,8 +5,8 @@ categories:
   - github
 comments: true
 tags:
-  - "#obsidian"
-  - "#git"
+  - obsidian
+  - git
 ---
 ---
 # Obsidian + GitHub Blog

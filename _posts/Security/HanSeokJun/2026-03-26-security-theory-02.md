@@ -6,7 +6,7 @@ categories:
 comments: true
 tags:
   - 정보보안
-  - "#이론"
+  - 이론
 ---
 ---
 
