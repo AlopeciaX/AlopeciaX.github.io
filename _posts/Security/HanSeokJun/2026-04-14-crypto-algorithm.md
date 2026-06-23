@@ -5,8 +5,6 @@ categories:
   - security
 comments: true
 tags:
-  - 암호화
-  - 이론
 ---
 
 ---

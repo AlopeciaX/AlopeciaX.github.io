@@ -5,8 +5,7 @@ categories:
   - security
 comments: true
 tags:
-  - Kali
-  - metasploitable
+  - 모의해킹
 ---
 ---
 

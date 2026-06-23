@@ -5,7 +5,6 @@ categories:
   - security
 comments: true
 tags:
-  - unix
   - 취약점진단
 ---
 ---
