@@ -8,7 +8,7 @@ tags:
   - 모의해킹
 ---
 ---
-![](../../assets/images/_posts/Project/2026-05-25-nmap-portscan/시스템모의침투보고서_장준혁2.docx)
+![](../../assets/images/Project/2026-05-25-nmap-portscan/시스템모의침투보고서_장준혁2.docx)
 
 
 **Windows**

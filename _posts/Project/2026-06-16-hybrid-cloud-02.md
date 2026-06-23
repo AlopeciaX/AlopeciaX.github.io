@@ -9,5 +9,5 @@ tags:
 ---
 ---
 
-![](../../assets/images/_posts/Project/2026-06-16-hybrid-cloud-02/file-20260616144813739.png)
+![](../../assets/images/Project/2026-06-16-hybrid-cloud-02/file-20260616144813739.png)
 

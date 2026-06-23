@@ -2,7 +2,7 @@
 title: Active Directory 개념 및 구성 (1)
 date: 2026-05-13
 categories:
-  - security
+  - server
 comments: true
 tags:
   - 윈도우

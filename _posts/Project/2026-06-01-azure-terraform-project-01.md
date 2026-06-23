@@ -22,9 +22,9 @@ bastion mysql클라이언트 설치 가능
 보안적인 측면들도 고려
 
 
-![](../../assets/images/_posts/Project/2026-06-01-azure-terraform-project-01/file-20260602092431364.png)
+![](../../assets/images/Project/2026-06-01-azure-terraform-project-01/file-20260602092431364.png)
 
-![](../../assets/images/_posts/Project/2026-06-01-azure-terraform-project-01/file-20260602153333073.png)
+![](../../assets/images/Project/2026-06-01-azure-terraform-project-01/file-20260602153333073.png)
 
 	draw.io
 

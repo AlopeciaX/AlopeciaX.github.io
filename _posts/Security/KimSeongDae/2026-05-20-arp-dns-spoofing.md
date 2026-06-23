@@ -1,15 +1,11 @@
 ---
-title: 모의침투 실습 / ARP Poisoning & DNS Spoofing
+title: ARP Poisoning & DNS Spoofing 실습 - Ettercap
 date: 2026-05-20
 categories:
   - security
 comments: true
 tags:
-  - 모의침투
-  - Ettercap
-  - Wireshark
-  - DHCP
-  - DNS
+  - 모의해킹
 ---
 
 ---
