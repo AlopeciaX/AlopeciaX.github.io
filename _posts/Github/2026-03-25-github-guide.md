@@ -1,11 +1,12 @@
 ---
-title: github가이드
+title: GitHub 사용 가이드(clone, push, token)
 date: 2026-03-25
 categories:
   - github
 comments: true
 tags:
-  - 깃허브
+  - "#powershell"
+  - "#git"
 ---
 ---
 
