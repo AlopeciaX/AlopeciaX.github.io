@@ -8,7 +8,6 @@ tags:
   - obsidian
   - git
 ---
----
 ## 개요
 
 Obsidian을 GitHub 블로그와 연동해서 글을 작성하고 자동으로 업로드하는 설정 가이드다.
@@ -87,13 +86,11 @@ git push
 
 설정(⚙️) → 커뮤니티 플러그인 → Git 옆 ⚙️ 클릭
 
-| 설정 항목 | 값 |
-|---|---|
-| Auto commit-and-sync interval | 20 (분) |
-| Auto pull interval | 10 (분) |
-| Pull on startup | 켜기 ✅ |
-| Author name for commit | GitHub 아이디 |
-| Author email for commit | GitHub 이메일 |
+- **Auto commit-and-sync interval**: 20 (분)
+- **Auto pull interval**: 10 (분)
+- **Pull on startup**: 켜기 ✅
+- **Author name for commit**: GitHub 아이디
+- **Author email for commit**: GitHub 이메일
 
 ---
 
@@ -138,9 +135,15 @@ Ctrl + P → Git: Commit-and-sync → Enter
 
 ## 트러블슈팅
 
-| 증상 | 해결 방법 |
-|---|---|
-| Git is not ready | 보관함이 Git 레포가 아님 → 클론 폴더를 보관함으로 열기 |
-| push 오류 | git config로 이름/이메일 등록됐는지 확인 |
-| 블로그에 글이 안 보임 | 파일명 날짜 형식 확인 (YYYY-MM-DD), Front Matter 확인 |
-| 자동 푸시 안 됨 | Auto commit-and-sync interval 값이 0인지 확인 |
+**Git is not ready**
+- 보관함이 Git 레포가 아님 → 클론 폴더를 보관함으로 열기
+
+**push 오류**
+- git config로 이름/이메일 등록됐는지 확인
+
+**블로그에 글이 안 보임**
+- 파일명 날짜 형식 확인 (YYYY-MM-DD)
+- Front Matter 확인
+
+**자동 푸시 안 됨**
+- Auto commit-and-sync interval 값이 0인지 확인
