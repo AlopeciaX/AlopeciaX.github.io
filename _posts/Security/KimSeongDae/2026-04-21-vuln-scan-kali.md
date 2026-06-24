@@ -9,7 +9,7 @@ tags:
 ---
 ---
 
-![[../../../assets/images/Cloud/2026-04-21-cloud_001/file-20260421010916000.png]]
+![[../../../assets/images/Security/KimSeongDae/2026-04-21-vuln-scan-kali/file-20260421010916000.png]]
 ![](../../../assets/images/Network/KimSeongDae/2026-05-08-dns-web-02/file-20260508115520920.png)
 
 file-20260421010916

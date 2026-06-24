@@ -589,10 +589,10 @@ Install-ADDSDomain `
 ![실습 결과 2](../../../assets/images/Server/KimSeongDae/2026-05-13-active-directory-01/file-20260513154451961.png)
 
 
-![](../../../assets/images/Security/KimSeongDae/2026-05-13-security_023%20(1)/file-20260513160523814.png)
+![](../../../assets/images/Server/KimSeongDae/2026-05-13-active-directory-01/file-20260513160523814.png)
 w10에서 실습
 
-![](../../../assets/images/Security/KimSeongDae/2026-05-13-security_023%20(1)/file-20260513160637721.png)
+![](../../../assets/images/Server/KimSeongDae/2026-05-13-active-directory-01/file-20260513160637721.png)
 연결된걸 확인가능
 
 
@@ -602,7 +602,7 @@ busan\aa
 
 busan\administrator 로는 ad최고권한에 있는 내용을 지울 수 없음
 
-![](../../../assets/images/Security/KimSeongDae/2026-05-13-security_023%20(1)/file-20260513162508635.png)
+![](../../../assets/images/Server/KimSeongDae/2026-05-13-active-directory-01/file-20260513162508635.png)
 최고관리자로 바꿔야함
 
 강제 제거는 절대 하지 말것(다른 도메인 컨트롤러안에있는 내용은 안지우고 감)
