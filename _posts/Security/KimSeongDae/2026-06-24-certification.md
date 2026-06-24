@@ -33,3 +33,5 @@ vi index.html
 
 ![](../../../assets/images/Security/KimSeongDae/2026-06-24-certification/file-20260624112511890.png)
 
+https://virtualtech.tistory.com/683
+
