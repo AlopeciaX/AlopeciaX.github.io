@@ -1,5 +1,5 @@
 ---
-title: 인증서 발급하고 테스트
+title: 인증서 원리 및 발급
 date: 2026-06-24
 categories:
   - security
