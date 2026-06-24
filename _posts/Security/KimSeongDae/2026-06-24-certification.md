@@ -13,3 +13,9 @@ tags:
 
 ![](../../../assets/images/Security/KimSeongDae/2026-06-24-certification/file-20260624094133405.png)
 
+ssl 사용 이유
+- 종단 간 신뢰성 확보
+- 암호화 통신
+
+사설 인증서
+- 종단 간 신뢰성 확보 불가
