@@ -14,7 +14,7 @@ Docker: docker.io, hub.docker.com
 
 commutication edi: 무료
 
-![](../../../assets/images/Cloud/KimSeongDae/2026-06-15-Docker-basics-01/file-20260615094528150.png)
+![](../../../assets/images/Cloud/KimSeongDae/2026-06-15-docker-basics-01/file-20260615094528150.png)
 
 Docker는 Guest OS를 사용하지않아 CPU 메모리 사용X
 Host OS는 linux
@@ -30,7 +30,7 @@ dnf -y install dnf-plugins-core
 dnf config-manager --add-repo https://download.docker.com/linux/centos/docker-ce.repo
 ```
 
-![](../../../assets/images/Cloud/KimSeongDae/2026-06-15-Docker-basics-01/file-20260615103655063.png)
+![](../../../assets/images/Cloud/KimSeongDae/2026-06-15-docker-basics-01/file-20260615103655063.png)
 
 	docker-ce.repo 존재여부확인 후 설치진행
 
@@ -41,15 +41,15 @@ docker run hello-world
 ```
 
 
-![](../../../assets/images/Cloud/KimSeongDae/2026-06-15-Docker-basics-01/file-20260615103602669.png)
+![](../../../assets/images/Cloud/KimSeongDae/2026-06-15-docker-basics-01/file-20260615103602669.png)
 
-![](../../../assets/images/Cloud/KimSeongDae/2026-06-15-Docker-basics-01/file-20260615103833156.png)
+![](../../../assets/images/Cloud/KimSeongDae/2026-06-15-docker-basics-01/file-20260615103833156.png)
 
-![](../../../assets/images/Cloud/KimSeongDae/2026-06-15-Docker-basics-01/file-20260615103855240.png)
+![](../../../assets/images/Cloud/KimSeongDae/2026-06-15-docker-basics-01/file-20260615103855240.png)
 
-![](../../../assets/images/Cloud/KimSeongDae/2026-06-15-Docker-basics-01/file-20260615103919232.png)
+![](../../../assets/images/Cloud/KimSeongDae/2026-06-15-docker-basics-01/file-20260615103919232.png)
 
-![](../../../assets/images/Cloud/KimSeongDae/2026-06-15-Docker-basics-01/file-20260615103947792.png)
+![](../../../assets/images/Cloud/KimSeongDae/2026-06-15-docker-basics-01/file-20260615103947792.png)
 
 ```bash
 docker pull httpd
@@ -63,17 +63,17 @@ docker images
 docker run -p 60000:80
 ```
 
-![](../../../assets/images/Cloud/KimSeongDae/2026-06-15-Docker-basics-01/file-20260615104551069.png)
+![](../../../assets/images/Cloud/KimSeongDae/2026-06-15-docker-basics-01/file-20260615104551069.png)
 
-![](../../../assets/images/Cloud/KimSeongDae/2026-06-15-Docker-basics-01/file-20260615104728847.png)
+![](../../../assets/images/Cloud/KimSeongDae/2026-06-15-docker-basics-01/file-20260615104728847.png)
 
-![](../../../assets/images/Cloud/KimSeongDae/2026-06-15-Docker-basics-01/file-20260615104821335.png)
+![](../../../assets/images/Cloud/KimSeongDae/2026-06-15-docker-basics-01/file-20260615104821335.png)
 
 	h1이라는 이름이 사용중인데 똑같이 생성하려니까 문제발생 서로 이름이 달라야함
 
 --> 10.0.0.11:60000, 10.0.0.11:60100 접속 시 접속성공 - 매우 가볍다는걸 알 수있음
 
-![](../../../assets/images/Cloud/KimSeongDae/2026-06-15-Docker-basics-01/file-20260615105119367.png)
+![](../../../assets/images/Cloud/KimSeongDae/2026-06-15-docker-basics-01/file-20260615105119367.png)
 
 	삭제할 때 이렇게 하면 한번에 삭제 가능
 
@@ -81,7 +81,7 @@ docker run -p 60000:80
 
 	용량이 엄청 적음, 기능이 거의 다 존재
 
-![](../../../assets/images/Cloud/KimSeongDae/2026-06-15-Docker-basics-01/file-20260615105254408.png)
+![](../../../assets/images/Cloud/KimSeongDae/2026-06-15-docker-basics-01/file-20260615105254408.png)
 
 	12.7MB 밖에 되지않는걸 확인가능
 
@@ -95,9 +95,9 @@ docker pull rockylinux/rockylinux
 docker images #image 확인 명령어
 ```
 
-![](../../../assets/images/Cloud/KimSeongDae/2026-06-15-Docker-basics-01/file-20260615105808142.png)
+![](../../../assets/images/Cloud/KimSeongDae/2026-06-15-docker-basics-01/file-20260615105808142.png)
 
-![](../../../assets/images/Cloud/KimSeongDae/2026-06-15-Docker-basics-01/file-20260615110030708.png)
+![](../../../assets/images/Cloud/KimSeongDae/2026-06-15-docker-basics-01/file-20260615110030708.png)
 
 	여러개 생성가능
 
@@ -105,20 +105,20 @@ docker images #image 확인 명령어
 
 docker rm n1으로 지우면 오류
 docker rm -f n1
-![](../../../assets/images/Cloud/KimSeongDae/2026-06-15-Docker-basics-01/file-20260615110150307.png)
+![](../../../assets/images/Cloud/KimSeongDae/2026-06-15-docker-basics-01/file-20260615110150307.png)
 
-![](../../../assets/images/Cloud/KimSeongDae/2026-06-15-Docker-basics-01/file-20260615110218513.png)
+![](../../../assets/images/Cloud/KimSeongDae/2026-06-15-docker-basics-01/file-20260615110218513.png)
 
 	삭제완료
 
 
 
-![](../../../assets/images/Cloud/KimSeongDae/2026-06-15-Docker-basics-01/file-20260615111636666.png)
+![](../../../assets/images/Cloud/KimSeongDae/2026-06-15-docker-basics-01/file-20260615111636666.png)
 
 로그인안하고해서 limit걸림
 
 
-![](../../../assets/images/Cloud/KimSeongDae/2026-06-15-Docker-basics-01/file-20260615112003711.png)
+![](../../../assets/images/Cloud/KimSeongDae/2026-06-15-docker-basics-01/file-20260615112003711.png)
 
 로그인 후 진행
 
@@ -127,22 +127,22 @@ docker search nginx --limit 10 #기본적으로는 25개까지 보임
 ```
 
 
-![](../../../assets/images/Cloud/KimSeongDae/2026-06-15-Docker-basics-01/file-20260615112156249.png)
+![](../../../assets/images/Cloud/KimSeongDae/2026-06-15-docker-basics-01/file-20260615112156249.png)
 
 	접속하지 않고도 어떤게 있는지 확인가능?
 
-![](../../../assets/images/Cloud/KimSeongDae/2026-06-15-Docker-basics-01/file-20260615112250326.png)
+![](../../../assets/images/Cloud/KimSeongDae/2026-06-15-docker-basics-01/file-20260615112250326.png)
 
 	공식이미지 존재여부 확인
 
-![](../../../assets/images/Cloud/KimSeongDae/2026-06-15-Docker-basics-01/file-20260615112445120.png)
+![](../../../assets/images/Cloud/KimSeongDae/2026-06-15-docker-basics-01/file-20260615112445120.png)
 
 	생략없이 보고 싶으면 --no-trunc 붙이기
 
 
 ##### Docker Container LifeCycle
 
-![](../../../assets/images/Cloud/KimSeongDae/2026-06-15-Docker-basics-01/file-20260615113453234.png)
+![](../../../assets/images/Cloud/KimSeongDae/2026-06-15-docker-basics-01/file-20260615113453234.png)
 
 	create, run, start, stop, restart, pause, rm
 
@@ -151,15 +151,15 @@ docker search nginx --limit 10 #기본적으로는 25개까지 보임
 
 이게 쉘인지 앱인지모르겠다 -> -itd 쓰면 무조건 실행됨
 
- ![](../../../assets/images/Cloud/KimSeongDae/2026-06-15-Docker-basics-01/file-20260615113957500.png)
+ ![](../../../assets/images/Cloud/KimSeongDae/2026-06-15-docker-basics-01/file-20260615113957500.png)
 
 	exit로 나오니까 exited상태되버림
 
-![](../../../assets/images/Cloud/KimSeongDae/2026-06-15-Docker-basics-01/file-20260615114105111.png)
+![](../../../assets/images/Cloud/KimSeongDae/2026-06-15-docker-basics-01/file-20260615114105111.png)
 
 	ctrl+p+q 로 빠져나와야 up 상태를 유지한채로 빠져나올 수 있음
 
-![](../../../assets/images/Cloud/KimSeongDae/2026-06-15-Docker-basics-01/file-20260615114456809.png)
+![](../../../assets/images/Cloud/KimSeongDae/2026-06-15-docker-basics-01/file-20260615114456809.png)
 
 	내가 실행하는 웹서버는 foreground로 실행중임 (ctrl+backspace로 ^H 이런글씨 지울수있음 참고)
 
@@ -171,53 +171,53 @@ docker run -it -p 60080:80 --name h1 httpd
 
 근데 docker run -d -p 60180:80 --name h2 httpd
 
-![](../../../assets/images/Cloud/KimSeongDae/2026-06-15-Docker-basics-01/file-20260615114758806.png)
+![](../../../assets/images/Cloud/KimSeongDae/2026-06-15-docker-basics-01/file-20260615114758806.png)
 
 docker run -itd -p ~
 : 실행은되지만 내부로 접속은되지않는다.
 
 
-![](../../../assets/images/Cloud/KimSeongDae/2026-06-15-Docker-basics-01/file-20260615121747510.png)
+![](../../../assets/images/Cloud/KimSeongDae/2026-06-15-docker-basics-01/file-20260615121747510.png)
 
-![](../../../assets/images/Cloud/KimSeongDae/2026-06-15-Docker-basics-01/file-20260615121821274.png)
+![](../../../assets/images/Cloud/KimSeongDae/2026-06-15-docker-basics-01/file-20260615121821274.png)
 
 외부에노출시키고 싶지않다면 -p 안붙이면됨
 ip a 해보면 docker0:으로 172.17.0.1 네트워크인터페이스카드가 붙은걸 볼 수 있음
 
 
 
-![](../../../assets/images/Cloud/KimSeongDae/2026-06-15-Docker-basics-01/file-20260615122048255.png)
+![](../../../assets/images/Cloud/KimSeongDae/2026-06-15-docker-basics-01/file-20260615122048255.png)
 
 attach: 외부에있는쉘을실행시켜서 갖다 붙이는거
 exec하면 ctrl + c하면 내부에있는쉘만 종료
 
 
-![](../../../assets/images/Cloud/KimSeongDae/2026-06-15-Docker-basics-01/file-20260615122319620.png)
+![](../../../assets/images/Cloud/KimSeongDae/2026-06-15-docker-basics-01/file-20260615122319620.png)
 
 	컨테이너 내부 ip a 결과값을 보여준다
 
 
 ##### nginx 페이지 바꾸기
 
-![](../../../assets/images/Cloud/KimSeongDae/2026-06-15-Docker-basics-01/file-20260615122626470.png)
+![](../../../assets/images/Cloud/KimSeongDae/2026-06-15-docker-basics-01/file-20260615122626470.png)
 
 	 html바꾸기위한 밑작업
 
-![](../../../assets/images/Cloud/KimSeongDae/2026-06-15-Docker-basics-01/file-20260615122756214.png)
+![](../../../assets/images/Cloud/KimSeongDae/2026-06-15-docker-basics-01/file-20260615122756214.png)
 
 	vi 편집기가 없으므로 cat > 으로 저장
 
-![](../../../assets/images/Cloud/KimSeongDae/2026-06-15-Docker-basics-01/file-20260615122823045.png)
+![](../../../assets/images/Cloud/KimSeongDae/2026-06-15-docker-basics-01/file-20260615122823045.png)
 
 	바뀐걸 확인 가능
 
-![](../../../assets/images/Cloud/KimSeongDae/2026-06-15-Docker-basics-01/file-20260615122846207.png)
+![](../../../assets/images/Cloud/KimSeongDae/2026-06-15-docker-basics-01/file-20260615122846207.png)
 
 	실행중인 컨테이너의 html을 바꿀 수 있다.
 
 마지막 삭제하면서 종료
 
-![](../../../assets/images/Cloud/KimSeongDae/2026-06-15-Docker-basics-01/file-20260615123145409.png)
+![](../../../assets/images/Cloud/KimSeongDae/2026-06-15-docker-basics-01/file-20260615123145409.png)
 
 
  박
@@ -258,6 +258,6 @@ dnf or apt, zypper 등의 명령어를 사용해서 다운로드함
 ps -ef: 프로세스/부모프로세스 보임
 foreground, background 알기
 
-![](../../../assets/images/Cloud/KimSeongDae/2026-06-15-Docker-basics-01/file-20260615115733999.png)
+![](../../../assets/images/Cloud/KimSeongDae/2026-06-15-docker-basics-01/file-20260615115733999.png)
 
 18: 재시작
