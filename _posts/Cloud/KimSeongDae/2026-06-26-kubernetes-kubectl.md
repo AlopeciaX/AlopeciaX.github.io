@@ -210,7 +210,7 @@ spec:
   containers:
   - name: n1
     image: nginx
-    imagePullPolicy: IfNotPresent   # Never | IfNotPresent | Always
+    imagePullPolicy: Never   # Never | IfNotPresent | Always
     ports:
     - containerPort: 80
 ```
@@ -245,7 +245,21 @@ cat > htdocs.index.html << eof
 접속 시 10.0.0.11:31880, 10.0.0.12:31880, 10.0.0.13:31880 모두 접속 가능
 
 ---
+## 실습
 
+1.첫번째: ng1.yml 파일 만들기
+1.1. 첫번째 리소스: 1team namespace 만들기
+1.2. 두번째 리소스: 1team namespace에 nginx 실행, pod명 nginx, container명: n1
+1.3. 세번째 리소스는 명령어 사용, nginx pod를 외부에 공개 Type은 NodePort 사용
+1.4. 화면에 출력되는 내용은 이니셜-K8S-NGINX
+
+2.첫번째: ap1.yml 파일 만들기
+2.1. 첫번째 리소스: 2team namespace 만들기
+2.2. 두번째 리소스: 2team namespace에 apache 실행, pod명 apache, container명: a1
+2.3. 세번째 리소스는 명령어 사용, apache pod를 외부에 공개 Type은 NodePort 사용
+2.4. 화면에 출력되는 내용은 이니셜-K8S-APACHE
+
+kubectl get svc,po --namespace ns명(1team, 2team) -o wide
 ## 요약
 
 - 파드 생성: `kubectl run <이름> --image <이미지> --port <포트>`
