@@ -224,7 +224,20 @@ spec:
 kubectl apply -f nginx.yml
 
 # 실시간 상태 모니터링 (2초 간격)
-watch -n 2 kubectl get po --namespace 1team
+watch -n 2 kubectl get po --namespace 1team -o wide
+curl 192.168.166.130
+
+kubectl expose --name apa pod apache --type NodePort --namespace 2team
+curl 10.100.46.211
+```
+
+![](../../../assets/images/Cloud/KimSeongDae/2026-06-26-kubernetes-kubectl/file-20260626113136994.png)
+
+![](../../../assets/images/Cloud/KimSeongDae/2026-06-26-kubernetes-kubectl/file-20260626113204928.png)
+
+
+```bash
+kubectl exec -it apache -- /bin/bash
 ```
 
 ---
