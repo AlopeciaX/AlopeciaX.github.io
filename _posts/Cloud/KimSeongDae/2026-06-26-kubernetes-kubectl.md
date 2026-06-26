@@ -237,8 +237,12 @@ curl 10.100.46.211
 
 
 ```bash
-kubectl exec -it apache -- /bin/bash
+kubectl exec --namespace 2team -it apache -- /bin/bash
+
+cat > htdocs.index.html << eof
 ```
+
+접속 시 10.0.0.11:31880, 10.0.0.12:31880, 10.0.0.13:31880 모두 접속 가능
 
 ---
 
