@@ -24,3 +24,14 @@ shortnames, kind
 
 kubectl run app-nginx --image=nginx:latest --port 80 --namespace 1team
 kubectl run app-nginx --image nginx --port 80 --namespace 1team
+
+yml 구조
+인자값: 값
+
+apiVersion
+kind
+metadata
+  name
+  labels
+    env
+spec(필수아님)
