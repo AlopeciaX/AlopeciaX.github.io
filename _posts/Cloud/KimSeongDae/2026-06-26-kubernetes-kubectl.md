@@ -15,6 +15,15 @@ kubectl은 Kubernetes 클러스터를 제어하는 CLI 도구다. 이 글은 노
 
 ---
 
+## 서버 구성
+
+- **rocky9-1**: Kubernetes Master
+- **rocky9-2**: Worker Node1
+- **rocky9-3**: Worker Node2
+- **rocky9-docker**: Docker 전용 서버 (이미지 수집 및 전송)
+
+---
+
 ## 주요 개념
 
 - **kubectl**: Kubernetes object를 실행·관리하는 CLI. [kubectl cheat sheet](https://kubernetes.io/docs/reference/kubectl/cheatsheet/) 참고
@@ -53,7 +62,7 @@ kubectl logs app-nginx
 ```
 
 > `kubectl get pods app-nginx -o wide` 로 확인한 IP로 `curl` 테스트 가능  
-> (단, 클러스터 내부 IP이므로 노드에서만 접근됨)
+> 단, 클러스터 내부 IP이므로 노드에서만 접근됨
 
 ---
 
@@ -94,7 +103,7 @@ kubectl delete po app-nginx --namespace 1team
 
 ---
 
-## STEP 5 — YAML로 리소스 생성
+## STEP 5 — YAML로 네임스페이스 생성
 
 ```bash
 mkdir /pod && cd /pod
@@ -120,32 +129,11 @@ kubectl delete -f ns1.yml     # 삭제
 
 ---
 
-## 요약
-
-| 작업 | 명령어 |
-|------|--------|
-| 파드 생성 | `kubectl run <이름> --image <이미지> --port <포트>` |
-| 서비스 노출 | `kubectl expose pod <이름> --type NodePort` |
-| 네임스페이스 지정 | `--namespace <이름>` 또는 `-n <이름>` |
-| YAML 적용 | `kubectl apply -f <파일>.yml` |
-| 리소스 삭제 | `kubectl delete -f <파일>.yml` 또는 `kubectl delete <kind> <이름>` |
-
----
-
 ## STEP 6 — Docker 이미지 준비 및 노드 배포
 
-**서버 구성**
+클러스터 노드가 인터넷에서 이미지를 직접 pull하기 어려운 환경이므로, **rocky9-docker** 에서 이미지를 받아 tar로 묶은 뒤 워커 노드로 전송한다.
 
-| 호스트명 | 역할 |
-|----------|------|
-| rocky9-1 | Kubernetes Master |
-| rocky9-2 | Worker Node1 |
-| rocky9-3 | Worker Node2 |
-| rocky9-docker | Docker 전용 서버 (이미지 수집 및 전송) |
-
-클러스터 노드가 인터넷에서 이미지를 직접 pull하기 어려운 환경이므로, **rocky9-docker** 에서 이미지를 받아 tar로 묶은 뒤 node1·node2로 전송한다.
-
-**6-1. Docker 설치 (rocky9-docker에서 실행)**
+**6-1. Docker 설치 (rocky9-docker)**
 
 ```bash
 dnf -y install dnf-plugins-core
@@ -154,7 +142,7 @@ dnf -y install docker-ce docker-ce-cli containerd.io docker-buildx-plugin docker
 systemctl enable --now docker
 ```
 
-**6-2. 이미지 pull (rocky9-docker에서 실행)**
+**6-2. 이미지 pull (rocky9-docker)**
 
 ```bash
 docker pull nginx
@@ -168,7 +156,7 @@ docker pull mysql:8.0
 docker images    # 목록 확인
 ```
 
-**6-3. tar로 묶어서 node1·node2로 전송 (rocky9-docker에서 실행)**
+**6-3. tar로 묶어서 워커 노드로 전송 (rocky9-docker)**
 
 ```bash
 docker save -o all.tar alpine busybox httpd nginx rockylinux/rockylinux wordpress mysql:8.0
@@ -177,7 +165,7 @@ scp all.tar root@10.0.0.12:/root/    # → rocky9-2 (node1)
 scp all.tar root@10.0.0.13:/root/    # → rocky9-3 (node2)
 ```
 
-**6-4. 각 워커 노드에서 containerd로 import** (rocky9-2, rocky9-3 둘 다 실행)
+**6-4. containerd로 import (rocky9-2, rocky9-3 각각 실행)**
 
 ```bash
 ctr -n k8s.io image import all.tar
@@ -227,10 +215,10 @@ spec:
     - containerPort: 80
 ```
 
-> **imagePullPolicy 옵션**
-> - `Never`: 로컬 이미지만 사용, pull 시도 안 함
-> - `IfNotPresent`: 로컬에 없을 때만 pull (오프라인 환경 권장)
-> - `Always`: 매번 레지스트리에서 pull
+**imagePullPolicy 옵션**
+- `Never`: 로컬 이미지만 사용, pull 시도 안 함
+- `IfNotPresent`: 로컬에 없을 때만 pull → 오프라인 환경 권장
+- `Always`: 매번 레지스트리에서 pull
 
 ```bash
 kubectl apply -f nginx.yml
@@ -241,15 +229,13 @@ watch -n 2 kubectl get po --namespace 1team
 
 ---
 
-## 요약 (전체)
+## 요약
 
-| 작업 | 명령어 |
-|------|--------|
-| 파드 생성 | `kubectl run <이름> --image <이미지> --port <포트>` |
-| 서비스 노출 | `kubectl expose pod <이름> --type NodePort` |
-| 네임스페이스 지정 | `--namespace <이름>` 또는 `-n <이름>` |
-| YAML 적용 | `kubectl apply -f <파일>.yml` |
-| 리소스 삭제 | `kubectl delete -f <파일>.yml` 또는 `kubectl delete <kind> <이름>` |
-| 이미지 import | `ctr -n k8s.io image import <파일>.tar` |
-| 실시간 모니터링 | `watch -n 2 kubectl get po --namespace <이름>` |
-| kubeconfig 설정 | `cp /etc/kubernetes/admin.conf ~/.kube/config` |
+- 파드 생성: `kubectl run <이름> --image <이미지> --port <포트>`
+- 서비스 노출: `kubectl expose pod <이름> --type NodePort`
+- 네임스페이스 지정: `--namespace <이름>` 또는 `-n <이름>`
+- YAML 적용: `kubectl apply -f <파일>.yml`
+- 리소스 삭제: `kubectl delete -f <파일>.yml` 또는 `kubectl delete <kind> <이름>`
+- 이미지 import: `ctr -n k8s.io image import <파일>.tar`
+- 실시간 모니터링: `watch -n 2 kubectl get po --namespace <이름>`
+- kubeconfig 설정: `cp /etc/kubernetes/admin.conf ~/.kube/config`
