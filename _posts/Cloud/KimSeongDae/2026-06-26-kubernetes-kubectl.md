@@ -262,9 +262,60 @@ cat > htdocs.index.html << eof
 kubectl get svc,po --namespace ns명(1team, 2team) -o wide
 
 ```bash
-# 
+# ng1.yml
+apiVersion: v1
+kind: Namespace
+metadata:
+  name: 1team
+---
+apiVersion: v1
+kind: Pod
+metadata:
+  name: nginx
+  labels:
+    app: nginx
+  namespace: 1team
+spec:
+  containers:
+  - name: n1
+    image: nginx
+    imagePullPolicy: Never
+    ports:
+    -containerPort: 80
+```
+`
+```bash
+vi ng1.yml
+kubectl apply -f ng1.yml
+kubectl get po,svc -o wide --namespace 1team
+
+vi ap1.yml
+kubectl apply -f ap1.yml
+kubectl get po,svc -o wide --namespace 2team
 ```
 
+```bash
+kubectl expose --name nginx pod nginx --type Nodeport --namespace 1team
+kubectl expose --name apache pod apache --type Nodeport --namespace 2team
+
+kubectl exec --namespace 1team nginx -it -- /bin/bash
+cat > /usr/share/nginx/html/index.html << eof
+<html>
+<body>
+<h1>JHJANG-K8S-NGINX</h1>
+</body>
+</html>
+eof
+
+kubectl exec --namespace 2team apache -it -- /bin/bash
+cat > /usr/local/apache2/htdocs/index.html << eof
+<html>
+<body>
+<h1>JHJANG-K8S-APACHE</h1>
+</body>
+</html>
+eof
+```
 
 ![](../../../assets/images/Cloud/KimSeongDae/2026-06-26-kubernetes-kubectl/file-20260626120659354.png)
 
