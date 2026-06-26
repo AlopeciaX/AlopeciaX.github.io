@@ -261,6 +261,11 @@ cat > htdocs.index.html << eof
 
 kubectl get svc,po --namespace ns명(1team, 2team) -o wide
 
+```bash
+# 
+```
+
+
 ![](../../../assets/images/Cloud/KimSeongDae/2026-06-26-kubernetes-kubectl/file-20260626120659354.png)
 
 ![](../../../assets/images/Cloud/KimSeongDae/2026-06-26-kubernetes-kubectl/file-20260626120859093.png)
