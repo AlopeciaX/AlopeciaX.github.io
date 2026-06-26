@@ -157,3 +157,13 @@ docker pull alpine
 docker pull busybox
 docker pull rockylinux/rockylinux
 docker pull wordpress
+docker pull mysql:8.0
+
+clear
+docker images
+
+docker save -o all.tar alpine busybox httpd nginx rockylinux/rockylinux wordpress mysql:8.0
+ls
+ls -hal
+scp all.tar root@10.0.0.12:/root/
+scp all.tar root@10.0.0.13:/root/
