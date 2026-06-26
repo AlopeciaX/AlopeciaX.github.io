@@ -260,6 +260,15 @@ cat > htdocs.index.html << eof
 2.4. 화면에 출력되는 내용은 이니셜-K8S-APACHE
 
 kubectl get svc,po --namespace ns명(1team, 2team) -o wide
+
+![](../../../assets/images/Cloud/KimSeongDae/2026-06-26-kubernetes-kubectl/file-20260626120659354.png)
+
+![](../../../assets/images/Cloud/KimSeongDae/2026-06-26-kubernetes-kubectl/file-20260626120859093.png)
+
+![](../../../assets/images/Cloud/KimSeongDae/2026-06-26-kubernetes-kubectl/file-20260626120934817.png)
+
+![](../../../assets/images/Cloud/KimSeongDae/2026-06-26-kubernetes-kubectl/file-20260626120951741.png)
+
 ## 요약
 
 - 파드 생성: `kubectl run <이름> --image <이미지> --port <포트>`
