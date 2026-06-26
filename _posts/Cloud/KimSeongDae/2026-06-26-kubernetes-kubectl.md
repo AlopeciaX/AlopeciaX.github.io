@@ -309,12 +309,7 @@ eof
 
 kubectl exec --namespace 2team apache -it -- /bin/bash
 cat > /usr/local/apache2/htdocs/index.html << eof
-<html>
-<body>
-<h1>JHJANG-K8S-APACHE</h1>
-</body>
-</html>
-eof
+
 ```
 
 ![](../../../assets/images/Cloud/KimSeongDae/2026-06-26-kubernetes-kubectl/file-20260626120659354.png)

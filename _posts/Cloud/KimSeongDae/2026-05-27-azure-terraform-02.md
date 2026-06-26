@@ -9,10 +9,9 @@ tags:
   - terraform
 ---
 ---
-
 ## 오늘 목표
 
-> Azure + Terraform 으로 스크립트화 시켜보기
+Azure + Terraform으로 인프라를 스크립트화한다.
 
 ### 1. 리소스 그룹 생성
 
