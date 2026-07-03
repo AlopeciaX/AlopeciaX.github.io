@@ -1,5 +1,5 @@
 ---
-title: 시스템모의해킹
+title: 1. 시스템모의해킹
 date: 2026-05-12
 categories:
   - project

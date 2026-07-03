@@ -1,5 +1,5 @@
 ---
-title: 하이브리드 클라우드 보안구축
+title: 3. 하이브리드 클라우드 보안구축
 date: 2026-06-08
 categories:
   - project

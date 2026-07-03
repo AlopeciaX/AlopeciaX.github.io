@@ -1,5 +1,5 @@
 ---
-title: Azure 클라우드 인프라 및 M365 Defender 보안구축
+title: 2. Azure 클라우드 인프라 및 M365 Defender 보안구축
 date: 2026-05-19
 categories:
   - project
