@@ -6,6 +6,7 @@ categories:
 comments: true
 tags:
   - 모의해킹
+  - 취약점진단
 ---
 ---
 ## 개요

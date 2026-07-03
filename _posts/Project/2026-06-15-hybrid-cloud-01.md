@@ -6,7 +6,7 @@ categories:
 comments: true
 tags:
   - azure
-  - docker
+  - terraform
 ---
 ---
 ## 개요

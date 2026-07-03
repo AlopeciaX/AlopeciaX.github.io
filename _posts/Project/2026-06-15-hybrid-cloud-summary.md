@@ -6,6 +6,7 @@ categories:
 comments: true
 tags:
   - azure
+  - terraform
   - 요약
 ---
 ---
