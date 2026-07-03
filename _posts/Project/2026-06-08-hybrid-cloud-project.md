@@ -1,6 +1,6 @@
 ---
 title: 하이브리드 클라우드 보안구축
-date: 2026-06-15
+date: 2026-06-08
 categories:
   - project
 comments: true
@@ -8,6 +8,7 @@ tags:
   - azure
   - terraform
   - 온프레미스
+  - project
 ---
 ---
 

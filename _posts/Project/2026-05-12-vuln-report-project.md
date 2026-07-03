@@ -1,14 +1,15 @@
 ---
 title: 시스템모의해킹
-date: 2026-05-22
+date: 2026-05-12
 categories:
   - project
 comments: true
 tags:
   - 모의해킹
   - 취약점진단
+  - project
 ---
-
+---
 ## 개요
 
 **PTES(Penetration Testing Execution Standard) 방법론**을 기반으로, 취약하게 구성된 Metasploitable3 (Windows / Linux) 2대를 대상으로 정보 수집부터 취약점 진단, 익스플로잇, 권한 상승, 플래그 수집까지 전 과정을 수행한 모의침투 프로젝트.
