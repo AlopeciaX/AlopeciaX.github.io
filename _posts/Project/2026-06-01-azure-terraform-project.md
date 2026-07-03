@@ -9,96 +9,154 @@ tags:
   - terraform
 ---
 ---
-## 개요
 
-**하이브리드 클라우드 기반 그룹웨어 서비스 구축**을 목표로 한 팀 프로젝트. Azure 클라우드와 온프레미스 데이터베이스를 Site-to-Site VPN으로 연동하고, Terraform으로 인프라 전체를 코드화(IaC)했다. 아키텍처는 총 3차례에 걸쳐 개선하며 설계했다.
+> 4인 팀 프로젝트 · 경기인력개발원 · 2026.05.13 ~ 05.19 담당: Azure 인프라 설계, Terraform 코드 작성 및 자동화
 
-**핵심 키워드**: 하이브리드 클라우드 · Hub & Spoke · Terraform IaC · Application Gateway(WAF) · VMSS Auto Scaling · Traffic Manager · Site-to-Site VPN
+## 한눈에 보는 결과
 
----
+- 리전 이중화 — Korea Central / South 2개 리전
+- 인프라 100% 코드화 — Terraform으로 63개 리소스 자동 생성
+- 자동 확장 — CPU 70%↑ Scale-Out / 20%↓ Scale-In (1~5대)
+- 온프레미스 연동 — Site-to-Site VPN(IPSec, AES256+SHA256)
+- 장애 조치 — Traffic Manager Failover, 30초 간격 헬스체크
+- 검증 결과 — 9개 항목 전체 성공
 
-## 프로젝트 목표
-
-- **고가용성/확장성**: Application Gateway + VMSS로 자동 확장, Traffic Manager로 리전 장애 대응(DR)
-- **보안성**: Azure ↔ 온프레미스 DB 간 Site-to-Site VPN, 서비스/관리/데이터 영역 분리 (최소 권한 원칙)
-- **자동화**: Terraform으로 서버·네트워크·보안 정책·VPN을 코드로 정의해 반복 가능한 배포 구조 확보
-
-**사용 기술 스택**
-
-| 구분 | 기술 |
-|---|---|
-| IaC | Terraform v1.x + AzureRM Provider v4.23+ |
-| 웹/DB | Ubuntu 20.04 (웹) + Apache 2.4 / Rocky Linux (DB) + MySQL 8.0 |
-| 로드밸런싱 | Application Gateway (WAF_v2) |
-| 자동 확장 | Virtual Machine Scale Set |
-| 네트워크 | Site-to-Site VPN(IPSec/IKEv2), Azure Bastion, NAT Gateway, Private DNS |
-| 트래픽 관리 | Azure Traffic Manager (Priority Mode) |
-| 온프레미스 방화벽 | BlueMax NGF 100 |
+> 📝 M365 Defender 파트는 별도 정리 예정
 
 ---
 
-## 아키텍처 설계 — 1차 → 3차 개선 과정
+## 아키텍처 (1차 → 3차)
 
-프로젝트 초기부터 완성형 아키텍처로 시작한 게 아니라, **설계 → 한계 발견 → 개선**을 3차례 반복하며 완성도를 높였다.
+- **1차**: VPN 기본 구조 → 단일 Hub라 장애에 취약
+- **2차**: 리전별 Hub 이중화 + Front Door → 규모 대비 과도하게 복잡
+- **3차(최종)**: Front Door 제거, Traffic Manager로 단순화 → 양 리전 대칭 구성
 
-### 1차 아키텍처
+> 🖼️ _사진 자리 — 최종 아키텍처 구성도_
 
-Azure와 온프레미스 DB를 Site-to-Site VPN으로 연동하고, 서비스 영역(Web1/Web2 VNet)과 관리 영역을 VNet Peering으로 분리하는 기본 구조.
+**Front Door 대신 Traffic Manager를 고른 이유**
 
-> 🖼️ *사진 자리 — 1차 시스템 아키텍처 구성도*
-
-**한계**: 네트워크 연결·관리 기능이 **단일 Hub에 집중**돼 있어, Hub 장애 시 전체 서비스가 영향을 받는 구조적 문제 + DR 이중화 부족.
-
-### 2차 아키텍처
-
-Korea Central / Korea South 양쪽 리전에 **Hub를 각각 구성**해 이중화하고, Azure Bastion·Front Door·Application Gateway를 도입.
-
-> 🖼️ *사진 자리 — 2차 시스템 아키텍처 구성도*
-
-**한계**: Front Door와 Application Gateway를 동시에 쓰다 보니 프로젝트 규모 대비 구조가 과도하게 복잡해지고 비용·관리 부담 증가.
-
-### 3차 아키텍처 (최종)
-
-- Front Door 대신 **Traffic Manager**를 글로벌 진입점으로 선택 (DNS 기반, 더 단순하고 프로젝트 규모에 적합)
-- 각 리전 내부는 **Application Gateway(WAF)**가 트래픽 분산 + 웹 공격 차단 담당
-- Korea Central / Korea South 양 리전에 Application Gateway + VMSS + VPN Gateway를 대칭 구성해 리전 단위 이중화 완성
-
-> 🖼️ *사진 자리 — 3차(최종) 시스템 아키텍처 구성도*
-
-> 💡 설계 과정에서 배운 점: "더 좋아 보이는 기능(Front Door)"을 무조건 추가하기보다, **프로젝트 규모와 관리 복잡도를 함께 고려**해서 Traffic Manager로 단순화한 결정이 결과적으로 더 안정적인 구조를 만들었다.
+- Front Door는 CDN·엣지 기능까지 포함된 무거운 서비스
+- 이 프로젝트는 리전 2개짜리 단순 Failover만 필요
+- Traffic Manager(DNS 기반)가 규모에 더 맞음
 
 ---
 
-## Terraform 기반 인프라 구현
+## Terraform 구현
 
-- Terraform 파일을 역할별로 분리(init/RG/VNet/Subnet/PublicIP 등)해 유지보수성을 높였고, `subscription_id` 등 민감 정보는 변수로 분리
-- **Azure Key Vault + Managed Identity**를 도입해 DB 계정 정보 등 민감 정보를 Terraform 코드와 완전히 분리
+**Bootstrap**
 
-> 🖼️ *사진 자리 — Terraform 프로젝트 폴더 구조 / 주요 리소스 코드 화면*
+- Key Vault, Storage Account를 별도 RG(`team604tuna-infra`)에 우선 생성
+- 이유: 민감정보를 본 인프라 코드와 분리
+
+**네트워크**
+
+- Korea Central: `tuna-vnet1` (10.101.0.0/16)
+- Korea South: `tuna-vnet2` (10.102.0.0/16)
+- 서브넷 4종: AppGW / VMSS / VPN Gateway / Bastion
+
+**NSG**
+
+- AppGW NSG: HTTP/HTTPS만 허용
+- VMSS NSG: AppGW→HTTP, Bastion→SSH만 허용
+- Bastion NSG: HTTPS/SSH/RDP만 허용
+
+**Application Gateway (WAF)**
+
+- WAF_v2, Prevention 모드, OWASP CRS 3.2
+- Health Probe로 비정상 인스턴스 자동 제외
+- `/wp-admin`, `/wp-json`은 WAF 예외 처리
+
+**VMSS & Auto Scaling**
+
+- SSH 키 인증만 허용(비밀번호 인증 비활성화)
+- 최소 1 / 기본 2 / 최대 5대
+- Managed Identity로 Key Vault 접근
+
+**Site-to-Site VPN — 가장 까다로웠던 구간**
+
+- Azure VPN Gateway ↔ 실제 BlueMax NGF 100 방화벽
+- AES256 + SHA256 암호화
+- 방화벽 정책은 필요한 통신만 허용 (DB MySQL, DB SSH, 백업 동기화 등)
+
+> 🖼️ _사진 자리 — BlueMax NGF 100 장비 사진, VPN 연결 설정 화면_
+
+**Private DNS / Traffic Manager**
+
+- `db.tuna.internal`로 DB IP 대신 도메인 접근
+- Traffic Manager: Priority 방식, Korea Central 1순위
+- Health Monitoring: 30초 간격, 3회 실패 시 Failover
+
+**Key Vault**
+
+- Terraform은 `data` 소스로 기존 Key Vault만 조회 (신규 생성 X)
+- VMSS는 `Get`/`List` 권한만 최소 부여
+- `.tfvars`, `.tfstate`, `*.pem`, `id_rsa`는 `.gitignore` 처리
+
+**결과**: `terraform apply`로 63개 리소스 정상 생성
+
+> 🖼️ _사진 자리 — Terraform apply 완료 결과_
 
 ---
 
-## 구축 과정에서 발생한 문제와 해결
+## 트러블슈팅
 
-| 구분       | 발생 문제          | 원인                     | 해결 방안              |
-| -------- | -------------- | ---------------------- | ------------------ |
-| MySQL    | Database 생성 실패 | 지원되지 않는 Charset 사용     | 지원 Charset으로 수정    |
-| Network  | NIC 생성 실패      | IP 주소가 서브넷 범위와 불일치     | 서브넷 대역 재설정         |
-| VPN      | VPN 연결 실패      | IPSec 설정 불일치           | 암호화 정책 및 PSK 재설정   |
-| Security | 민감정보 노출 우려     | Terraform 변수 파일에 직접 저장 | Azure Key Vault 적용 |
+- MySQL Charset 미지원 → 지원 Charset으로 수정
+- NIC 생성 실패(IP-서브넷 불일치) → 서브넷 재설계
+- VPN 실패(IPSec 설정 불일치) → 암호화 정책·PSK 재설정
+- 민감정보 평문 저장 → Key Vault로 전환
 
 ---
 
-## 테스트 및 검증
+## 인프라 동작 순서
 
-VPN 연결, DB Server 연동, Application Gateway/WAF, VMSS Auto Scaling, Traffic Manager 장애 조치(Failover)까지 전 항목을 정상 동작 확인했다.
+1. 사용자 요청 → Traffic Manager (Priority 기반 리전 선택)
+2. → Application Gateway (WAF 필터링)
+3. → VMSS (Health Probe 통과한 인스턴스만 처리, 부하 시 자동 확장)
+4. → Private DNS로 DB 위치 조회
+5. → Site-to-Site VPN 터널 → 온프레미스 MySQL
+6. → 역순으로 응답 반환
 
-> 🖼️ *사진 자리 — Azure Portal 최종 리소스 구성 화면*
+- 관리자 접근: Azure Bastion 경유 (공인 IP 노출 없음)
+- 민감정보 조회: Managed Identity → Key Vault
+- DB 백업: 매일 새벽 2시 Crontab 자동 실행
 
 ---
 
-## 정리
+## 검증 결과
 
-- 아키텍처를 3차에 걸쳐 개선하면서, **설계 초기의 "그럴듯한 구조"가 실제로는 운영 복잡도만 높일 수 있다**는 걸 체감했다. Front Door를 걷어내고 Traffic Manager로 단순화한 게 대표적인 사례.
-- Terraform + Key Vault 조합으로 "코드에 비밀 정보를 남기지 않는" 인프라 자동화 흐름을 처음부터 끝까지 경험했다.
-- 문제 해결 표에 정리한 4가지 이슈(Charset, 서브넷, IPSec, 민감정보) 모두 실제로 겪고 고친 것들이라, 다음 프로젝트에서 동일한 실수를 줄이는 체크리스트로 남겨둘 만하다.
+- **VPN**: Azure·온프레미스 양쪽 로그 교차 확인, 실제 트래픽 6,724건/350건 통과 확인
+- **DB 연동**: DNS 조회, MySQL 접속, 데이터 조회 전부 성공
+- **백업**: Crontab 자동 실행 + Backup DB Server 확인 성공
+- **애플리케이션**: 휴가 신청서 등록(INSERT) → 관리자 화면 조회까지 실제 동작 확인
+- **WAF**: Health Probe 정상, WAF Prevention 모드 적용 확인
+- **Auto Scaling**: 의도적 부하로 CPU 70%↑ → 인스턴스 자동 증설 직접 확인
+- **Traffic Manager**: nslookup으로 Priority 1 응답 확인, FQDN 접속 성공
+
+**종합**: VPN·DB연동·DNS·AppGW·WAF·VMSS·AutoScaling·TrafficManager·KeyVault **9개 전체 성공**
+
+> 🖼️ _사진 자리 — VPN 연결 상태, Auto Scaling 동작, Traffic Manager Failover 테스트_
+
+---
+
+## 용어 정리
+
+- **IaC**: 인프라를 코드로 관리하는 방식
+- **VMSS**: 동일 설정 VM을 자동으로 늘리고 줄이는 서비스
+- **WAF**: SQL Injection·XSS 같은 웹 공격을 막는 방화벽
+- **NSG**: 서브넷/리소스별 트래픽 허용·차단 규칙
+- **Managed Identity**: 비밀번호 없이 Azure AD로 인증하는 방식
+
+---
+
+## 회고
+
+- "그럴듯한 구조"보다 규모에 맞는 단순화가 더 안정적이었다 (Front Door 제거 사례)
+- Terraform + Key Vault로 코드-비밀정보 분리 습관을 익혔다
+- 로그를 한쪽만 보지 않고 양쪽에서 교차 검증하는 습관을 들였다
+- 부하를 직접 걸어서 Auto Scaling 동작까지 눈으로 확인했다
+
+**다음 개선 계획**
+
+- HTTPS/SSL 적용
+- Azure Monitor + Sentinel 기반 통합 모니터링
+- DB Master-Slave 이중화 강화
