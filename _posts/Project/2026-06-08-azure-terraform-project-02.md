@@ -1,5 +1,5 @@
 ---
-title: Azure + Terraform 프로젝트 (2) - Terraform 코드 작성
+title: Azure 클라우드 인프라 및 M365 Defender 보안 구축 (2) — Terraform 코드 설계
 date: 2026-06-08
 categories:
   - project
@@ -8,7 +8,7 @@ tags:
   - azure
   - terraform
 ---
-
+---
 ## 개요
 
 아키텍처 설계를 바탕으로 실제 **Terraform 코드를 파일 단위로 분리 설계**한 단계.
