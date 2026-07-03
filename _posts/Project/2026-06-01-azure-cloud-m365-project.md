@@ -1,5 +1,5 @@
 ---
-title: Azure 클라우드 인프라 및 M365 Defender 보안 구축 (1) — 아키텍처 설계
+title: Azure 클라우드 인프라 및 M365 Defender 보안구축
 date: 2026-06-01
 categories:
   - project
@@ -7,6 +7,7 @@ comments: true
 tags:
   - azure
   - terraform
+  - 온프레미스
 ---
 ---
 

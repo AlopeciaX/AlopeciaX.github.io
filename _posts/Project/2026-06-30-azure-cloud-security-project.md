@@ -1,5 +1,5 @@
 ---
-title: 하이브리드 클라우드 구축 (2)
+title: Azure 클라우드 데이터 및 App 보안
 date: 2026-06-30
 categories:
   - project
@@ -8,6 +8,4 @@ tags:
   - azure
 ---
 ---
-project
-firewall
-key vault/storage
+진행중

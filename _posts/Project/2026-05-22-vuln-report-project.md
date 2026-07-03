@@ -1,5 +1,5 @@
 ---
-title: "시스템 모의해킹 프로젝트 — Metasploitable3 (Windows/Linux) 모의침투 보고서"
+title: 시스템모의해킹
 date: 2026-05-22
 categories:
   - project
