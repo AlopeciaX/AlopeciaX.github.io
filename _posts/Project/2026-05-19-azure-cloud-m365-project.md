@@ -15,6 +15,7 @@ tags:
 
 Azure 클라우드와 온프레미스 데이터베이스를 **Site-to-Site VPN**으로 연동해, 고가용성·보안성·자동화를 갖춘 하이브리드 클라우드 그룹웨어 인프라를 직접 설계·구축했다. GUI 대신 **Terraform 코드로 인프라 전체를 자동화**하는 것이 목표였다.
 
+
 **핵심 키워드**: Terraform IaC · Application Gateway(WAF) · VMSS Auto Scaling · Traffic Manager · Site-to-Site VPN · Azure Key Vault
 
 📷 5페이지 — 프로젝트 목표 / 6~7페이지 — 사용 기술 및 선정 배경 / 8~9페이지 — 추진 일정 및 역할 분담
