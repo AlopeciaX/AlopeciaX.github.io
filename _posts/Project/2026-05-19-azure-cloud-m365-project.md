@@ -103,6 +103,8 @@ Azure 클라우드와 온프레미스 데이터베이스를 **Site-to-Site VPN**
 
 ![](../../assets/images/_posts/Project/2026-05-19-azure-cloud-m365-project/file-20260706000951875.png)
 
+![](../../assets/images/_posts/Project/2026-05-19-azure-cloud-m365-project/file-20260706001142000.png)
+
 ![](../../assets/images/_posts/Project/2026-05-19-azure-cloud-m365-project/file-20260706001044532.png)
 
 **Key Vault**
@@ -111,11 +113,11 @@ Azure 클라우드와 온프레미스 데이터베이스를 **Site-to-Site VPN**
 - VMSS는 `Get`/`List` 권한만 최소 부여
 - `.tfvars`, `.tfstate`, `*.pem`, `id_rsa`는 `.gitignore` 처리
 
-📷 57~60페이지 — Key Vault Data Source 참조 코드, Access Policy/Managed Identity 구성 코드
+![](../../assets/images/_posts/Project/2026-05-19-azure-cloud-m365-project/file-20260706001230041.png)
 
 **결과**: `terraform apply`로 **총 63개 리소스** 정상 생성
 
-📷 61페이지 — Terraform Apply 완료 결과 / 62~64페이지 — Bootstrap/Global/리전별(Central·South) 최종 산출물 화면
+![](../../assets/images/_posts/Project/2026-05-19-azure-cloud-m365-project/file-20260706001253630.png)
 
 ---
 
@@ -126,7 +128,8 @@ Azure 클라우드와 온프레미스 데이터베이스를 **Site-to-Site VPN**
 - VPN 실패(IPSec 설정 불일치) → 암호화 정책·PSK 재설정
 - 민감정보 평문 저장 → Key Vault로 전환
 
-📷 61페이지 — 테스트 단계에서 발생한 장애 목록
+![](../../assets/images/_posts/Project/2026-05-19-azure-cloud-m365-project/file-20260706001321611.png)
+
 
 ---
 
@@ -134,7 +137,8 @@ Azure 클라우드와 온프레미스 데이터베이스를 **Site-to-Site VPN**
 
 **VPN 연결**: Azure Portal `Connected` 상태 + BlueMax NGF `ESTABLISHED`/CHILD_SA 로그 교차 확인. 방화벽 Hit Count 기준 **Korea Central 6,724건, Korea South 350건**의 실제 MySQL 트래픽 통과 확인
 
-📷 65~67페이지 — VPN 연동 구조도 / Azure·BlueMax 연결 상태 화면 / Hit Count 확인 화면
+![](../../assets/images/_posts/Project/2026-05-19-azure-cloud-m365-project/file-20260706001405826.png)
+
 
 **DB 연동**: DNS 조회·MySQL 접속·데이터 조회 전부 성공. Backup DB Server를 Crontab(새벽 2시)으로 자동 백업 구성, `640` 권한으로 접속 정보 보호
 
