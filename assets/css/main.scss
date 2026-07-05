@@ -33,6 +33,7 @@
     --footer_font: #858585;
     --footer_font_a: #000;
     --border_radius: 15px;
+    --table_border: #d8d8d8;
 
 }
 
@@ -58,6 +59,7 @@
     --blockquote: #CACCCE;
     --footer_font_a: #d1d1d1;
     --border_radius: 1px;
+    --table_border: #45494d;
 }
 
 
@@ -561,6 +563,36 @@ img {
     line-height: 1.5rem;
     color: var(--post_text);
 
+    table {
+        width: 100%;
+        margin: 1.2rem 0;
+        border-collapse: collapse;
+        font-size: 0.85rem;
+        overflow-x: auto;
+        display: block;
+
+        @include breakpoint(medium) {
+            display: table;
+        }
+    }
+
+    th,
+    td {
+        padding: 0.5rem 0.8rem;
+        border: 1px solid var(--table_border);
+        text-align: left;
+    }
+
+    th {
+        background: var(--header_bg);
+        color: var(--post_h3);
+        font-weight: 700;
+    }
+
+    tr:nth-child(even) td {
+        background: rgba(255, 255, 255, 0.03);
+    }
+
     h1,
     h2 {
         margin-top: 2rem;
@@ -737,5 +769,3 @@ img {
         color: var(--nav_font_hover);
     }
 }
-
-
