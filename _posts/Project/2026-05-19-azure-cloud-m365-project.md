@@ -19,7 +19,7 @@ Azure 클라우드와 온프레미스 데이터베이스를 **Site-to-Site VPN**
 
 **핵심 키워드**: Terraform IaC · Application Gateway(WAF) · VMSS Auto Scaling · Traffic Manager · Site-to-Site VPN · Azure Key Vault
 
-![](../../assets/images/_posts/Project/2026-05-19-azure-cloud-m365-project/file-20260706003511399.png)
+![](../../assets/images/Project/2026-05-19-azure-cloud-m365-project/file-20260706003511399.png)
 
 
 📷 5페이지 — 프로젝트 목표 / 6~7페이지 — 사용 기술 및 선정 배경 / 8~9페이지 — 추진 일정 및 역할 분담
@@ -32,7 +32,7 @@ Azure 클라우드와 온프레미스 데이터베이스를 **Site-to-Site VPN**
 - **2차**: 리전별 Hub 이중화 + Front Door 검토 → 규모 대비 구조 과도하게 복잡
 - **3차(최종)**: Front Door 제거, **Traffic Manager**로 단순화. 양 리전(Korea Central/South) 대칭 구성으로 이중화 완성
 
-![](../../assets/images/_posts/Project/2026-05-19-azure-cloud-m365-project/file-20260706003540047.png)
+![](../../assets/images/Project/2026-05-19-azure-cloud-m365-project/file-20260706003540047.png)
 
 ---
 
@@ -43,18 +43,18 @@ Azure 클라우드와 온프레미스 데이터베이스를 **Site-to-Site VPN**
 - Key Vault·Storage Account를 별도 리소스 그룹(`team604tuna-infra`)에 우선 생성
 - 이유: 민감정보를 본 인프라 코드와 분리
 
-![](../../assets/images/_posts/Project/2026-05-19-azure-cloud-m365-project/file-20260706000630322.png)
+![](../../assets/images/Project/2026-05-19-azure-cloud-m365-project/file-20260706000630322.png)
 
-![](../../assets/images/_posts/Project/2026-05-19-azure-cloud-m365-project/file-20260706000645587.png)
+![](../../assets/images/Project/2026-05-19-azure-cloud-m365-project/file-20260706000645587.png)
 
 **리소스 그룹 / 네트워크**
 
 - Resource Group 이름·리전을 변수(`rgname`, `loca`)로 관리
 - Korea Central `tuna-vnet1`(10.101.0.0/16), Korea South `tuna-vnet2`(10.102.0.0/16)
 
-![](../../assets/images/_posts/Project/2026-05-19-azure-cloud-m365-project/file-20260706000607698.png)
+![](../../assets/images/Project/2026-05-19-azure-cloud-m365-project/file-20260706000607698.png)
 
-![](../../assets/images/_posts/Project/2026-05-19-azure-cloud-m365-project/file-20260706000547098.png)
+![](../../assets/images/Project/2026-05-19-azure-cloud-m365-project/file-20260706000547098.png)
 
 **Public IP / NAT Gateway**
 
@@ -67,7 +67,7 @@ Azure 클라우드와 온프레미스 데이터베이스를 **Site-to-Site VPN**
 - VMSS NSG: AppGW→HTTP, Bastion→SSH만 허용
 - Bastion NSG: HTTPS/SSH/RDP만 허용
 
-![](../../assets/images/_posts/Project/2026-05-19-azure-cloud-m365-project/file-20260706000525496.png)
+![](../../assets/images/Project/2026-05-19-azure-cloud-m365-project/file-20260706000525496.png)
 
 **Application Gateway (WAF)**
 
@@ -75,7 +75,7 @@ Azure 클라우드와 온프레미스 데이터베이스를 **Site-to-Site VPN**
 - `/wp-admin`, `/wp-json`은 WAF 예외 처리
 - Health Probe(`/health.html`)로 비정상 인스턴스 자동 제외
 
-![](../../assets/images/_posts/Project/2026-05-19-azure-cloud-m365-project/file-20260706000756669.png)
+![](../../assets/images/Project/2026-05-19-azure-cloud-m365-project/file-20260706000756669.png)
 
 **VMSS & Auto Scaling**
 
@@ -83,7 +83,7 @@ Azure 클라우드와 온프레미스 데이터베이스를 **Site-to-Site VPN**
 - 최소 1 / 기본 2 / 최대 5대, CPU 70%↑ Scale-Out / 20%↓ Scale-In
 - Managed Identity로 Key Vault 접근
 
-![](../../assets/images/_posts/Project/2026-05-19-azure-cloud-m365-project/file-20260706000821645.png)
+![](../../assets/images/Project/2026-05-19-azure-cloud-m365-project/file-20260706000821645.png)
 
 **Site-to-Site VPN — 가장 까다로웠던 구간**
 
@@ -91,7 +91,7 @@ Azure 클라우드와 온프레미스 데이터베이스를 **Site-to-Site VPN**
 - AES256 + SHA256 암호화
 - 방화벽 정책은 필요한 통신만 허용(DB MySQL, DB SSH, 리전별 VMSS 접근, 백업 동기화)
 
-![](../../assets/images/_posts/Project/2026-05-19-azure-cloud-m365-project/file-20260706000857312.png)
+![](../../assets/images/Project/2026-05-19-azure-cloud-m365-project/file-20260706000857312.png)
 
 **Private DNS / Traffic Manager**
 
@@ -99,13 +99,13 @@ Azure 클라우드와 온프레미스 데이터베이스를 **Site-to-Site VPN**
 - Traffic Manager: Priority 방식, Korea Central 1순위
 - Health Monitoring: 30초 간격, 3회 실패 시 Failover
 
-![](../../assets/images/_posts/Project/2026-05-19-azure-cloud-m365-project/file-20260706001025711.png)
+![](../../assets/images/Project/2026-05-19-azure-cloud-m365-project/file-20260706001025711.png)
 
-![](../../assets/images/_posts/Project/2026-05-19-azure-cloud-m365-project/file-20260706000951875.png)
+![](../../assets/images/Project/2026-05-19-azure-cloud-m365-project/file-20260706000951875.png)
 
-![](../../assets/images/_posts/Project/2026-05-19-azure-cloud-m365-project/file-20260706001142000.png)
+![](../../assets/images/Project/2026-05-19-azure-cloud-m365-project/file-20260706001142000.png)
 
-![](../../assets/images/_posts/Project/2026-05-19-azure-cloud-m365-project/file-20260706001044532.png)
+![](../../assets/images/Project/2026-05-19-azure-cloud-m365-project/file-20260706001044532.png)
 
 **Key Vault**
 
@@ -113,11 +113,11 @@ Azure 클라우드와 온프레미스 데이터베이스를 **Site-to-Site VPN**
 - VMSS는 `Get`/`List` 권한만 최소 부여
 - `.tfvars`, `.tfstate`, `*.pem`, `id_rsa`는 `.gitignore` 처리
 
-![](../../assets/images/_posts/Project/2026-05-19-azure-cloud-m365-project/file-20260706001230041.png)
+![](../../assets/images/Project/2026-05-19-azure-cloud-m365-project/file-20260706001230041.png)
 
 **결과**: `terraform apply`로 **총 63개 리소스** 정상 생성
 
-![](../../assets/images/_posts/Project/2026-05-19-azure-cloud-m365-project/file-20260706001253630.png)
+![](../../assets/images/Project/2026-05-19-azure-cloud-m365-project/file-20260706001253630.png)
 
 ---
 
@@ -128,7 +128,7 @@ Azure 클라우드와 온프레미스 데이터베이스를 **Site-to-Site VPN**
 - VPN 실패(IPSec 설정 불일치) → 암호화 정책·PSK 재설정
 - 민감정보 평문 저장 → Key Vault로 전환
 
-![](../../assets/images/_posts/Project/2026-05-19-azure-cloud-m365-project/file-20260706001321611.png)
+![](../../assets/images/Project/2026-05-19-azure-cloud-m365-project/file-20260706001321611.png)
 
 
 ---
@@ -149,7 +149,7 @@ Azure 클라우드와 온프레미스 데이터베이스를 **Site-to-Site VPN**
 
 **종합 결과**: Site-to-Site VPN, DB 연동, Private DNS, Application Gateway, WAF, VMSS, Auto Scaling, Traffic Manager, Key Vault — **9개 항목 전체 성공**
 
-![](../../assets/images/_posts/Project/2026-05-19-azure-cloud-m365-project/file-20260706003731541.png)
+![](../../assets/images/Project/2026-05-19-azure-cloud-m365-project/file-20260706003731541.png)
 
 ---
 
