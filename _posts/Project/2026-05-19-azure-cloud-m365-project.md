@@ -32,11 +32,11 @@ Azure 클라우드와 온프레미스 데이터베이스를 **Site-to-Site VPN**
 - **2차**: 리전별 Hub 이중화 + Front Door 검토 → 규모 대비 구조 과도하게 복잡
 - **3차(최종)**: Front Door 제거, **Traffic Manager**로 단순화. 양 리전(Korea Central/South) 대칭 구성으로 이중화 완성
 
-![](../../assets/images/_posts/Project/2026-05-19-azure-cloud-m365-project/file-20260705233939616.png)
+![](../../assets/images/Project/2026-05-19-azure-cloud-m365-project/file-20260705233939616.png)
 
-![](../../assets/images/_posts/Project/2026-05-19-azure-cloud-m365-project/file-20260705233957259.png)
+![](../../assets/images/Project/2026-05-19-azure-cloud-m365-project/file-20260705233957259.png)
 
-![](../../assets/images/_posts/Project/2026-05-19-azure-cloud-m365-project/file-20260705234006711.png)
+![](../../assets/images/Project/2026-05-19-azure-cloud-m365-project/file-20260705234006711.png)
 
 
 📷 10페이지 — 1차 아키텍처 구성도 / 12~13페이지 — 2차 아키텍처 구성도 / 14~16페이지 — 3차(최종) 아키텍처 구성도 및 네트워크 구성
@@ -50,15 +50,15 @@ Azure 클라우드와 온프레미스 데이터베이스를 **Site-to-Site VPN**
 - Key Vault·Storage Account를 별도 리소스 그룹(`team604tuna-infra`)에 우선 생성
 - 이유: 민감정보를 본 인프라 코드와 분리
 
-![](../../assets/images/_posts/Project/2026-05-19-azure-cloud-m365-project/file-20260705234041207.png)
+![](../../assets/images/Project/2026-05-19-azure-cloud-m365-project/file-20260705234041207.png)
 
-![](../../assets/images/_posts/Project/2026-05-19-azure-cloud-m365-project/file-20260705234046385.png)
+![](../../assets/images/Project/2026-05-19-azure-cloud-m365-project/file-20260705234046385.png)
 
-![](../../assets/images/_posts/Project/2026-05-19-azure-cloud-m365-project/file-20260705234055444.png)
+![](../../assets/images/Project/2026-05-19-azure-cloud-m365-project/file-20260705234055444.png)
 
-![](../../assets/images/_posts/Project/2026-05-19-azure-cloud-m365-project/file-20260705234113786.png)
+![](../../assets/images/Project/2026-05-19-azure-cloud-m365-project/file-20260705234113786.png)
 
-![](../../assets/images/_posts/Project/2026-05-19-azure-cloud-m365-project/file-20260705234120094.png)
+![](../../assets/images/Project/2026-05-19-azure-cloud-m365-project/file-20260705234120094.png)
 
 
 📷 20~22페이지 — Bootstrap 리소스 그룹/Storage Account/Key Vault 생성 화면
@@ -68,13 +68,13 @@ Azure 클라우드와 온프레미스 데이터베이스를 **Site-to-Site VPN**
 - Resource Group 이름·리전을 변수(`rgname`, `loca`)로 관리
 - Korea Central `tuna-vnet1`(10.101.0.0/16), Korea South `tuna-vnet2`(10.102.0.0/16)
 
-![](../../assets/images/_posts/Project/2026-05-19-azure-cloud-m365-project/file-20260705234135305.png)
+![](../../assets/images/Project/2026-05-19-azure-cloud-m365-project/file-20260705234135305.png)
 
-![](../../assets/images/_posts/Project/2026-05-19-azure-cloud-m365-project/file-20260705234151512.png)
+![](../../assets/images/Project/2026-05-19-azure-cloud-m365-project/file-20260705234151512.png)
 
-![](../../assets/images/_posts/Project/2026-05-19-azure-cloud-m365-project/file-20260705234155927.png)
+![](../../assets/images/Project/2026-05-19-azure-cloud-m365-project/file-20260705234155927.png)
 
-![](../../assets/images/_posts/Project/2026-05-19-azure-cloud-m365-project/file-20260705234227091.png)
+![](../../assets/images/Project/2026-05-19-azure-cloud-m365-project/file-20260705234227091.png)
 
 
 📷 23페이지 — 리소스 그룹 생성 코드 / 24~26페이지 — VNet 구성 코드 및 서브넷 구성표
@@ -84,17 +84,17 @@ Azure 클라우드와 온프레미스 데이터베이스를 **Site-to-Site VPN**
 - Application Gateway는 고정 공인 IP(Static)로 구성
 - NAT Gateway로 VMSS 아웃바운드 인터넷 통신 처리
 
-![](../../assets/images/_posts/Project/2026-05-19-azure-cloud-m365-project/file-20260705234248000.png)
+![](../../assets/images/Project/2026-05-19-azure-cloud-m365-project/file-20260705234248000.png)
 
-![](../../assets/images/_posts/Project/2026-05-19-azure-cloud-m365-project/file-20260705234258119.png)
+![](../../assets/images/Project/2026-05-19-azure-cloud-m365-project/file-20260705234258119.png)
 
-![](../../assets/images/_posts/Project/2026-05-19-azure-cloud-m365-project/file-20260705234305259.png)
+![](../../assets/images/Project/2026-05-19-azure-cloud-m365-project/file-20260705234305259.png)
 
-![](../../assets/images/_posts/Project/2026-05-19-azure-cloud-m365-project/file-20260705234311119.png)
+![](../../assets/images/Project/2026-05-19-azure-cloud-m365-project/file-20260705234311119.png)
 
-![](../../assets/images/_posts/Project/2026-05-19-azure-cloud-m365-project/file-20260705234425020.png)
+![](../../assets/images/Project/2026-05-19-azure-cloud-m365-project/file-20260705234425020.png)
 
-![](../../assets/images/_posts/Project/2026-05-19-azure-cloud-m365-project/file-20260705234429669.png)
+![](../../assets/images/Project/2026-05-19-azure-cloud-m365-project/file-20260705234429669.png)
 
 
 📷 27~30페이지 — Public IP 생성 코드(AppGW/VPN GW/Bastion/NAT GW)
