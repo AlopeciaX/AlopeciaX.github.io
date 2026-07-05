@@ -12,7 +12,7 @@ tags:
 ---
 ## 개요
 
-**PTES(Penetration Testing Execution Standard) 방법론**을 기반으로, 취약하게 구성된 Metasploitable3 (Windows / Linux) 2대를 대상으로 정보 수집부터 취약점 진단, 익스플로잇, 권한 상승, 플래그 수집까지 전 과정을 수행한 모의침투 프로젝트.
+**PTES(Penetration Testing Execution Standard) 방법론**을 기반으로, 취약하게 구성된 Metasploitable3 (Windows / Linux) 2대를 대상으로 정보 수집부터 취약점 진단, 익스플로잇, 권한 상승, 플래그 수집까지 전 과정을 수행한 모의침투 프로젝트
 
 단순히 여러 공격 기법을 시도해보는 데 그치지 않고, **공격자 관점에서 실제로 취약점이 시스템에 미치는 영향을 검증**하고, 검증된 취약점에 대한 현실적인 보안 대응 방안을 도출하는 것을 목표로 진행했다.
 
