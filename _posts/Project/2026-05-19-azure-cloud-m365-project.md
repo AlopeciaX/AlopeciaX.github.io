@@ -32,14 +32,7 @@ Azure 클라우드와 온프레미스 데이터베이스를 **Site-to-Site VPN**
 - **2차**: 리전별 Hub 이중화 + Front Door 검토 → 규모 대비 구조 과도하게 복잡
 - **3차(최종)**: Front Door 제거, **Traffic Manager**로 단순화. 양 리전(Korea Central/South) 대칭 구성으로 이중화 완성
 
-![](../../assets/images/Project/2026-05-19-azure-cloud-m365-project/file-20260705233939616.png)
-
-![](../../assets/images/Project/2026-05-19-azure-cloud-m365-project/file-20260705233957259.png)
-
 ![](../../assets/images/Project/2026-05-19-azure-cloud-m365-project/file-20260705234006711.png)
-
-
-📷 10페이지 — 1차 아키텍처 구성도 / 12~13페이지 — 2차 아키텍처 구성도 / 14~16페이지 — 3차(최종) 아키텍처 구성도 및 네트워크 구성
 
 ---
 
@@ -50,54 +43,23 @@ Azure 클라우드와 온프레미스 데이터베이스를 **Site-to-Site VPN**
 - Key Vault·Storage Account를 별도 리소스 그룹(`team604tuna-infra`)에 우선 생성
 - 이유: 민감정보를 본 인프라 코드와 분리
 
-![](../../assets/images/Project/2026-05-19-azure-cloud-m365-project/file-20260705234041207.png)
+![](../../assets/images/_posts/Project/2026-05-19-azure-cloud-m365-project/file-20260706000630322.png)
 
-![](../../assets/images/Project/2026-05-19-azure-cloud-m365-project/file-20260705234046385.png)
-
-![](../../assets/images/Project/2026-05-19-azure-cloud-m365-project/file-20260705234055444.png)
-
-![](../../assets/images/Project/2026-05-19-azure-cloud-m365-project/file-20260705234113786.png)
-
-![](../../assets/images/Project/2026-05-19-azure-cloud-m365-project/file-20260705234120094.png)
-
-
-📷 20~22페이지 — Bootstrap 리소스 그룹/Storage Account/Key Vault 생성 화면
+![](../../assets/images/_posts/Project/2026-05-19-azure-cloud-m365-project/file-20260706000645587.png)
 
 **리소스 그룹 / 네트워크**
 
 - Resource Group 이름·리전을 변수(`rgname`, `loca`)로 관리
 - Korea Central `tuna-vnet1`(10.101.0.0/16), Korea South `tuna-vnet2`(10.102.0.0/16)
 
-![](../../assets/images/Project/2026-05-19-azure-cloud-m365-project/file-20260705234135305.png)
+![](../../assets/images/_posts/Project/2026-05-19-azure-cloud-m365-project/file-20260706000607698.png)
 
-![](../../assets/images/Project/2026-05-19-azure-cloud-m365-project/file-20260705234151512.png)
-
-![](../../assets/images/Project/2026-05-19-azure-cloud-m365-project/file-20260705234155927.png)
-
-![](../../assets/images/Project/2026-05-19-azure-cloud-m365-project/file-20260705234227091.png)
-
-
-📷 23페이지 — 리소스 그룹 생성 코드 / 24~26페이지 — VNet 구성 코드 및 서브넷 구성표
+![](../../assets/images/_posts/Project/2026-05-19-azure-cloud-m365-project/file-20260706000547098.png)
 
 **Public IP / NAT Gateway**
 
 - Application Gateway는 고정 공인 IP(Static)로 구성
 - NAT Gateway로 VMSS 아웃바운드 인터넷 통신 처리
-
-![](../../assets/images/Project/2026-05-19-azure-cloud-m365-project/file-20260705234248000.png)
-
-![](../../assets/images/Project/2026-05-19-azure-cloud-m365-project/file-20260705234258119.png)
-
-![](../../assets/images/Project/2026-05-19-azure-cloud-m365-project/file-20260705234305259.png)
-
-![](../../assets/images/Project/2026-05-19-azure-cloud-m365-project/file-20260705234311119.png)
-
-![](../../assets/images/Project/2026-05-19-azure-cloud-m365-project/file-20260705234425020.png)
-
-![](../../assets/images/Project/2026-05-19-azure-cloud-m365-project/file-20260705234429669.png)
-
-
-📷 27~30페이지 — Public IP 생성 코드(AppGW/VPN GW/Bastion/NAT GW)
 
 **NSG / Azure Bastion**
 
@@ -105,7 +67,7 @@ Azure 클라우드와 온프레미스 데이터베이스를 **Site-to-Site VPN**
 - VMSS NSG: AppGW→HTTP, Bastion→SSH만 허용
 - Bastion NSG: HTTPS/SSH/RDP만 허용
 
-📷 31~35페이지 — NSG 생성 코드(AppGW/VMSS/Bastion), NSG-Subnet 연결 코드
+![](../../assets/images/_posts/Project/2026-05-19-azure-cloud-m365-project/file-20260706000525496.png)
 
 **Application Gateway (WAF)**
 
@@ -113,7 +75,7 @@ Azure 클라우드와 온프레미스 데이터베이스를 **Site-to-Site VPN**
 - `/wp-admin`, `/wp-json`은 WAF 예외 처리
 - Health Probe(`/health.html`)로 비정상 인스턴스 자동 제외
 
-📷 36~40페이지 — WAF 정책 생성 코드, Application Gateway 생성 코드, Backend Pool/Listener 구성
+![](../../assets/images/_posts/Project/2026-05-19-azure-cloud-m365-project/file-20260706000756669.png)
 
 **VMSS & Auto Scaling**
 
@@ -121,7 +83,7 @@ Azure 클라우드와 온프레미스 데이터베이스를 **Site-to-Site VPN**
 - 최소 1 / 기본 2 / 최대 5대, CPU 70%↑ Scale-Out / 20%↓ Scale-In
 - Managed Identity로 Key Vault 접근
 
-📷 41~44페이지 — VMSS 생성 코드, Managed Identity 연동 코드, Auto Scaling 정책 코드
+![](../../assets/images/_posts/Project/2026-05-19-azure-cloud-m365-project/file-20260706000821645.png)
 
 **Site-to-Site VPN — 가장 까다로웠던 구간**
 
@@ -129,7 +91,7 @@ Azure 클라우드와 온프레미스 데이터베이스를 **Site-to-Site VPN**
 - AES256 + SHA256 암호화
 - 방화벽 정책은 필요한 통신만 허용(DB MySQL, DB SSH, 리전별 VMSS 접근, 백업 동기화)
 
-📷 45페이지 — Azure VPN Gateway 생성 코드 / 47페이지 — 실제 사용한 BlueMax NGF 100 장비 사진 / 48~49페이지 — VPN 지점연결설정 화면 / 50페이지 — 방화벽 정책 설정 및 Hit Count 확인 화면
+![](../../assets/images/_posts/Project/2026-05-19-azure-cloud-m365-project/file-20260706000857312.png)
 
 **Private DNS / Traffic Manager**
 
@@ -137,7 +99,11 @@ Azure 클라우드와 온프레미스 데이터베이스를 **Site-to-Site VPN**
 - Traffic Manager: Priority 방식, Korea Central 1순위
 - Health Monitoring: 30초 간격, 3회 실패 시 Failover
 
-📷 50~51페이지 — Private DNS 구성 코드/흐름도 / 52~56페이지 — Traffic Manager Profile/Health Monitoring/Endpoint 구성
+![](../../assets/images/_posts/Project/2026-05-19-azure-cloud-m365-project/file-20260706001025711.png)
+
+![](../../assets/images/_posts/Project/2026-05-19-azure-cloud-m365-project/file-20260706000951875.png)
+
+![](../../assets/images/_posts/Project/2026-05-19-azure-cloud-m365-project/file-20260706001044532.png)
 
 **Key Vault**
 
