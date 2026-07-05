@@ -140,15 +140,37 @@ Azure 클라우드와 온프레미스 데이터베이스를 **Site-to-Site VPN**
 
 **VPN 연결**: Azure Portal `Connected` 상태 + BlueMax NGF `ESTABLISHED`/CHILD_SA 로그 교차 확인. 방화벽 Hit Count 기준 **Korea Central 6,724건, Korea South 350건**의 실제 MySQL 트래픽 통과 확인
 
+![](../../assets/images/Project/2026-05-19-azure-cloud-m365-project/file-20260706005519498.png)
+
+![](../../assets/images/Project/2026-05-19-azure-cloud-m365-project/file-20260706005536042.png)
+
+![](../../assets/images/Project/2026-05-19-azure-cloud-m365-project/file-20260706005557123.png)
+
 **DB 연동**: DNS 조회·MySQL 접속·데이터 조회 전부 성공. Backup DB Server를 Crontab(새벽 2시)으로 자동 백업 구성, `640` 권한으로 접속 정보 보호
+
+![](../../assets/images/Project/2026-05-19-azure-cloud-m365-project/file-20260706005812888.png)
+
+![](../../assets/images/Project/2026-05-19-azure-cloud-m365-project/file-20260706005926938.png)
 
 **애플리케이션 기능**: WordPress 그룹웨어 휴가 신청서 작성 → DB INSERT → 관리자 화면 조회까지 실제 동작 확인. 입력값 검증(Sanitization)·CSRF 방어(Nonce) 적용
 
+![](../../assets/images/Project/2026-05-19-azure-cloud-m365-project/file-20260706010000634.png)
+
+![](../../assets/images/Project/2026-05-19-azure-cloud-m365-project/file-20260706010039269.png)
+
 **WAF/Application Gateway**: Health Probe 정상 동작, WAF Prevention 모드 활성 상태 확인
+
+![](../../assets/images/Project/2026-05-19-azure-cloud-m365-project/file-20260706010108158.png)
+
+![](../../assets/images/Project/2026-05-19-azure-cloud-m365-project/file-20260706010218484.png)
 
 **VMSS/Auto Scaling**: `tuna-vmss1`(Central)·`tuna-vmss2`(South) 모두 Running 상태. 의도적으로 부하를 걸어 CPU 70%↑ → 인스턴스 자동 증설 직접 확인
 
+![](../../assets/images/Project/2026-05-19-azure-cloud-m365-project/file-20260706010147520.png)
+
 **Traffic Manager Failover**: `nslookup`으로 FQDN(`tuna-team604.trafficmanager.net`) 조회 → Priority 1(Korea Central) 정상 응답 확인. FQDN 접속 시 WordPress 서비스 화면 정상 출력
+
+![](../../assets/images/Project/2026-05-19-azure-cloud-m365-project/file-20260706010308336.png)
 
 **종합 결과**: Site-to-Site VPN, DB 연동, Private DNS, Application Gateway, WAF, VMSS, Auto Scaling, Traffic Manager, Key Vault — **9개 항목 전체 성공**
 
