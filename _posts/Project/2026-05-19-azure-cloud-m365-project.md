@@ -26,7 +26,13 @@ Azure 클라우드와 온프레미스 데이터베이스를 **Site-to-Site VPN**
 ## 아키텍처 설계 (1차 → 3차)
 
 - **1차**: Site-to-Site VPN 기본 구조 → 단일 Hub 집중, 장애·DR 이중화 취약점 발견
+
+![](../../assets/images/Project/2026-05-19-azure-cloud-m365-project/file-20260706004311364.png)
+
 - **2차**: 리전별 Hub 이중화 + Front Door 검토 → 규모 대비 구조 과도하게 복잡
+
+![](../../assets/images/Project/2026-05-19-azure-cloud-m365-project/file-20260706004335242.png)
+
 - **3차(최종)**: Front Door 제거, **Traffic Manager**로 단순화. 양 리전(Korea Central/South) 대칭 구성으로 이중화 완성
 
 ![](../../assets/images/Project/2026-05-19-azure-cloud-m365-project/file-20260706003540047.png)
