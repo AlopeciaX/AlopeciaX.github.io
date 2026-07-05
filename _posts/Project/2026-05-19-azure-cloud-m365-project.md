@@ -19,7 +19,7 @@ Azure 클라우드와 온프레미스 데이터베이스를 **Site-to-Site VPN**
 
 **핵심 키워드**: Terraform IaC · Application Gateway(WAF) · VMSS Auto Scaling · Traffic Manager · Site-to-Site VPN · Azure Key Vault
 
-![](../../assets/images/Project/2026-05-19-azure-cloud-m365-project/file-20260705233312500.png)
+![](../../assets/images/_posts/Project/2026-05-19-azure-cloud-m365-project/file-20260706003511399.png)
 
 
 📷 5페이지 — 프로젝트 목표 / 6~7페이지 — 사용 기술 및 선정 배경 / 8~9페이지 — 추진 일정 및 역할 분담
@@ -32,7 +32,7 @@ Azure 클라우드와 온프레미스 데이터베이스를 **Site-to-Site VPN**
 - **2차**: 리전별 Hub 이중화 + Front Door 검토 → 규모 대비 구조 과도하게 복잡
 - **3차(최종)**: Front Door 제거, **Traffic Manager**로 단순화. 양 리전(Korea Central/South) 대칭 구성으로 이중화 완성
 
-![](../../assets/images/Project/2026-05-19-azure-cloud-m365-project/file-20260705234006711.png)
+![](../../assets/images/_posts/Project/2026-05-19-azure-cloud-m365-project/file-20260706003540047.png)
 
 ---
 
@@ -137,32 +137,19 @@ Azure 클라우드와 온프레미스 데이터베이스를 **Site-to-Site VPN**
 
 **VPN 연결**: Azure Portal `Connected` 상태 + BlueMax NGF `ESTABLISHED`/CHILD_SA 로그 교차 확인. 방화벽 Hit Count 기준 **Korea Central 6,724건, Korea South 350건**의 실제 MySQL 트래픽 통과 확인
 
-![](../../assets/images/_posts/Project/2026-05-19-azure-cloud-m365-project/file-20260706001405826.png)
-
-
 **DB 연동**: DNS 조회·MySQL 접속·데이터 조회 전부 성공. Backup DB Server를 Crontab(새벽 2시)으로 자동 백업 구성, `640` 권한으로 접속 정보 보호
-
-📷 68~71페이지 — MySQL 서버 접속 검증, 백업 스크립트/크론탭 설정, 백업 검증 화면
 
 **애플리케이션 기능**: WordPress 그룹웨어 휴가 신청서 작성 → DB INSERT → 관리자 화면 조회까지 실제 동작 확인. 입력값 검증(Sanitization)·CSRF 방어(Nonce) 적용
 
-📷 72~73페이지 — 부서 목록 동적 출력, 휴가신청서 등록/INSERT 확인 화면
-
 **WAF/Application Gateway**: Health Probe 정상 동작, WAF Prevention 모드 활성 상태 확인
-
-📷 74~75페이지 — Health Probe 화면, WAF 검증 상태 화면
 
 **VMSS/Auto Scaling**: `tuna-vmss1`(Central)·`tuna-vmss2`(South) 모두 Running 상태. 의도적으로 부하를 걸어 CPU 70%↑ → 인스턴스 자동 증설 직접 확인
 
-📷 76~79페이지 — VMSS 인스턴스 실행 상태, Scaling 동작 화면, Auto Scaling 상태 확인
-
 **Traffic Manager Failover**: `nslookup`으로 FQDN(`tuna-team604.trafficmanager.net`) 조회 → Priority 1(Korea Central) 정상 응답 확인. FQDN 접속 시 WordPress 서비스 화면 정상 출력
-
-📷 80~83페이지 — Traffic Manager Endpoint/DNS 확인, FQDN 접속 화면, Health Monitoring 설정 화면
 
 **종합 결과**: Site-to-Site VPN, DB 연동, Private DNS, Application Gateway, WAF, VMSS, Auto Scaling, Traffic Manager, Key Vault — **9개 항목 전체 성공**
 
-📷 84페이지 — 종합 검증 결과
+![](../../assets/images/_posts/Project/2026-05-19-azure-cloud-m365-project/file-20260706003731541.png)
 
 ---
 
@@ -172,5 +159,3 @@ Azure 클라우드와 온프레미스 데이터베이스를 **Site-to-Site VPN**
 - Terraform + Key Vault로 "코드에 비밀정보를 남기지 않는" 인프라 자동화를 처음부터 끝까지 직접 경험했다.
 - VPN 트래픽을 Azure·온프레미스 양쪽 로그로 교차 확인하고, CPU 부하를 직접 걸어 Auto Scaling 동작까지 재현해서 검증하는 습관을 들였다.
 - DB가 아직 단일 장애점(SPOF)이라는 한계는 있다. 이 부분은 다음 프로젝트(하이브리드 클라우드 보안 구축)에서 실시간 이중화로 보완했다.
-
-📷 85페이지 — 결론 및 향후 개선사항
