@@ -280,9 +280,11 @@ Ingress (test-ingress)
 
 ```bash
 kubectl get pod,svc,ing -n ingress-nginx
-curl http://10.0.0.12/pic   # nginx 기본 페이지 예상
-curl http://10.0.0.12/mov   # apache 기본 페이지 예상
+curl http://10.0.0.11:30914/pic   # nginx 기본 페이지 예상
+curl http://10.0.0.11:30705/mov   # apache 기본 페이지 예상
 ```
+
+![](../../../assets/images/Cloud/KimSeongDae/2026-07-06-kubernetes-kubectl%202%201%201/file-20260706112235343.png)
 
 ---
 
