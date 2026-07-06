@@ -1,5 +1,5 @@
 ---
-title: kubectl 기초 실습 정리
+title: kubadm 설치 전 사전 준비
 date: 2026-07-01
 categories:
   - cloud
