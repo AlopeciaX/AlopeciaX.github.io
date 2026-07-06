@@ -12,7 +12,7 @@ tags:
 ---
 ## 개요
 
-**PTES(Penetration Testing Execution Standard) 방법론**을 기반으로, 취약하게 구성된 Metasploitable3 (Windows / Linux) 2대를 대상으로 정보 수집부터 취약점 진단, 익스플로잇, 권한 상승, 플래그 수집까지 전 과정을 수행한 모의침투 프로젝트.
+**PTES(Penetration Testing Execution Standard) 방법론**을 기반으로, 취약하게 구성된 Metasploitable3 (Windows / Linux) 2대를 대상으로 정보 수집부터 취약점 진단, 익스플로잇, 권한 상승, 플래그 수집까지 전 과정을 수행한 모의침투 프로젝트
 
 단순히 여러 공격 기법을 시도해보는 데 그치지 않고, **공격자 관점에서 실제로 취약점이 시스템에 미치는 영향을 검증**하고, 검증된 취약점에 대한 현실적인 보안 대응 방안을 도출하는 것을 목표로 진행했다.
 
@@ -27,25 +27,46 @@ tags:
 
 **Nmap 스캔** — 직접 Nmap으로 두 대상을 스캔해서, Windows에서는 21/tcp(Microsoft ftpd, 기본 자격증명 취약), 445/tcp(SMBv1, EternalBlue 취약), 1617/tcp(Java RMI, JMX 비인증), 3389/tcp(RDP, BlueKeep), 8022/tcp(ManageEngine, RCE), 9200/tcp(Elasticsearch 1.1.1, 구버전 RCE) 등 위험 포트를 다수 확인했다.
 
-![](../../assets/images/Project/2026-05-22-vuln-report-01/file-20260703140642423.png)
+| 포트 | 서비스 | 취약점 |
+|---|---|---|
+| 21/tcp | Microsoft ftpd | 기본 자격증명 취약 |
+| 445/tcp | SMBv1 | EternalBlue 취약 |
+| 1617/tcp | Java RMI | JMX 비인증 |
+| 3389/tcp | RDP | BlueKeep |
+| 8022/tcp | ManageEngine | RCE |
+| 9200/tcp | Elasticsearch 1.1.1 | 구버전 RCE |
+
+![](../../assets/images/Project/2026-05-12-vuln-report-project/file-20260703140642423.png)
 
 Linux에서는 21/tcp(ProFTPD 1.3.5, mod_copy RCE), 80/tcp(Apache 2.4.7, Drupal Coder RCE), 6697/tcp(UnrealIRCd 백도어), 8080/tcp(Jetty/Apache Continuum, RCE)를 핵심 공격 지점으로 추려냈다.
 
-![](../../assets/images/Project/2026-05-22-vuln-report-01/file-20260703140654534.png)
+| 포트 | 서비스 | 취약점 |
+|---|---|---|
+| 21/tcp | ProFTPD 1.3.5 | mod_copy RCE |
+| 80/tcp | Apache 2.4.7 | Drupal Coder RCE |
+| 6697/tcp | UnrealIRCd | 백도어 |
+| 8080/tcp | Jetty/Apache Continuum | RCE |
+
+![](../../assets/images/Project/2026-05-12-vuln-report-project/file-20260703140654534.png)
 
 **Nessus/OpenVAS 자동 스캔** — 두 스캐너로 교차 진단을 수행해서, Windows에서 Nessus 189건 + OpenVAS 83건, Linux에서 Nessus 81건 + OpenVAS 21건, 합산 Windows 272건 / Linux 102건의 취약점을 찾아냈다. 자동화 도구만으로는 잡히지 않는 Jenkins Script Console, UnrealIRCd 백도어, PwnKit 같은 취약점은 Nmap 결과를 수동으로 재분석해서 추가로 발굴했다.
 
-![](../../assets/images/Project/2026-05-22-vuln-report-01/file-20260703140714224.png)
+| 대상 | Nessus | OpenVAS | 합산 |
+|---|---|---|---|
+| Windows | 189건 | 83건 | 272건 |
+| Linux | 81건 | 21건 | 102건 |
 
-![](../../assets/images/Project/2026-05-22-vuln-report-01/file-20260703140720305.png)
+![](../../assets/images/Project/2026-05-12-vuln-report-project/file-20260703140714224.png)
 
-![](../../assets/images/Project/2026-05-22-vuln-report-01/file-20260703140834693.png)
+![](../../assets/images/Project/2026-05-12-vuln-report-project/file-20260703140720305.png)
 
-![](../../assets/images/Project/2026-05-22-vuln-report-01/file-20260703140838637.png)
+![](../../assets/images/Project/2026-05-12-vuln-report-project/file-20260703140834693.png)
+
+![](../../assets/images/Project/2026-05-12-vuln-report-project/file-20260703140838637.png)
 
 **공격 우선순위 선정** — 원격 접근 가능 여부 → 인증 필요 여부 → Metasploit 모듈 존재 여부, 3가지 기준을 조합해 직접 8단계 우선순위 표를 만들었고, 동일 조건이면 CVSS 점수 순으로 정렬했다.
 
-![](../../assets/images/Project/2026-05-22-vuln-report-01/file-20260703141013650.png)
+![](../../assets/images/Project/2026-05-12-vuln-report-project/file-20260703141013650.png)
 
 ---
 
@@ -61,7 +82,7 @@ Linux에서는 21/tcp(ProFTPD 1.3.5, mod_copy RCE), 80/tcp(Apache 2.4.7, Drupal 
 
 그 외 Jenkins Script Console, Rails RCE, Elasticsearch RCE, Tomcat PUT JSP, PHP CGI RCE, Axis2/SSH/FTP/GlassFish/MySQL 기본 자격증명 등 총 15개 경로로 직접 침투를 검증했다.
 
-![](../../assets/images/Project/2026-05-22-vuln-report-01/file-20260703141143037.png)
+![](../../assets/images/Project/2026-05-12-vuln-report-project/file-20260703141143037.png)
 
 **Linux** — 직접 익스플로잇해서 검증한 주요 경로:
 
@@ -72,7 +93,7 @@ Linux에서는 21/tcp(ProFTPD 1.3.5, mod_copy RCE), 80/tcp(Apache 2.4.7, Drupal 
 
 그 외 Drupal SQLi, HTTP PUT/DELETE, SSH/FTP 기본 자격증명, Apache Continuum RCE 등 총 10개 경로로 침투를 검증했다.
 
-![](../../assets/images/Project/2026-05-22-vuln-report-01/file-20260703141258908.png)
+![](../../assets/images/Project/2026-05-12-vuln-report-project/file-20260703141258908.png)
 
 **최종 결과**: Windows는 Administrator, Linux는 root 권한 획득에 성공.
 
@@ -89,9 +110,9 @@ Linux에서는 21/tcp(ProFTPD 1.3.5, mod_copy RCE), 80/tcp(Apache 2.4.7, Drupal 
 - **네트워크 기법**: Port Knocking으로 포트 자체를 은닉
 - **DB 은닉**: BLOB 컬럼에 ZIP 파일 통째로 저장
 
-![](../../assets/images/Project/2026-05-22-vuln-report-01/file-20260703141511441.png)
+![](../../assets/images/Project/2026-05-12-vuln-report-project/file-20260703141511441.png)
 
-![](../../assets/images/Project/2026-05-22-vuln-report-01/file-20260703141602791.png)
+![](../../assets/images/Project/2026-05-12-vuln-report-project/file-20260703141602791.png)
 
 Hard mode 플래그(Red Joker, 2 of Spades, 5 of Diamonds, 8 of Hearts)는 GitHub에서 Metasploitable3 소스를 직접 클론해 Chef Cookbook 내 플래그 파일 경로를 확인하고, VirtualBox/Vagrant 환경을 직접 구성해서 찾아냈다.
 

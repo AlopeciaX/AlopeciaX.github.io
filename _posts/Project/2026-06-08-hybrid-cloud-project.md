@@ -7,7 +7,7 @@ comments: true
 tags:
   - azure
   - terraform
-  - 온프레미스
+  - on-premise
   - project
 ---
 ---
