@@ -1,5 +1,5 @@
 ---
-title: kubadm 설치 전 사전 준비
+title: kubadm 사전 준비 스크립트
 date: 2026-07-01
 categories:
   - cloud

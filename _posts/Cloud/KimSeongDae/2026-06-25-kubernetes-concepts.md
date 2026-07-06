@@ -1,5 +1,5 @@
 ---
-title: 쿠버네티스의 개념
+title: kubenetes의 개념
 date: 2026-06-25
 categories:
   - cloud

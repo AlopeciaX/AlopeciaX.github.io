@@ -1,5 +1,5 @@
 ---
-title: kubectl 기초 실습 정리
+title: kubeadm 3노드 클러스터 구축
 date: 2026-07-03
 categories:
   - cloud

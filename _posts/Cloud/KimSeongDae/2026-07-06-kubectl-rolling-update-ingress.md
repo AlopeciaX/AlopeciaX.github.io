@@ -1,5 +1,5 @@
 ---
-title: kubectl 기초 실습 정리
+title: 롤링 업데이트와 Ingress 라우팅
 date: 2026-07-06
 categories:
   - cloud
