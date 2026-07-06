@@ -7,6 +7,7 @@ comments: true
 tags:
   - kubernetes
 ---
+---
 # Kubernetes 설치 및 실습 정리
 
 **환경**: Rocky Linux 9, VMware Workstation (Full Clone)
