@@ -232,3 +232,6 @@ spec:
     - path: /mov
 ```
 
+```bash
+kubectl apply -f ingress.yml --namespace=ingress-nginx
+```
