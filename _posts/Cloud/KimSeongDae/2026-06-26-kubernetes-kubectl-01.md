@@ -231,9 +231,9 @@ kubectl expose --name apa pod apache --type NodePort --namespace 2team
 curl 10.100.46.211
 ```
 
-![](../../../assets/images/Cloud/KimSeongDae/2026-06-26-kubernetes-kubectl/file-20260626113136994.png)
+![](../../../assets/images/Cloud/KimSeongDae/2026-06-26-kubernetes-kubectl-01/file-20260626113136994.png)
 
-![](../../../assets/images/Cloud/KimSeongDae/2026-06-26-kubernetes-kubectl/file-20260626113204928.png)
+![](../../../assets/images/Cloud/KimSeongDae/2026-06-26-kubernetes-kubectl-01/file-20260626113204928.png)
 
 
 ```bash
@@ -312,13 +312,13 @@ cat > /usr/local/apache2/htdocs/index.html << eof
 
 ```
 
-![](../../../assets/images/Cloud/KimSeongDae/2026-06-26-kubernetes-kubectl/file-20260626120659354.png)
+![](../../../assets/images/Cloud/KimSeongDae/2026-06-26-kubernetes-kubectl-01/file-20260626120659354.png)
 
-![](../../../assets/images/Cloud/KimSeongDae/2026-06-26-kubernetes-kubectl/file-20260626120859093.png)
+![](../../../assets/images/Cloud/KimSeongDae/2026-06-26-kubernetes-kubectl-01/file-20260626120859093.png)
 
-![](../../../assets/images/Cloud/KimSeongDae/2026-06-26-kubernetes-kubectl/file-20260626120934817.png)
+![](../../../assets/images/Cloud/KimSeongDae/2026-06-26-kubernetes-kubectl-01/file-20260626120934817.png)
 
-![](../../../assets/images/Cloud/KimSeongDae/2026-06-26-kubernetes-kubectl/file-20260626120951741.png)
+![](../../../assets/images/Cloud/KimSeongDae/2026-06-26-kubernetes-kubectl-01/file-20260626120951741.png)
 
 ## 요약
 

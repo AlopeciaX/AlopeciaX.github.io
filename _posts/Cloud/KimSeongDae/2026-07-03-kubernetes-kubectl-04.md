@@ -1,3 +1,12 @@
+---
+title: kubectl 기초 실습 정리
+date: 2026-07-03
+categories:
+  - cloud
+comments: true
+tags:
+  - kubernetes
+---
 # Kubernetes 설치 및 실습 정리
 
 **환경**: Rocky Linux 9, VMware Workstation (Full Clone)
