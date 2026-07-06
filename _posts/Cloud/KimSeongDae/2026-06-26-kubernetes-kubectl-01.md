@@ -214,11 +214,12 @@ spec:
 
 **imagePullPolicy 옵션**
 
-|값|동작|
-|---|---|
-|`Never`|로컬 이미지만 사용, pull 시도 안 함|
-|`IfNotPresent`|로컬에 없을 때만 pull → 오프라인 환경 권장|
-|`Always`|매번 레지스트리에서 pull|
+| 값              | 동작                          |
+| -------------- | --------------------------- |
+| `Never`        | 로컬 이미지만 사용, pull 시도 안 함     |
+| `IfNotPresent` | 로컬에 없을 때만 pull → 오프라인 환경 권장 |
+| `Always`       | 매번 레지스트리에서 pull             |
+|                |                             |
 
 ```bash
 kubectl apply -f nginx.yml
