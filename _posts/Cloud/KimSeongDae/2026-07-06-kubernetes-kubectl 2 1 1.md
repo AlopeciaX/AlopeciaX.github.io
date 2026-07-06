@@ -22,3 +22,38 @@ tags:
 
 3.카나리아
 
+![](../../../assets/images/Cloud/KimSeongDae/2026-07-06-kubernetes-kubectl%202%201%201/file-20260706093536467.png)
+
+```bash
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: dep-nginx
+  labels:
+    app: nginx
+    env: devel
+spec:
+  replicas: 4
+  selector:
+    matchLabels:
+      tem: nginx
+  template:
+    metadata:
+      name: tem-nginx
+      labels:
+        tem: nginx
+    spec:
+      containers:
+      - name: n1
+        image: nginx:1.14
+        imagePullPolicy: Never
+        ports:
+        - containerPort: 80
+        resources:
+          limits:
+            cpu: "200m"
+            memory: "200Mi"
+          requests:
+            cpu: "100m"
+            memory: "100Mi"
+```
