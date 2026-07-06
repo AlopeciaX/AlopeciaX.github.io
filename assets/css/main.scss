@@ -567,6 +567,7 @@ img {
         width: 100%;
         margin: 1.2rem 0;
         border-collapse: collapse;
+        table-layout: fixed;
         font-size: 0.85rem;
         overflow-x: auto;
         display: block;
@@ -581,8 +582,16 @@ img {
         padding: 0.5rem 0.8rem;
         border: 1px solid var(--table_border);
         text-align: left;
+        word-break: break-word;
+        overflow-wrap: break-word;
     }
 
+    td code,
+    th code {
+        white-space: pre-wrap;
+        word-break: break-all;
+    }
+   
     th {
         background: var(--header_bg);
         color: var(--post_h3);
