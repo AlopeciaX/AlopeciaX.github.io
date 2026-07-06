@@ -75,11 +75,3 @@ openssl x509 -pubkey -in /etc/kubernetes/pki/ca.crt | \
 ```
 
 `kubeadm join` 명령에 필요한 `--discovery-token-ca-cert-hash sha256:<해시>` 값을 마스터 노드에서 직접 계산하는 명령이다. `kubeadm token create --print-join-command`로 join 명령 전체를 재발급받을 수도 있지만, 토큰만 새로 만들고 해시값만 별도로 확인하고 싶을 때 이 명령을 사용한다.
-
----
-
-## 원본에서 수정한 부분
-
-- 한 줄로 붙어 있던 사전 준비 스크립트를 원래의 여러 줄 형태로 복원 (가독성 및 실제 실행 가능 여부 확보)
-- `net.ipv4.ip_forward =1` → `net.ipv4.ip_forward = 1`로 등호 앞뒤 공백 통일
-- 제목 없이 코드 블록만 있던 구조에 개요와 각 명령의 목적 설명 추가
