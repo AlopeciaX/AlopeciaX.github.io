@@ -539,13 +539,13 @@ curl http://10.0.0.51
 
 ## 12. 자주 겪은 문제 & 원인 정리 (요약)
 
-|증상|원인|해결|
-|---|---|---|
-|`No match for argument: containerd`|Rocky 9 기본 저장소에 containerd 없음|Docker CE 저장소 추가 후 `containerd.io` 설치|
-|kubelet `activating (auto-restart)`|`kubeadm init`/`join` 전이라 설정파일 없음|init/join 완료하면 자동 해결 (정상 현상)|
-|`dial tcp [::1]:8080: connection refused`|`KUBECONFIG` 미설정 (워커에서 kubectl 실행 or 세션 초기화)|`export KUBECONFIG=/etc/kubernetes/admin.conf`, `.bashrc` 등록 + 반드시 마스터에서 실행|
-|`error validating data: apiVersion not set`|YAML 파일 손상/누락, vi 자동 들여쓰기 꼬임|파일 전체 삭제 후 재작성 (`gg`→`dG`), `:set paste` 사용|
-|`unknown field "spec.selector.template"` 등 필드 오류|YAML 들여쓰기 오류 (template이 selector 하위로 잘못 들어감)|`template`을 `spec` 바로 아래, `selector`와 동일 레벨로 위치|
-|Service 트래픽 라우팅 안 됨|Deployment 라벨과 Service selector 불일치|양쪽 라벨 값을 동일하게 통일|
-|WordPress DB 연결 실패|`WORDPRESS_DB_HOST`에 파드 IP 직접 사용|Service 이름(`mysql-service:3306`)으로 변경|
-|`kubectl apply --dry-run=server` 후 리소스가 안 보임|dry-run은 실제 생성 안 함(검증만)|dry-run 옵션 없이 재실행|
+| 증상                                               | 원인                                           | 해결                                                                          |
+| ------------------------------------------------ | -------------------------------------------- | --------------------------------------------------------------------------- |
+| `No match for argument: containerd`              | Rocky 9 기본 저장소에 containerd 없음                | Docker CE 저장소 추가 후 `containerd.io` 설치                                       |
+| kubelet `activating (auto-restart)`              | `kubeadm init`/`join` 전이라 설정파일 없음            | init/join 완료하면 자동 해결 (정상 현상)                                                |
+| `dial tcp [::1]:8080: connection refused`        | `KUBECONFIG` 미설정 (워커에서 kubectl 실행 or 세션 초기화) | `export KUBECONFIG=/etc/kubernetes/admin.conf`, `.bashrc` 등록 + 반드시 마스터에서 실행 |
+| `error validating data: apiVersion not set`      | YAML 파일 손상/누락, vi 자동 들여쓰기 꼬임                 | 파일 전체 삭제 후 재작성 (`gg`→`dG`), `:set paste` 사용                                 |
+| `unknown field "spec.selector.template"` 등 필드 오류 | YAML 들여쓰기 오류 (template이 selector 하위로 잘못 들어감) | `template`을 `spec` 바로 아래, `selector`와 동일 레벨로 위치                             |
+| Service 트래픽 라우팅 안 됨                              | Deployment 라벨과 Service selector 불일치          | 양쪽 라벨 값을 동일하게 통일                                                            |
+| WordPress DB 연결 실패                               | `WORDPRESS_DB_HOST`에 파드 IP 직접 사용             | Service 이름(`mysql-service:3306`)으로 변경                                       |
+| `kubectl apply --dry-run=server` 후 리소스가 안 보임     | dry-run은 실제 생성 안 함(검증만)                      | dry-run 옵션 없이 재실행                                                           |
