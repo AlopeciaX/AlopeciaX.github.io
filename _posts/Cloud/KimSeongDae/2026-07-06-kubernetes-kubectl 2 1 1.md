@@ -58,10 +58,12 @@ spec:
             memory: "100Mi"
 ```
 
+![](../../../assets/images/Cloud/KimSeongDae/2026-07-06-kubernetes-kubectl%202%201%201/file-20260706105517456.png)
+
 1.14를 1.13으로 업데이트
 kubectl edit deploy dep-nginx
 kubectl get pods -o wide
-kubectl exec -it <pod> -- bash
+kubectl exec -it  -- bash
 nginx -v
 
 
@@ -235,3 +237,7 @@ spec:
 ```bash
 kubectl apply -f ingress.yml --namespace=ingress-nginx
 ```
+
+
+
+![](../../../assets/images/Cloud/KimSeongDae/2026-07-06-kubernetes-kubectl%202%201%201/file-20260706105459356.png)
