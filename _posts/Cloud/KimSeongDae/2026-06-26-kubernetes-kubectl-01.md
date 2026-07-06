@@ -235,7 +235,9 @@ kubectl expose --name apa pod apache --type NodePort --namespace 2team
 curl 10.100.46.211
 ```
 
-![](https://claude.ai/assets/images/Cloud/KimSeongDae/2026-06-26-kubernetes-kubectl-01/file-20260626113136994.png) ![](https://claude.ai/assets/images/Cloud/KimSeongDae/2026-06-26-kubernetes-kubectl-01/file-20260626113204928.png)
+![](../../../assets/images/Cloud/KimSeongDae/2026-06-26-kubernetes-kubectl-01/file-20260626113136994.png)
+
+![](../../../assets/images/Cloud/KimSeongDae/2026-06-26-kubernetes-kubectl-01/file-20260626113204928.png)
 
 pod 안에 들어가 페이지 내용을 직접 수정할 수도 있다.
 
@@ -367,7 +369,11 @@ EOF
 
 ![](../../../assets/images/Cloud/KimSeongDae/2026-06-26-kubernetes-kubectl-01/file-20260626113136994.png)
 
-![173](https://claude.ai/assets/images/Cloud/KimSeongDae/2026-06-26-kubernetes-kubectl-01/file-20260626120659354.png) ![](https://claude.ai/assets/images/Cloud/KimSeongDae/2026-06-26-kubernetes-kubectl-01/file-20260626120859093.png) ![173](https://claude.ai/assets/images/Cloud/KimSeongDae/2026-06-26-kubernetes-kubectl-01/file-20260626120934817.png) ![](https://claude.ai/assets/images/Cloud/KimSeongDae/2026-06-26-kubernetes-kubectl-01/file-20260626120951741.png)
+![](../../../assets/images/Cloud/KimSeongDae/2026-06-26-kubernetes-kubectl-01/file-20260626120859093.png)
+
+![](../../../assets/images/Cloud/KimSeongDae/2026-06-26-kubernetes-kubectl-01/file-20260626120934817.png)
+
+![](../../../assets/images/Cloud/KimSeongDae/2026-06-26-kubernetes-kubectl-01/file-20260626120951741.png)
 
 ---
 
