@@ -57,3 +57,9 @@ spec:
             cpu: "100m"
             memory: "100Mi"
 ```
+
+1.14를 1.13으로 업데이트
+kubectl edit deploy dep-nginx
+kubectl get pods -o wide
+kubectl exec -it <pod> -- bash
+nginx -v
