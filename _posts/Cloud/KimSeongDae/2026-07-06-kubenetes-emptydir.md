@@ -197,4 +197,107 @@ httpd image를 이용해서 pod 생성
 emptyDir를 활용해서 host와 pod간 volume 공유
 host에서 index.html생성해서 K8S-emptyDir-Test 내용 출력
 
+### httpd(apache) 기본 웹 루트
+
+```
+/usr/local/apache2/htdocs
+```
+
+### httpd.yml
+
+**어디서: k8s-master (같은 `/vol` 디렉터리에서)**
+
+bash
+
+```bash
+vi httpd.yml
+```
+
+yaml
+
+```yaml
+apiVersion: v1
+kind: Pod
+metadata:
+  name: httpd
+  labels:
+    app: httpd
+    env: devel
+spec:
+  containers:
+  - name: h1
+    image: httpd
+    imagePullPolicy: IfNotPresent
+    ports:
+    - containerPort: 80
+    volumeMounts:
+    - mountPath: /usr/local/apache2/htdocs
+      name: jhjang-vol
+  volumes:
+  - name: jhjang-vol
+    emptyDir: {}
+```
+
+### 적용
+
+bash
+
+```bash
+kubectl apply -f httpd.yml --dry-run=server
+kubectl apply -f httpd.yml
+kubectl get pod -o wide
+```
+
+`-o wide`로 어느 노드에 스케줄됐는지 확인하고, 그 노드로 이동합니다.
+
+### 노드에서 실제 emptyDir 경로 찾기
+
+**어디서: pod이 스케줄된 노드**
+
+bash
+
+```bash
+find / -name jhjang-vol
+```
+
+결과 예시:
+
+```
+/var/lib/kubelet/pods/<pod-uid>/volumes/kubernetes.io~empty-dir/jhjang-vol
+```
+
+bash
+
+```bash
+ls -al /var/lib/kubelet/pods/<pod-uid>/volumes/kubernetes.io~empty-dir/jhjang-vol
+```
+
+### host(노드)에서 index.html 생성
+
+bash
+
+```bash
+cat > /var/lib/kubelet/pods/<pod-uid>/volumes/kubernetes.io~empty-dir/jhjang-vol/index.html << EOF
+<html><body><h1>K8S-emptyDir-Test</h1></body></html>
+EOF
+```
+
+### 확인 — pod IP로 curl
+
+bash
+
+```bash
+kubectl get pod httpd -o wide
+```
+
+`IP` 컬럼에 나온 값으로:
+
+bash
+
+```bash
+curl <pod-IP>
+```
+
+`K8S-emptyDir-Test`가 그대로 출력되면, **host(노드)에서 만든 파일이 pod 안 httpd 컨테이너의 웹 루트로 그대로 공유되고 있다**는 게 확인된 겁니다.
+
 ![](../../../assets/images/Cloud/KimSeongDae/2026-07-06-kubenetes-emptydir/file-20260707100437201.png)
