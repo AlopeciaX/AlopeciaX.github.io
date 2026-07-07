@@ -15,9 +15,15 @@ tags:
 
 앞선 Azure 인프라 프로젝트의 후속으로, 온프레미스 영역을 실제 기업 내부망 구조로 구체화하고 클라우드-온프레미스 간 보안 체계를 강화한 프로젝트. **L2·L3 스위치 기반 VLAN 분리, DB 접근 통제, 중앙 로그 수집, DB 백업/이중화**까지 직접 구성했다.
 
+![](../../assets/images/_posts/Project/2026-06-08-hybrid-cloud-project/file-20260707091432051.png)
+
 **핵심 키워드**: L2/L3 스위치 VLAN 분리 · iptables 접근 제어 · rsyslog 중앙 로그 수집 · RAID1 · Azure Database for MySQL(Standby) · ELK(Filebeat/Logstash/Kibana)
 
-📷 6~8페이지 — 프로젝트 목표 / 9~11페이지 — 사용 기술 및 선정 배경 / 12~13페이지 — 추진 일정 및 역할 분담
+![](../../assets/images/_posts/Project/2026-06-08-hybrid-cloud-project/file-20260707091511531.png)
+
+![](../../assets/images/_posts/Project/2026-06-08-hybrid-cloud-project/file-20260707091622070.png)
+
+![](../../assets/images/_posts/Project/2026-06-08-hybrid-cloud-project/file-20260707091636134.png)
 
 ---
 
@@ -26,7 +32,7 @@ tags:
 - **1단계**: 기본 네트워크 구성으로 전체 틀 확인 → 개선 필요사항 도출
 - **2단계(최종)**: Azure 이중 리전 + 온프레미스 VLAN 구조를 결합한 하이브리드 아키텍처로 확정
 
-📷 14~15페이지 — 1단계 아키텍처 구성도 및 개선 필요사항 / 16~17페이지 — 2단계(최종) 아키텍처 구성도
+![](../../assets/images/_posts/Project/2026-06-08-hybrid-cloud-project/file-20260707091725705.png)
 
 ---
 
@@ -38,7 +44,9 @@ tags:
 - **Azure Database for MySQL Flexible Server**를 Standby DB로 구성
 - 백업 및 장애 대응 자동화 연동까지 Terraform으로 관리
 
-📷 22~25페이지 — Bootstrap 환경 구성 / 29~35페이지 — Resource Group, 이중 리전 네트워크, Public IP/NAT Gateway / 36~44페이지 — 보안 접속 및 접근 제어 구성 / 45~46페이지 — DNS 구성 / 47~55페이지 — Application Gateway, VMSS, Traffic Manager 구성 / 56~58페이지 — Key Vault/Managed Identity / 59~62페이지 — Azure Database for MySQL Flexible Server 구성 / 63~69페이지 — 출력값 및 배포 실행, 백업/장애 대응 자동화 연동
+![](../../assets/images/_posts/Project/2026-06-08-hybrid-cloud-project/file-20260707092100851.png)
+
+![](../../assets/images/_posts/Project/2026-06-08-hybrid-cloud-project/file-20260707092136439.png)
 
 ---
 
@@ -48,7 +56,9 @@ tags:
 - VLAN10/20/30/40/50으로 역할별 분리, 각 스위치에 Hostname·배너·NTP·Syslog·VLAN·ACL 설정 적용
 - 서버망(VLAN30)에 DB Server, Log Server 배치
 
-📷 71페이지 — 온프레미스 네트워크 구성도 / 72~75페이지 — L3 스위치 VLAN Interface 설정 / 76~79페이지 — L2-1·L2-2 스위치 Access VLAN 설정
+![](../../assets/images/_posts/Project/2026-06-08-hybrid-cloud-project/file-20260707092252974.png)
+
+![](../../assets/images/_posts/Project/2026-06-08-hybrid-cloud-project/file-20260707092303300.png)
 
 ---
 
