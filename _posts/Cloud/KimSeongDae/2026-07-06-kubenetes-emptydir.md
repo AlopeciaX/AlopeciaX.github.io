@@ -304,12 +304,94 @@ kubectl delete pods alpine httpd nginx
 dnf install -y bash-completion
 
 kubectl completion bash > /etc/bash_completion.d/kubectl
-kubectl 
 
 vi nginx1.yml
 kubectl apply -f nginx1.yml --dry-run=server
 
+vi index.html
+<html>
+<body>
+<h1>HOSTPATH-TEST</h1>
+</body>
+</html>
+
 ```
+
+```bash
+# nginx1.yml
+apiVersion: v1
+kind: Pod
+metadata:
+  name: nginx
+  labels:
+    app: nginx
+spec:
+  nodeName: k8s-worker1
+  containers:
+  - name: n1
+    image: nginx
+    imagePullPolicy: Never
+    ports:
+    - containerPort: 80
+    volumeMounts:
+    - mountPath: /usr/share/nginx/html/
+      name: jhjang-vol
+  volumes:
+  - name: jhjang-vol
+    hostPath:
+      path: /html
+      type: DirectoryOrCreate
+
+```
+
+```bash
+# http1.yml
+apiVersion: v1
+kind: Pod
+metadata:
+  name: httpd
+  labels:
+    app: apache
+spec: 
+  nodeSelector:
+    stor: hdd
+  containers:
+  - name: h1
+    image: httpd
+    imagePullPolicy: Never
+    ports:
+    - containerPort: 80
+    volumeMounts:
+    - mountPath: /usr/local/apache2/htdocs
+      name: jhjang-vol1
+    - mountPath: /usr/local/apache2/htdocs/index.html
+      name: jhjang-file1
+  volumes:
+  - name: jhjang-vol1
+    hostPath:
+      path: /html
+      type: Directory
+  - name: jhjang-file1
+    hostPath:
+      path: /html/index.html
+      type: File
+```
+
+
+
+1.mysql:8.0 이미지를 이용해서 node2에 pod 생성
+2.node2의 최상위에 /mysql 디렉토리를 pod를 생성하면서 자동적으로 생성되게 합니다
+3.node2의 /mysql 디렉토리는 hostpath를 이용해서 pod의 /var/lib/mysql 디렉토리와 연결합니다
+4.동일한 image를 이용해서 다른 이름의 pod를 생성
+단 이때 hostpath 기능을 이용하면 env 설정없이 pod가 생성되는지 확인합니다.
+```bash
+```
+
+
+
+
+
+
 
 ---
 ## 핵심 요약
