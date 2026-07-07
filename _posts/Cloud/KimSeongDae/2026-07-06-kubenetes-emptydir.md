@@ -305,6 +305,10 @@ dnf install -y bash-completion
 
 kubectl completion bash > /etc/bash_completion.d/kubectl
 kubectl 
+
+vi nginx1.yml
+kubectl apply -f nginx1.yml --dry-run=server
+
 ```
 
 ---
