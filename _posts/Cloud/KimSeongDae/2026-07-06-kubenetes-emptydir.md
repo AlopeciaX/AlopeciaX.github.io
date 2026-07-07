@@ -177,6 +177,7 @@ curl <pod-IP>
 
 
 ![](../../../assets/images/Cloud/KimSeongDae/2026-07-06-kubenetes-emptydir/file-20260707140027808.png)
+
 ---
 
 ## 4차 실습 — nodeSelector로 pod을 원하는 노드에 배치
