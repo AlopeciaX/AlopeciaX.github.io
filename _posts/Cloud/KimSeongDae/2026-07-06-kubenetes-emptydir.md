@@ -245,33 +245,11 @@ curl <pod-IP>
 host(노드)에서 만든 `index.html`이 pod 안 httpd 컨테이너의 웹 루트로 그대로 공유되어, curl 응답에 `K8S-emptyDir-Test`가 정상적으로 출력됐다.
 
 ---
+## 4차 실습 — nodeSelector로 pod을 원하는 노드에 배치
 
-## 핵심 요약
+기본적으로 pod은 스케줄러가 자동으로 아무 노드에나 배치한다. 특정 노드(예: SSD/NVMe가 달린 노드)에만 배치하고 싶다면, 먼저 노드에 label을 붙이고 pod의 `nodeSelector`가 그 label을 가리키게 하면 된다.
 
-- **emptyDir**: pod 생성 시 만들어지는 임시 볼륨. pod이 삭제되면 데이터도 함께 삭제된다.
-- **volumeMounts vs volumes**: `volumeMounts`는 컨테이너 안(마운트 위치), `volumes`는 spec 최상위(볼륨 정의). 위치를 서로 바꿔 쓰면 안 된다.
-- **실제 저장 위치**: `/var/lib/kubelet/pods/<pod-uid>/volumes/kubernetes.io~empty-dir/<볼륨명>` — 노드의 이 경로가 컨테이너 안 마운트 경로와 동일한 내용을 가진다.
-- **이미지 무관성**: nginx든 httpd든, 마운트 경로만 각 웹서버의 실제 웹 루트로 맞춰주면 host와 pod 간 파일 공유가 동일하게 동작한다.
-- **확인 방법**: pod이 뜬 노드에서 이 경로에 직접 파일을 만들고, `kubectl get pod -o wide`로 얻은 pod IP에 `curl`을 날려 결과가 그대로 반영되는지 확인한다.
-
----
-
-```bash
-kubectl get pod
-kubectl delete pods httpd
-
-vi nginx.yml
-kubectl apply -f nginx.yml --dry-run=server
-kubectl apply -f nginx.yml
-kubectl get pods -o wide
-
-vi httpd.yml
-kubectl apply -f httpd.yml
-```
-
-![](../../../assets/images/Cloud/KimSeongDae/2026-07-06-kubenetes-emptydir/file-20260707103540028.png)
-
-지정해서 생성 가능
+### 노드에 label 붙이기
 
 ```bash
 kubectl label nodes k8s-worker1 stor=hdd
@@ -280,68 +258,77 @@ kubectl label nodes k8s-worker2 stor=ssd
 kubectl get nodes --show-labels
 ```
 
+### alpine.yml — nodeSelector로 특정 노드 지정
+
 ```bash
-apiVerison: b1
+vi alpine.yml
+```
+
+```yaml
+apiVersion: v1
 kind: Pod
 metadata:
-	name: alpine
-	labels:
-		env: deve;
+  name: alpine
+  labels:
+    env: devel
 spec:
-	nodeSelector:
-		stor: nvme
-	containers:
-	- name: a1
-	  image: alpine
-	  imagePullPolicy: IfNotPresent
+  nodeSelector:
+    stor: nvme
+  containers:
+  - name: a1
+    image: alpine
+    imagePullPolicy: IfNotPresent
+    command: ["tail", "-F", "/home"]
 ```
+
+`nodeSelector`는 pod 자신의 `labels`가 아니라 `spec` 안에 위치하며, **노드에 붙어있는 label**과 매칭된다. `stor=nvme` label을 가진 노드가 없으면 이 pod은 배치할 곳을 못 찾아 `Pending` 상태로 멈춘다.
+
+### 적용 및 확인
+
+```bash
+kubectl apply -f alpine.yml --dry-run=server
+kubectl apply -f alpine.yml
+kubectl get pod -o wide
+```
+
+### 정리
+
+```bash
+kubectl delete pods alpine httpd nginx
+```
+
 ---
+## 5차 실습 — 자동완성
 
-vi/vim의 **visual block 모드**는 텍스트를 사각형(블록) 형태로 선택해서 여러 줄을 한 번에 편집할 때 씁니다. yaml 파일에서 들여쓰기를 여러 줄 한꺼번에 맞출 때 특히 유용합니다.
+```bash
+dnf install -y bash-completion
 
-### 진입 방법
-
-일반 모드(Normal mode)에서:
-
-```
-Ctrl + v
+kubectl completion bash > /etc/bash_completion.d/kubectl
+kubectl 
 ```
 
-(Mac 터미널에서 안 눌린다면 `Ctrl + q`로 대체되는 경우도 있음)
+---
+## 핵심 요약
 
-### 기본 사용법
+- **emptyDir**: pod 생성 시 만들어지는 임시 볼륨. pod이 삭제되면 데이터도 함께 삭제된다.
+- **volumeMounts vs volumes**: `volumeMounts`는 컨테이너 안(마운트 위치), `volumes`는 spec 최상위(볼륨 정의). 위치를 서로 바꿔 쓰면 안 된다.
+- **실제 저장 위치**: `/var/lib/kubelet/pods/<pod-uid>/volumes/kubernetes.io~empty-dir/<볼륨명>` — 노드의 이 경로가 컨테이너 안 마운트 경로와 동일한 내용을 가진다.
+- **이미지 무관성**: nginx든 httpd든, 마운트 경로만 각 웹서버의 실제 웹 루트로 맞춰주면 host와 pod 간 파일 공유가 동일하게 동작한다.
+- **nodeSelector**: pod 자신의 label이 아니라 spec 안에 위치. 노드에 붙인 label과 매칭되는 노드에만 pod이 배치된다. 매칭되는 노드가 없으면 Pending 상태로 멈춘다.
+- **label 삭제**: `kubectl label nodes <노드> <키>-`로 삭제, 값만 변경할 땐 `--overwrite` 필요.
 
-1. `Ctrl+v`로 visual block 모드 진입
-2. 방향키(↓, ↑)로 **세로로** 여러 줄 선택
-3. 방향키(→, ←)로 블록 폭 조절 가능
+---
+### 부가 팁
+### vi/vim visual block 모드
 
-### 자주 쓰는 조합
-
-#### 여러 줄 앞에 문자 추가 (예: 주석 처리)
-
-```
-Ctrl+v          → 블록 모드 진입
-↓ ↓ ↓          → 주석 처리할 줄만큼 아래로 선택
-Shift+i         → 삽입 모드 (커서 위치에서)
-#               → 넣고 싶은 문자 입력 (예: 주석 #)
-Esc             → 전체 줄에 한꺼번에 적용됨
-```
-
-#### 여러 줄 삭제 (특정 세로 열만)
+yaml 파일에서 여러 줄의 들여쓰기를 한 번에 맞추거나 수정할 때 유용하다.
 
 ```
-Ctrl+v          → 블록 모드 진입
-↓ ↓ ↓          → 삭제할 범위 세로 선택
-→ →            → 삭제할 폭만큼 가로 선택
-d               → 선택한 블록 삭제
+Ctrl+v          → visual block 모드 진입
+↓ ↓ ↓          → 세로로 여러 줄 선택
+Shift+i         → 삽입 모드로 전환
+원하는 문자 입력
+Esc             → 전체 선택 줄에 한꺼번에 적용
 ```
 
-#### 여러 줄 들여쓰기 맞추기 (yaml 자주 씀)
-
-```
-Ctrl+v          → 블록 모드 진입
-↓ ↓ ↓          → 들여쓸 줄들 선택
-Shift+i         → 삽입 모드
-스페이스 2번    → 원하는 만큼 공백 입력
-Esc             → 전체 줄에 적용
-```
+들여쓰기를 맞출 땐 `Shift+i` 후 스페이스를 원하는 만큼 입력하고 `Esc`, 여러 줄 앞에 주석(`#`) 등을 붙일 때도 같은 방식을 쓴다.
