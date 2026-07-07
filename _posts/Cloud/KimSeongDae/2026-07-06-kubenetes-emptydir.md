@@ -195,6 +195,6 @@ curl <pod-IP>
 
 httpd image를 이용해서 pod 생성
 emptyDir를 활용해서 host와 pod간 volume 공유
-host에서 index.html생성해서 K8S-emptyDir-Test 내용출력
+host에서 index.html생성해서 K8S-emptyDir-Test 내용 출력
 
 ![](../../../assets/images/Cloud/KimSeongDae/2026-07-06-kubenetes-emptydir/file-20260707100437201.png)
