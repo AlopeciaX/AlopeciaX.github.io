@@ -174,7 +174,8 @@ curl <pod-IP>
 [root@k8s-master vol]# curl 192.168.126.17
 <html><body><h1>K8S-emptyDir-Test</h1></body></html>
 ```
-![](../../assets/images/Cloud/KimSeongDae/2026-07-06-kubenetes-emptydir/file-20260707101259021.png)
+
+![479](../../../assets/images/Cloud/KimSeongDae/2026-07-06-kubenetes-emptydir/file-20260707100437201.png)
 
 ---
 
