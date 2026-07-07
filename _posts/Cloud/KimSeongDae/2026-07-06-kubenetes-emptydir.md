@@ -175,8 +175,8 @@ curl <pod-IP>
 <html><body><h1>K8S-emptyDir-Test</h1></body></html>
 ```
 
-![479](../../../assets/images/Cloud/KimSeongDae/2026-07-06-kubenetes-emptydir/file-20260707100437201.png)
 
+![](../../../assets/images/Cloud/KimSeongDae/2026-07-06-kubenetes-emptydir/file-20260707140027808.png)
 ---
 
 ## 4차 실습 — nodeSelector로 pod을 원하는 노드에 배치
