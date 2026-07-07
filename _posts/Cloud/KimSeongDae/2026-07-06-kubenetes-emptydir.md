@@ -240,7 +240,7 @@ curl <pod-IP>
 <html><body><h1>K8S-emptyDir-Test</h1></body></html>
 ```
 
-![](../../../assets/images/Cloud/KimSeongDae/2026-07-06-kubenetes-emptydir/file-20260707100437201.png)
+![476](../../../assets/images/Cloud/KimSeongDae/2026-07-06-kubenetes-emptydir/file-20260707100437201.png)
 
 host(노드)에서 만든 `index.html`이 pod 안 httpd 컨테이너의 웹 루트로 그대로 공유되어, curl 응답에 `K8S-emptyDir-Test`가 정상적으로 출력됐다.
 
