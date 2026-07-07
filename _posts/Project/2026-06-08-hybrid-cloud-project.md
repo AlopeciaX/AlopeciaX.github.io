@@ -68,7 +68,7 @@ tags:
 - iptables 기본 정책 DROP, 관리 PC SSH·Azure VMSS 대역 MySQL만 허용
 - 허용 외 접근은 `IPTABLES_DROP` 로그로 기록 후 차단
 
-📷 80페이지 — DB Server 기본 정보 및 MySQL 서비스 상태 / 81페이지 — iptables 접근 제어 정책 설정
+![](../../assets/images/_posts/Project/2026-06-08-hybrid-cloud-project/file-20260707092503527.png)
 
 ---
 
@@ -78,7 +78,7 @@ tags:
 - `/var/log/remote`에 ext4로 마운트, 단일 디스크 장애에도 로그 보존
 - rsyslog로 TCP/UDP 514 포트 수신 설정, 송신 장비 IP·날짜별로 로그 분류 저장
 
-📷 82페이지 — Log Server 기본 정보 및 추가 디스크 구성 / 83페이지 — RAID1 상태 및 마운트 확인 / 84~85페이지 — rsyslog 수신 설정, 포트 수신 확인, DB Server 로그 포워딩 설정
+![](../../assets/images/_posts/Project/2026-06-08-hybrid-cloud-project/file-20260707092720569.png)
 
 ---
 
@@ -88,7 +88,7 @@ tags:
 - cron으로 자동 백업 등록
 - **Azure Database for MySQL Flexible Server를 Standby DB로 구성** — 온프레미스 DB 데이터가 Standby 환경에 반영되는 것 확인, 장애 시 대체 DB로 전환 가능한 기반 마련
 
-📷 86페이지 — 백업 스크립트 생성 확인 / 87페이지 — Key Vault 기반 백업 정보 조회, Azure MySQL 백업/Storage 업로드 설정 / 88페이지 — cron 자동화 등록 확인
+![](../../assets/images/_posts/Project/2026-06-08-hybrid-cloud-project/file-20260707092904004.png)
 
 ---
 
@@ -97,20 +97,54 @@ tags:
 - Azure VPN Gateway ↔ BlueMax 방화벽 IPSec VPN 연동
 - **ELK**: Filebeat → Logstash → Elasticsearch → Kibana 흐름으로 Apache 웹 로그 수집·시각화
 
-📷 89~92페이지 — Azure VPN Gateway, Local Network Gateway, BlueMax 방화벽 IPSec/정책 구성 / 93~94페이지 — ELK Docker 구성, Filebeat 기반 Apache 로그 수집 설정
+![](../../assets/images/_posts/Project/2026-06-08-hybrid-cloud-project/file-20260707093015171.png)
+
+![](../../assets/images/_posts/Project/2026-06-08-hybrid-cloud-project/file-20260707093042085.png)
+
+![](../../assets/images/_posts/Project/2026-06-08-hybrid-cloud-project/file-20260707093121351.png)
+
+
 
 ---
 
 ## 테스트 및 검증
 
 - **웹 서비스 접속**: Traffic Manager FQDN으로 TUNA Vacation System 화면 정상 출력, Application Gateway Health Check·Backend Health 정상
+
+![](../../assets/images/_posts/Project/2026-06-08-hybrid-cloud-project/file-20260707093237588.png)
+
 - **Traffic Manager 장애 조치**: Korea Central Priority 1 / Korea South Priority 2, Health Monitoring 정상, 장애 조치 전/후 접속 화면으로 전환 확인
+
+![](../../assets/images/_posts/Project/2026-06-08-hybrid-cloud-project/file-20260707093344258.png)
+
 - **VPN 연결**: Azure `Connected` + BlueMax 터널 `UP`, Azure VNet ↔ 온프레미스 VLAN30 통신 경로 확인
+
+![](../../assets/images/_posts/Project/2026-06-08-hybrid-cloud-project/file-20260707093417795.png)
+
+![](../../assets/images/_posts/Project/2026-06-08-hybrid-cloud-project/file-20260707093432677.png)
+
 - **VMSS-DB 통신**: `nslookup db.tuna.internal` → 192.168.3.2 정상 해석, `nc -vz db.tuna.internal 3306` 연결 성공, DB Server의 `tcpdump`로 실제 유입 트래픽 확인 (ICMP는 정책상 응답 없음 — 정상)
+
+![](../../assets/images/_posts/Project/2026-06-08-hybrid-cloud-project/file-20260707093505013.png)
+
 - **DB 접근 제어**: 허용 대역만 MySQL 접근 성공, `iptables -L -n -v` 및 BlueMax Hit Count 증가로 정책 동작 확인
+
+![](../../assets/images/_posts/Project/2026-06-08-hybrid-cloud-project/file-20260707093545117.png)
+
 - **중앙 로그 수집**: `/var/log/remote/192.168.3.2/` 경로에 장비별·날짜별 로그 파일 저장 확인
+
+![](../../assets/images/_posts/Project/2026-06-08-hybrid-cloud-project/file-20260707093603163.png)
+
 - **DB 백업/Standby**: Azure Storage 업로드 확인, Azure MySQL Standby DB 복제 상태 확인
+
+![](../../assets/images/_posts/Project/2026-06-08-hybrid-cloud-project/file-20260707093631157.png)
+
+![](../../assets/images/_posts/Project/2026-06-08-hybrid-cloud-project/file-20260707093659374.png)
+
+
 - **ELK**: Kibana에서 `web-logs-*` Data View 생성, `web-logs-2026.06.17` 인덱스 정상 인식
+
+
 
 📷 97~98페이지 — 웹 서비스 접속 검증 화면 / 99~100페이지 — Traffic Manager 장애 조치 검증 / 101페이지 — VPN 연결 검증 / 102~103페이지 — VMSS-DB 통신 검증(nslookup/nc/tcpdump) / 104~105페이지 — DB 접근 제어 검증 / 106페이지 — 중앙 로그 수집 검증 / 107페이지 — DB 백업 검증 / 108~109페이지 — Standby DB 전환 검증 / 110~111페이지 — Kibana ELK 웹 로그 검증
 
