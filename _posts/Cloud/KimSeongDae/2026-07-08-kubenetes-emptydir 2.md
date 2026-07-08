@@ -25,7 +25,7 @@ MYSQL_PASSWORD=It12345!
 ```
 
 ```bash
-kubectl create configmap mysqlenv.yml --from-env-file mysqlconf
-kubectl get configmap
+kubectl create configmap mysqlenv --from-env-file mysqlconf
+kubectl get configmaps
 kubectl get configmaps mysqlenv -o yaml
 ```
