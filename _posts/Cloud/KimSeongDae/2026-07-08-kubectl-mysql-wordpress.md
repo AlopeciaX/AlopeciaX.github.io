@@ -14,13 +14,13 @@ tags:
 
 ConfigMap 2개 → MySQL Pod(ClusterIP) → WordPress Deployment(5 replica) → NodePort(30000) 공개까지의 실습 기록.
 
-|순서|요구사항|리소스|
-|---|---|---|
-|1|ConfigMap 2개 작성|`mysqlcon.yml`, `wordcon.yml`|
-|2|MySQL Pod + ClusterIP|`mysql.yml`|
-|3|WordPress 5 replica|`word-deploy.yml`|
-|4|NodePort 30000 공개|`word-svc.yml`|
-|5|외부 접속 테스트|브라우저|
+| 요구사항                  | 리소스                           |
+| --------------------- | ----------------------------- |
+| ConfigMap 2개 작성       | `mysqlcon.yml`, `wordcon.yml` |
+| MySQL Pod + ClusterIP | `mysql.yml`                   |
+| WordPress 5 replica   | `word-deploy.yml`             |
+| NodePort 30000 공개     | `word-svc.yml`                |
+| 외부 접속 테스트             | 브라우저                          |
 
 ---
 ## 1. ConfigMap 작성
