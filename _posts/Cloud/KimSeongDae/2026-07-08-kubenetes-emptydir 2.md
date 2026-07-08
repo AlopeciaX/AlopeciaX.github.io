@@ -10,15 +10,11 @@ tags:
 ---
 ### 1단계. MySQL용 ConfigMap 생성 (환경변수 파일 방식)
 
-bash
-
 ```bash
 mkdir /conf
 cd /conf
 vi mysqlconf
 ```
-
-bash
 
 ```bash
 MYSQL_ROOT_PASSWORD=It12345!
@@ -28,8 +24,6 @@ MYSQL_PASSWORD=It12345!
 ```
 
 `--from-env-file`로 ConfigMap 생성:
-
-bash
 
 ```bash
 kubectl create configmap mysqlenv --from-env-file=mysqlconf
@@ -43,13 +37,9 @@ kubectl get configmap mysqlenv -o yaml
 
 ### 2단계. MySQL Pod 배포
 
-bash
-
 ```bash
 vi mysql.yml
 ```
-
-yaml
 
 ```yaml
 apiVersion: v1
@@ -71,8 +61,6 @@ spec:
         name: mysqlenv
 ```
 
-bash
-
 ```bash
 kubectl apply -f mysql.yml --dry-run=server   # 문법/검증만, 실제 생성 안 됨
 kubectl apply -f mysql.yml                    # 실제 생성 (이 명령이 빠지면 안 됨!)
@@ -80,8 +68,6 @@ kubectl get pods -o wide
 ```
 
 MySQL 접속 테스트 (Pod IP로 직접):
-
-bash
 
 ```bash
 mysql -uroot -pIt12345! -h [Pod IP주소]
@@ -93,8 +79,6 @@ mysql -uroot -pIt12345! -h [Pod IP주소]
 
 Pod IP는 재시작하면 바뀌기 때문에, 다른 Pod(WordPress)가 안정적으로 접근하려면 Service가 필요합니다.
 
-bash
-
 ```bash
 kubectl expose pod mysql --name svc-mysql --port 3306
 ```
@@ -102,9 +86,6 @@ kubectl expose pod mysql --name svc-mysql --port 3306
 **주의:** 옵션 순서는 `--name svc-mysql`이 먼저, 그 다음 `pod mysql`이 와야 합니다.
 
 확인:
-
-bash
-
 ```bash
 kubectl get pods,svc
 kubectl get pods -A
@@ -113,8 +94,6 @@ kubectl get pods -A
 ---
 
 ### 4단계. 클러스터 내부 DNS 동작 확인
-
-bash
 
 ```bash
 kubectl run alpine --image alpine
@@ -128,13 +107,9 @@ kubectl exec mysql -- nslookup svc-mysql
 
 ### 5단계. WordPress용 ConfigMap 생성
 
-bash
-
 ```bash
 vi wordconf
 ```
-
-bash
 
 ```bash
 MYSQL_DB_HOST=svc-mysql
@@ -142,8 +117,6 @@ MYSQL_DB_USER=jhjang
 MYSQL_DB_PASSWORD=It12345!
 MYSQL_NAME=word
 ```
-
-bash
 
 ```bash
 kubectl create configmap wordenv --from-env-file=wordconf
@@ -156,13 +129,9 @@ kubectl get configmaps
 
 ### 6단계. WordPress Pod 배포
 
-bash
-
 ```bash
 vi word.yml
 ```
-
-yaml
 
 ```yaml
 apiVersion: v1
@@ -184,8 +153,6 @@ spec:
         name: wordenv
 ```
 
-bash
-
 ```bash
 kubectl apply -f word.yml
 kubectl get pods -o wide
@@ -196,8 +163,6 @@ kubectl get pods -o wide
 ### 7단계. WordPress Pod도 Service로 노출
 
 브라우저에서 접속하려면 NodePort로 열어야 합니다.
-
-bash
 
 ```bash
 kubectl expose pod word --name svc-word --port 80 --type NodePort
