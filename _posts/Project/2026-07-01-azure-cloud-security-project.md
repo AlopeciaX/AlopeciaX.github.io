@@ -420,6 +420,9 @@ AzureDiagnostics
 **캡처할 것**
 
 - VM의 IAM 화면 — 관리자 계정에는 `Virtual Machine Administrator Login`, 팀원 계정에는 `Virtual Machine User Login`이 각각 부여된 걸 보여주는 화면
+
+![](../../assets/images/_posts/Project/2026-07-01-azure-cloud-security-project/file-20260708142736480.png)
+
 - CLI로 교차 확인한 결과:
 
 ```bash
@@ -435,6 +438,9 @@ az role assignment list --scope $(az vm show -g team604tuna -n tuna-web-vm --que
 **캡처할 것**
 
 - 인증 방식 화면 — "Microsoft Entra 인증만"(암호 인증 비활성화)으로 설정된 화면
+
+![](../../assets/images/_posts/Project/2026-07-01-azure-cloud-security-project/file-20260708142952098.png)
+
 - Entra 관리자(Administrator) 지정 화면
 - CLI로 등록된 사용자 확인:
 
