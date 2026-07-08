@@ -14,10 +14,10 @@ tags:
 - 깃허브 설정
 
 
-![[../../assets/images/Github/2026-03-24-github_003/file-20260324152600000.png]]
+![](../../assets/images/Github/2026-03-24-github_003/file-20260324152600000.png)
 
 
-![[../../assets/images/Github/2026-03-24-github_003/file-20260324152600001.png]]
+![](../../assets/images/Github/2026-03-24-github_003/file-20260324152600001.png)
 
 - 강화된 비밀번호 사용 가능
 
@@ -35,25 +35,25 @@ mkdir -p c-calculator-project/tests
 - 원하는 위치에 폴더 생성
 - 그리고 해당 위치로 powershell로 가서 code . 으로 vs code 접속
 
-![[../../assets/images/Github/2026-03-24-github_003/file-20260324154800002.png]]
+![](../../assets/images/Github/2026-03-24-github_003/file-20260324154800002.png)
 
-![[../../assets/images/Github/2026-03-24-github_003/file-20260324155200003.png]]
+![](../../assets/images/Github/2026-03-24-github_003/file-20260324155200003.png)
 - 그리고 해당 구조를 완성해주면 됨
 
-![[../../assets/images/Github/2026-03-24-github_003/file-20260324160400004.png]]
+![](../../assets/images/Github/2026-03-24-github_003/file-20260324160400004.png)
 - github actions가 뜰거임
 - 자동으로 설치하고 깃허브 로그인한다고 나오는데 로그인하면 됨
 - 그럼 vs code랑 자동으로 연결되고 이 화면이 나옴
-![[../../assets/images/Github/2026-03-24-github_003/file-20260324160400005.png]]
-![[../../assets/images/Github/2026-03-24-github_003/file-20260324162600006.png]]
+![](../../assets/images/Github/2026-03-24-github_003/file-20260324160400005.png)
+![](../../assets/images/Github/2026-03-24-github_003/file-20260324162600006.png)
 - Makefile은 공백4칸이 아닌 들여쓰기로 모두 설정해야 함
 -> 안그러면 오류생김
 
 
-![[../../assets/images/Github/2026-03-24-github_003/file-20260324163100007.png]]
+![](../../assets/images/Github/2026-03-24-github_003/file-20260324163100007.png)
 - powershell에서 해당 폴더 위치로 이동 후 make run을 실행한다
 - 여기서 오류 발생 시 mingw32-make.exe 파일의 이름을 make.exe로 바꿔준다.
-![[../../assets/images/Github/2026-03-24-github_003/file-20260324163200008.png]]
+![](../../assets/images/Github/2026-03-24-github_003/file-20260324163200008.png)
 
 - 이것마저 없다면 minGW Installation Manager에 들어가서 mingw32-mgwport를체크후 설치를 진행한다. 그럼 mingw32-make.exe 가 생긴다.
 
@@ -61,7 +61,7 @@ mkdir -p c-calculator-project/tests
 
 ### Github Repository 저장소 생성
 
-![[../../assets/images/Github/2026-03-24-github_003/file-20260324164600009.png]]
+![](../../assets/images/Github/2026-03-24-github_003/file-20260324164600009.png)
 - 보통은 저장소 이름을 폴더 이름으로 생성
 - Description에는 설명문이라 아무거나 적으면 됨
 - public: 공개 실습용 / private: 개인용 -> 이것도 마음대로
@@ -84,5 +84,5 @@ git branch -M main
 git push -u origin main
 ```
 
-![[../../assets/images/Github/2026-03-24-github_003/file-20260324165300010.png]]
+![](../../assets/images/Github/2026-03-24-github_003/file-20260324165300010.png)
 - 해당 화면이 뜨면 성공이다.
