@@ -184,6 +184,8 @@ http://[워커노드IP]:3XXXX
 4.wordpress는 nodeport로 외부에 공개합니다. 30000
 5.실제 PC에서 각각의 hostip:nodeport로 접속해 봅니다.
 
+![](../../../assets/images/Cloud/KimSeongDae/2026-07-08-kubenetes-emptydir%202/file-20260708111501965.png)
+
 ![](../../../assets/images/Cloud/KimSeongDae/2026-07-08-kubenetes-emptydir%202/file-20260708110149359.png)
 
 ![](../../../assets/images/Cloud/KimSeongDae/2026-07-08-kubenetes-emptydir%202/file-20260708110207079.png)
