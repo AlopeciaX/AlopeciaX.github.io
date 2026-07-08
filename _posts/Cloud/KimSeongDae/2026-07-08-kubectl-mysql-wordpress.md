@@ -161,7 +161,7 @@ kubectl get svc
 kubectl get nodes -o wide
 ```
 
-![](../../../assets/images/Cloud/KimSeongDae/2026-07-08-kubenetes-emptydir%202/file-20260708111501965.png)
+![](../../../assets/images/Cloud/KimSeongDae/2026-07-08-kubectl-mysql-wordpress/file-20260708113306017.png)
 
 브라우저에서 각 노드 IP로 접속 (NodePort는 모든 노드에서 동일하게 열림):
 
