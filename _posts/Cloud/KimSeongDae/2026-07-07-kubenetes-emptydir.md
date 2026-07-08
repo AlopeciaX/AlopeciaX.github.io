@@ -176,7 +176,7 @@ curl <pod-IP>
 ```
 
 
-![](../../../assets/images/Cloud/KimSeongDae/2026-07-06-kubenetes-emptydir/file-20260707140027808.png)
+![](../../../assets/images/Cloud/KimSeongDae/2026-07-07-kubenetes-emptydir/file-20260707140027808.png)
 
 ---
 
