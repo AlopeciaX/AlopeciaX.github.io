@@ -57,4 +57,19 @@ spec:
 ```bash
 kubectl apply -f mysql.yml --dry-run=server
 kubectl get pods -o wide
+mysql -uroot -pIt12345! -h [IP주소]
+kubectl expose -name svc-mysql pod mysql --port 80
+kubectl get pods,svc
+kubectl get pods -A
+kubectl exec mysql -- nslookup svc-mysql
+kubectl run alpine --image alpine
+```
+
+```bash
+kubectl get pods #alpine과 mysql Ready상태
+```
+
+```
+vi wordconf
+kubectl cre
 ```
