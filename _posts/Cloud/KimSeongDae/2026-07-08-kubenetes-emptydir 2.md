@@ -8,8 +8,7 @@ tags:
   - kubernetes
 ---
 ---
-
-파일 전체를 가져다 쓰는 방법
+## ConfigMap 생성 (파일 전체 가져오기)
 
 ```bash
 mkdir /conf
@@ -30,11 +29,13 @@ kubectl get configmaps
 kubectl get configmaps mysqlenv -o yaml
 ```
 
+## MySQL Pod 배포
+
 ```bash
 vi mysql.yml
 ```
 
-```bash
+```yaml
 apiVersion: v1
 kind: Pod
 metadata:
@@ -66,10 +67,32 @@ kubectl run alpine --image alpine
 ```
 
 ```bash
-kubectl get pods #alpine과 mysql Ready상태
+kubectl get pods # alpine, mysql 모두 Ready 상태 확인
 ```
 
-```
+## WordPress ConfigMap 생성 (진행중)
+
+```bash
 vi wordconf
-kubectl cre
+kubectl create configmap wordenv
+```
+
+```yaml
+apiVersion: v1
+kind: Pod
+metadata:
+  name: word
+  labels:
+    app: wordpress
+    env: devel
+spec:
+  containers:
+  - name: w1
+    image: wordpress
+    imagePullPolicy: Never
+    ports:
+    - containerPort: 80
+    envFrom:
+    - configMapRef:
+        name: wordenv
 ```
