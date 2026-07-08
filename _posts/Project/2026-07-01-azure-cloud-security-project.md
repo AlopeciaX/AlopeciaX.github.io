@@ -37,6 +37,8 @@ Internet → App Gateway(WAF) → Web VM(WordPress)
 
 ![](../../assets/images/Project/2026-07-01-azure-cloud-security-project/file-20260708154137324.png)
 
+퇴사자 계정으로는 team604tuna 리소스그룹밖에 볼 수 없음
+
 ![](../../assets/images/Project/2026-07-01-azure-cloud-security-project/file-20260708115709820.png)
 
 Web / DB / Bastion / Firewall 서브넷 분리 + UDR 강제 경유
