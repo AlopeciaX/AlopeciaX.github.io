@@ -29,3 +29,32 @@ kubectl create configmap mysqlenv --from-env-file mysqlconf
 kubectl get configmaps
 kubectl get configmaps mysqlenv -o yaml
 ```
+
+```bash
+vi mysql.yml
+```
+
+```bash
+apiVersion: v1
+kind: Pod
+metadata:
+  name: mysql
+  labels:
+    app: mysql
+    env: devel
+spec:
+  containers:
+  - name: m1
+    image: mysql:8.0
+    imagePullPolicy: IfNotPresent
+    ports:
+    - containerPort: 3306
+    envFrom:
+    - configMapRef:
+        name: mysqlenv
+```
+
+```bash
+kubectl apply -f mysql.yml --dry-run=server
+kubectl get pods -o wide
+```
