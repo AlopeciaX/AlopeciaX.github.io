@@ -213,8 +213,15 @@ http://[워커노드IP]:3XXXX
 ---
 
 1.configmap 파일 2개를 작성합니다. yaml
-1.1 wordnev(wordpress 환경변수), mysqlenv(mysql환경변수)를 각각 작성합니다.
+  1.1 wordnev(wordpress 환경변수), mysqlenv(mysql환경변수)를 각각 작성합니다.
 2.mysql pod를 생성해서 clusterip로 노출합니다.
 3.wordpress를 deployment로 복제본을 5개 생성합니다.
 4.wordpress는 nodeport로 외부에 공개합니다. 30000
 5.실제 PC에서 각각의 hostip:nodeport로 접속해 봅니다.
+
+![](../../../assets/images/Cloud/KimSeongDae/2026-07-08-kubenetes-emptydir%202/file-20260708110149359.png)
+
+![](../../../assets/images/Cloud/KimSeongDae/2026-07-08-kubenetes-emptydir%202/file-20260708110207079.png)
+
+![](../../../assets/images/Cloud/KimSeongDae/2026-07-08-kubenetes-emptydir%202/file-20260708110126387.png)
+
