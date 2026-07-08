@@ -81,6 +81,16 @@ Web / DB / Bastion / Firewall 서브넷 분리 + UDR 강제 경유
 
 ![](../../assets/images/Project/2026-07-01-azure-cloud-security-project/file-20260708120518171.png)
 
+**Before/After 취약점 시연 — WAF 방어 효과 검증**
+
+WAF가 실제로 뭘 막아주는지 보여주기 위해, 의도적으로 취약한 페이지를 WordPress 안에 구성했다.
+
+| 취약점 | Before (미방어 상태) | After (방어 조치) |
+|---|---|---|
+| 웹쉘 업로드 | `uploads/` 폴더에 `.htaccess`로 PHP 실행 허용 | uploads 폴더 PHP 실행 엔진 OFF + WAF 커스텀 룰로 `/uploads/*.php` 차단 |
+| SQL Injection | 검색 페이지, 입력값 검증/이스케이프 없이 쿼리 직접 삽입 | WAF OWASP CRS의 SQLi 룰셋으로 탐지/차단 |
+| SSRF | 별도 테스트 페이지로 임의 URL 요청 재현 | WAF Prevention 모드 적용 대상 |
+
 **Key Vault / Storage — 시크릿 및 State 관리**
 
 - `team604tuna-infra` **별도 리소스그룹**에 분리 배치 (메인 인프라와 민감정보 분리)
