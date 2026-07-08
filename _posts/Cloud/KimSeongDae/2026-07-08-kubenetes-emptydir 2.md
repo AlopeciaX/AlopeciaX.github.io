@@ -96,3 +96,68 @@ spec:
     - configMapRef:
         name: wordenv
 ```
+
+
+```bash
+vi mysqlcon.yml
+vi wordcon.yml
+```
+
+```bash
+apiVersion: v1
+kind: ConfigMap
+metadata:
+  name: mysqlenv
+data:
+  MYSQL_ROOT_PASSWORD: It12345!
+  MYSQL_DATABASE: word
+  MYSQL_USER: jhjang
+  MYSQL_PASSWORD: It12345!
+```
+
+```
+apiVersion: v1
+kind: ConfigMap
+metadata:
+  name: wordenv
+data:
+  MYSQL_DB_HOST: svcmysql
+  MYSQL_DB_USER: jhjang
+  MYSQL_DB_PASSWORD: It12345!
+  MYSQL_NAME: word
+```
+
+```bash
+kubectl apply -f mysqlcon.yml
+kubectl apply -f wordcon.yml
+
+kubectl get configmaps
+```
+
+```bash
+vi mysql.yml
+```
+
+```bash
+apiVersion: v1
+kind: Pod
+metadata:
+  name: mysql
+  labels:
+    env: devel
+    app: mysql
+spec:
+  containers:
+  - name: m1
+    image: mysql:8.0
+    imagePullPolicy: Never
+    ports:
+    - containerPort: 3306
+    envFrom:
+    - configMapRef:
+        name: mysqlenv
+```
+
+```bash
+mysql -uroot
+```
