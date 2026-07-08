@@ -186,3 +186,47 @@ http://10.0.0.13:30000
 - `kubectl delete wordenv`처럼 리소스 타입 생략 시 에러. `kubectl delete configmap wordenv`로 타입 명시 필요.
 - `http://IP:PORT`는 브라우저 주소창에 입력. 터미널에 치면 `No such file or directory` 에러.
 - ConfigMap 수정은 이미 실행 중인 Pod/Deployment에 자동 반영 안 됨. 재생성 필요.
+
+---
+
+```bash
+apiVersion: v1
+kind: ConfigMap
+metadata:
+  name: index
+data:
+  babo.html:
+    <html>
+    <body>
+    <h1>JHJANG-CONFIGMAP-NGINX</h1>
+    </body>
+    </html>
+  coco.html:
+    <html>
+    <body>
+    <h1>JHJANG-CONFIGMAP-APACHE</h1>
+    </body>
+    </html>
+```
+
+```bash
+apiVersion: v1
+kind: Pod
+metadata:
+  name: n
+spec:
+  containers:
+  - name: n1
+    imgae: nginx
+    imgaePullPolicy: Never
+    ports:
+    - containerPort: 80
+    volumeMounts:
+    - mountPath: /usr/share/nginx/html/index.html
+      subPath: babo.html
+      name: jhjang-vol
+volumes:
+- name: jhjang-vol
+  configMap:
+    name: index
+```
