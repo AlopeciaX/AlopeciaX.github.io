@@ -421,7 +421,7 @@ AzureDiagnostics
 
 - VM의 IAM 화면 — 관리자 계정에는 `Virtual Machine Administrator Login`, 팀원 계정에는 `Virtual Machine User Login`이 각각 부여된 걸 보여주는 화면
 
-![](../../assets/images/_posts/Project/2026-07-01-azure-cloud-security-project/file-20260708142736480.png)
+
 
 - CLI로 교차 확인한 결과:
 
@@ -444,6 +444,9 @@ az role assignment list --scope $(az vm show -g team604tuna -n tuna-web-vm --que
 - Entra 관리자(Administrator) 지정 화면
 - CLI로 등록된 사용자 확인:
 
+![](../../assets/images/_posts/Project/2026-07-01-azure-cloud-security-project/file-20260708150106550.png)
+
+
 ```sql
 SELECT USER, HOST FROM mysql.user;
 ```
@@ -459,7 +462,12 @@ SELECT USER, HOST FROM mysql.user;
 **캡처할 것**
 
 - `sudo iptables -L -n -v` 결과 — IMDS(169.254.169.254)에 대한 규칙이 `www-data`/`root`만 ACCEPT, 나머지 DROP인 화면
+
+![](../../assets/images/_posts/Project/2026-07-01-azure-cloud-security-project/file-20260708150553567.png)
+
+match 33: www-data / match 0: root
 - `crontab -l` 결과 — 토큰 갱신 cron 등록된 화면
+![](../../assets/images/_posts/Project/2026-07-01-azure-cloud-security-project/file-20260708150722432.png)
 
 ---
 
@@ -469,14 +477,30 @@ SELECT USER, HOST FROM mysql.user;
 
 **캡처할 것 (4개, 순서대로)**
 
-|#|시나리오|캡처 대상|
-|---|---|---|
-|1|Bastion → Entra ID 로그인|연결 성공 후 터미널 프롬프트 (`formeremployee@...@tuna-web-vm:~$`)|
-|2|`sudo su` 시도|"디바이스 코드로 인증하라"는 화면 (권한 없어 즉시 상승 안 됨을 보여줌)|
-|3|IMDS 토큰 도용 시도|`curl -m 5 -H Metadata:true "http://169.254.169.254/..."` 실행 후 응답 없이 실패하는 화면|
-|4|본인 MySQL 계정 접속|정상 접속 성공 화면 (`mysql>` 프롬프트)|
+| #   | 시나리오                   | 캡처 대상                                                                        |
+| --- | ---------------------- | ---------------------------------------------------------------------------- |
+| 1   | Bastion → Entra ID 로그인 | 연결 성공 후 터미널 프롬프트 (`formeremployee@...@tuna-web-vm:~$`)                       |
+| 2   | `sudo su` 시도           | "디바이스 코드로 인증하라"는 화면 (권한 없어 즉시 상승 안 됨을 보여줌)                                   |
+| 3   | IMDS 토큰 도용 시도          | `curl -m 5 -H Metadata:true "http://169.254.169.254/..."` 실행 후 응답 없이 실패하는 화면 |
+| 4   | 본인 MySQL 계정 접속         | 정상 접속 성공 화면 (`mysql>` 프롬프트)                                                  |
 
 이 4개 캡처가 "최소 권한만 가진 계정은 VM에 들어와도 DB를 가져갈 수 없다"는 결론을 직접 증명하는 자료입니다.
+
+![](../../assets/images/_posts/Project/2026-07-01-azure-cloud-security-project/file-20260708150748491.png)
+
+퇴사자는 team604tuna에만 독자 권한이 있으므로 다른 리소스그룹을 볼 수 없음
+
+![](../../assets/images/_posts/Project/2026-07-01-azure-cloud-security-project/file-20260708150855716.png)
+
+일반 사용자 권한이라 sudo su 막히는걸 확인
+
+![](../../assets/images/_posts/Project/2026-07-01-azure-cloud-security-project/file-20260708151020639.png)
+
+IMDS 토큰 도용 시도 막히는걸 확인
+
+![](../../assets/images/_posts/Project/2026-07-01-azure-cloud-security-project/file-20260708151307827.png)
+
+mysql에 퇴사자(개발자)를 등록해둔 상태라 db접속이 됨을 확인
 
 ---
 
@@ -505,14 +529,3 @@ AzureDiagnostics
 
 - `bash 100_run.sh` 전체 실행 로그 (Bootstrap → apply → DB 계정 등록 3단계가 순서대로 찍힌 화면)
 - 마지막 `✅ 전체 배포 완료!` 메시지
-
----
-
-## 캡처 우선순위 (시간이 부족할 경우)
-
-1. **9번(퇴사자 시나리오 4종)** — 프로젝트 핵심 증거, 최우선
-2. **4번(WordPress 정상 구동)** — 인프라가 실제로 동작한다는 증거
-3. **5번(Bastion Entra ID 옵션)**, **7번(MySQL 인증 방식)** — 설계 핵심 증명
-4. **3번(Firewall 규칙)**, **6번(RBAC)** — 설계 세부 증명
-5. 나머지는 여유 있을 때 추가
-
