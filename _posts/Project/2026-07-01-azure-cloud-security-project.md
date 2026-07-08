@@ -338,8 +338,18 @@ terraform output
 **캡처할 것**
 
 - 리소스 그룹 전체 리소스 목록 화면 (한눈에 몇 개가 만들어졌는지 보이는 화면)
+
+![](../../assets/images/_posts/Project/2026-07-01-azure-cloud-security-project/file-20260708115509900.png)
+
 - 가상 네트워크(`tuna-vnet`) → 서브넷 탭 — Web/DB/Bastion/Firewall 서브넷이 분리되어 있는 화면
+
+![](../../assets/images/_posts/Project/2026-07-01-azure-cloud-security-project/file-20260708115709820.png)
+
 - `web_subnet`의 라우팅 테이블(UDR) 화면 — `0.0.0.0/0 → Firewall 사설 IP`로 강제 경유 설정된 것
+
+![](../../assets/images/_posts/Project/2026-07-01-azure-cloud-security-project/file-20260708115802024.png)
+
+![](../../assets/images/_posts/Project/2026-07-01-azure-cloud-security-project/file-20260708115842372.png)
 
 ---
 
@@ -350,6 +360,9 @@ terraform output
 **캡처할 것**
 
 - Application Rule Collection 목록 — `allow-ubuntu-apt`, `allow-wordpress`, `allow-microsoft-packages`, `allow-entra-id-auth` 등 규칙 이름과 허용 FQDN이 보이는 화면
+
+![](../../assets/images/_posts/Project/2026-07-01-azure-cloud-security-project/file-20260708120055952.png)
+
 - (선택) Firewall 로그 — Log Analytics에서 실제 차단/허용된 트래픽 쿼리 결과
 
 ```kql
@@ -357,6 +370,8 @@ AzureDiagnostics
 | where Category == "AzureFirewallApplicationRule"
 | take 20
 ```
+
+![](../../assets/images/_posts/Project/2026-07-01-azure-cloud-security-project/file-20260708120221145.png)
 
 ---
 
@@ -368,8 +383,16 @@ AzureDiagnostics
 
 - 개요 화면 — 공인 IP, 상태(Running)
 - 백엔드 상태(Backend health) — Web VM이 "정상(Healthy)"으로 표시된 화면
+
+![](../../assets/images/_posts/Project/2026-07-01-azure-cloud-security-project/file-20260708120329686.png)
+
 - WAF 정책 화면 — 모드(Prevention), OWASP CRS 버전
+
+![](../../assets/images/_posts/Project/2026-07-01-azure-cloud-security-project/file-20260708120426606.png)
+
 - 브라우저로 `http://<appgw_public_ip>` 접속해 WordPress 화면이 뜨는 캡처
+
+![](../../assets/images/_posts/Project/2026-07-01-azure-cloud-security-project/file-20260708120518171.png)
 
 ---
 
@@ -381,7 +404,12 @@ AzureDiagnostics
 
 - Bastion 개요 화면 — SKU가 "Standard"로 표시된 부분
 - 연결 화면에서 **인증 유형 드롭다운에 "Microsoft Entra ID"가 포함된 화면** (이게 핵심 캡처)
+
+![](../../assets/images/_posts/Project/2026-07-01-azure-cloud-security-project/file-20260708120553206.png)
+
 - 실제 Entra ID로 로그인 성공한 VM 터미널 화면 (`whoami` 결과 등)
+
+![](../../assets/images/_posts/Project/2026-07-01-azure-cloud-security-project/file-20260708120734840.png)
 
 ---
 
