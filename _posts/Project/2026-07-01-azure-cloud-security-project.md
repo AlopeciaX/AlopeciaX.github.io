@@ -13,9 +13,18 @@ tags:
 ---
 ## 개요
 
-WordPress + Azure MySQL Flexible Server + Application Gateway(WAF) + Azure Firewall + Bastion 구조에 **내부자 위협(Insider Threat) 시나리오**를 적용했다. DB 패스워드 완전 제거, 팀원 입/퇴사 시 권한 자동 조정, VM 침투 시에도 DB 전체 권한 미획득, 전체 배포 자동화까지 직접 구축했다.
+WordPress + Azure MySQL Flexible Server + Application Gateway(WAF) + Azure Firewall + Bastion 구조에 **외부 침투 시나리오**와 **내부자 위협(Insider Threat) 시나리오**를 모두 적용했다. DB 패스워드 완전 제거, 팀원 입/퇴사 시 권한 자동 조정, VM 침투 시에도 DB 전체 권한 미획득, 전체 배포 자동화까지 직접 구축했다.
 
 **핵심 키워드**: Azure Firewall FQDN 화이트리스트 · MySQL Entra ID 전용 인증 · Bastion + AAD SSH 로그인 · RBAC 최소 권한 · IMDS 접근 통제
+
+---
+
+## 공격 시나리오
+
+이 프로젝트는 두 방향의 공격을 모두 가정하고 검증을 설계했다.
+
+1. **외부 → 내부 침투 시나리오**: 외부 공격자가 웹 애플리케이션 취약점(SQLi, 웹쉘, SSRF)이나 관리 포트를 통해 뚫고 들어오려는 시도를 차단
+2. **내부 → 외부 데이터 유출 시나리오**: 이미 내부 권한을 가진 계정(퇴사자, 낮은 권한 계정)이 데이터를 빼가거나 권한을 남용하려는 시도를 차단
 
 ---
 
@@ -73,16 +82,6 @@ Web / DB / Bastion / Firewall 서브넷 분리 + UDR 강제 경유
 
 ![](../../assets/images/Project/2026-07-01-azure-cloud-security-project/file-20260708120518171.png)
 
-**Before/After 취약점 시연 — WAF 방어 효과 검증**
-
-WAF가 실제로 뭘 막아주는지 보여주기 위해, 의도적으로 취약한 페이지를 WordPress 안에 구성했다.
-
-| 취약점 | Before (미방어 상태) | After (방어 조치) |
-|---|---|---|
-| 웹쉘 업로드 | `uploads/` 폴더에 `.htaccess`로 PHP 실행 허용 | uploads 폴더 PHP 실행 엔진 OFF + WAF 커스텀 룰로 `/uploads/*.php` 차단 |
-| SQL Injection | 검색 페이지, 입력값 검증/이스케이프 없이 쿼리 직접 삽입 | WAF OWASP CRS의 SQLi 룰셋으로 탐지/차단 |
-| SSRF | 별도 테스트 페이지로 임의 URL 요청 재현 | WAF Prevention 모드 적용 대상 |
-
 **Key Vault / Storage — 시크릿 및 State 관리**
 
 - `team604tuna-infra` **별도 리소스그룹**에 분리 배치 (메인 인프라와 민감정보 분리)
@@ -138,6 +137,95 @@ UID 33(www-data)·0(root)만 ACCEPT, 나머지 DROP (514건 차단 이력)
 
 ---
 
+## 외부 → 내부 침투 차단 검증
+
+**SQL Injection**
+
+검색 페이지에 입력값 검증 없이 쿼리를 직접 삽입하는 취약점을 의도적으로 구성해 시연했다. WAF Detection 모드에서는 공격이 그대로 통과해 사용자 정보가 노출됐고, Prevention 모드로 전환하자 OWASP CRS 룰(942100 Matched / 949110 Blocked)로 차단되는 것을 로그에서 직접 확인했다.
+
+📷 그림 18~20 — 테스트 페이지 구성 / SQLi로 인한 정보 노출 / Prevention 모드 차단 결과
+📷 그림 4 — WAF 로그 942100·949110 Matched/Blocked 확인
+📷 표 6 — SQL Injection 검증 결과 목록
+
+**웹쉘 업로드**
+
+`uploads/` 폴더에 `.htaccess`로 PHP 실행을 허용해둔 취약한 상태에서 웹쉘을 업로드해 서버 명령 실행에 성공했다. 이후 PHP 실행 엔진을 끄고 WAF 커스텀 룰로 `/uploads/*.php`를 차단해, 동일 요청이 403 Forbidden으로 막히는 것을 확인했다.
+
+📷 그림 7 — 방어 전 웹쉘을 통한 서버 명령어 실행 결과
+📷 그림 8 — 업로드 디렉터리 PHP 실행 차단 Apache 설정
+📷 그림 9 — WAF 적용 후 403 Forbidden 차단 결과
+📷 표 7 — 웹쉘 업로드 및 실행 차단 검증 결과
+
+**SSRF**
+
+임의 URL 요청을 재현하는 테스트 페이지로 IMDS(169.254.169.254) 접근을 시도했다. Detection 모드에서 시도 자체는 확인되지만 차단되지 않았고, Prevention 모드에서 실제로 차단되는 것과 WAF 로그의 Matched/Blocked 이벤트를 함께 확인했다.
+
+📷 그림 12 — Prevention 모드에서 SSRF 요청 차단 결과
+📷 그림 13 — WAF 로그 기반 IMDS 접근 시도 Matched/Blocked 확인
+📷 표 8 — SSRF 기반 IMDS 접근 시도 검증 결과
+
+**외부 직접 접근 차단**
+
+Web VM에 외부에서 SSH로 직접 접속을 시도했으나 차단됐고, 관리 접근은 NSG + Bastion 경로로만 허용되는 구조임을 Network Watcher로 직접 검증했다. Bastion + Entra ID 기반 정상 접속 경로도 함께 확인했다.
+
+📷 그림 18 — 방어 후 외부 SSH 직접 접속 차단 결과
+📷 그림 21 — Network Watcher 기반 비허용 포트 차단 확인
+📷 그림 22 — Bastion Entra ID 기반 VM 접속 설정
+📷 표 9 — NSG 및 Network Watcher 기반 접근 경로 검증 결과
+
+**DB 접근 제어**
+
+외부에서 DB로 직접 접근을 시도하면 차단되고, 내부 Web VM에서 Managed Identity 기반 Entra ID 토큰 인증으로만 정상 접속이 가능함을 확인했다. 애플리케이션 계정 권한도 필요한 CRUD 범위로만 한정돼 있었다.
+
+📷 그림 27 — WordPress 정상 접속 결과
+📷 표 10 — DB 접근 제어 및 최소 권한 검증 결과
+
+📷 표 11 — 외부→내부 침투 차단 검증 결과 요약
+
+---
+
+## 내부 → 외부 데이터 유출 차단 검증
+
+**미사용 계정 비활성화**
+
+퇴사(ex-user) 시나리오로 Microsoft Entra ID에서 해당 계정을 비활성화 처리하고, 이후 로그인 시도가 차단되는 것을 확인했다.
+
+📷 그림 29 — Entra ID에서 ex-user 계정 비활성화 설정
+
+**RBAC 권한 분리**
+
+직무별 최소 권한(RBAC) 구조로 역할을 분리해, Reader 권한만 가진 계정으로 WAF Managed Rules를 수정하려는 시도가 권한 부족으로 차단되는 것을 확인했다. 반대로 `Virtual Machine Administrator Login` 역할이 부여된 계정만 VM 접속 후 관리자 권한 전환이 가능함도 함께 검증했다.
+
+📷 그림 31 — RBAC 기반 직무별 최소 권한 구조
+📷 그림 32 — VM Administrator Login 역할 부여 화면
+📷 그림 33 — 해당 계정으로 VM 접속 후 관리자 권한 전환 결과
+📷 표 12 — RBAC 권한 분리 및 보안 설정 변경 차단 검증 결과
+
+**"퇴사자(Former Employee)" 시나리오** — 계정을 비활성화하지 않고, 리소스그룹 `Reader` + VM `User Login`만 부여한 채 MySQL은 재직 시절 앱 계정 권한 그대로 둔 상태(오프보딩 누락)를 재현했다.
+
+| 항목 | 결과 |
+|---|---|
+| Bastion → Entra ID SSH 로그인 | 성공 |
+| `sudo su` | 재인증 요구로 차단 |
+| 타 리소스그룹 조회 | 불가 |
+| IMDS 토큰 도용 시도 | iptables 차단 |
+| 본인 MySQL 계정 접속 | 정상 (재직 시절 권한 그대로) |
+| MySQL 권한 범위 | `GRANT OPTION` 없는 CRUD로 한정 |
+
+**Azure Firewall 기반 외부 데이터 유출 차단**
+
+webhook.site로 DB 데이터를 외부로 전송하는 유출 시나리오를 재현했다. NSG만으로는 포트 단위 차단은 가능해도 애플리케이션 계층의 목적지 도메인 기반 차단이 어렵다는 한계를 확인하고, Azure Firewall로 전환했다. Firewall 적용 후 유출 시도는 차단되면서도, 허용된 정상 도메인(Ubuntu 업데이트, WordPress, Azure 서비스) 통신은 그대로 유지되는 것까지 확인했다.
+
+📷 그림 35 — webhook.site 기반 DB 데이터 외부 전송 시도
+📷 그림 39 — Firewall 허용 규칙 적용 후 Ubuntu 업데이트 성공 결과
+📷 그림 40 — WordPress 허용 도메인 정상 통신 결과
+📷 그림 41 — Azure 서비스 접근 결과
+📷 표 13 — 내부→외부 데이터 유출 통제 검증 결과 요약
+
+**결론**: DB 계정 회수(오프보딩)가 누락돼도, VM/구독 권한이 최소화되어 있으면 인프라 전체 장악으로 이어지지 않는다.
+
+---
+
 ## 트러블슈팅
 
 | 문제 | 원인 | 해결 |
@@ -153,52 +241,11 @@ UID 33(www-data)·0(root)만 ACCEPT, 나머지 DROP (514건 차단 이력)
 
 ---
 
-## 테스트 및 검증
-
-**배포/로그**: `bash 100_run.sh` 전 과정 자동 완료 · Firewall/MySQL/AppGW 로그 전부 Log Analytics 연결 확인
-
-![](../../assets/images/Project/2026-07-01-azure-cloud-security-project/file-20260708151848602.png)
-
-**"퇴사자(Former Employee)" 시나리오** — 리소스그룹 `Reader` + VM `User Login`만 부여, MySQL은 재직 시절 앱 계정 권한 그대로(오프보딩 누락 재현)
-
-| 항목 | 결과 |
-|---|---|
-| Bastion → Entra ID SSH 로그인 | 성공 |
-| `sudo su` | 재인증 요구로 차단 |
-| 타 리소스그룹 조회 | 불가 |
-| IMDS 토큰 도용 시도 | iptables 차단 |
-| 본인 MySQL 계정 접속 | 정상 (재직 시절 권한 그대로) |
-| MySQL 권한 범위 | `GRANT OPTION` 없는 CRUD로 한정 |
-
-![](../../assets/images/Project/2026-07-01-azure-cloud-security-project/file-20260708150748491.png)
-
-`team604tuna` 외 리소스그룹 조회 불가
-
-![](../../assets/images/Project/2026-07-01-azure-cloud-security-project/file-20260708150855716.png)
-
-`sudo su` → 재인증 요구로 차단
-
-![](../../assets/images/Project/2026-07-01-azure-cloud-security-project/file-20260708151020639.png)
-
-IMDS 접근 시도 → 연결 차단
-
-![](../../assets/images/Project/2026-07-01-azure-cloud-security-project/file-20260708151307827.png)
-
-퇴사 전 등록된 MySQL 앱 계정 접속 성공
-
-![](../../assets/images/Project/2026-07-01-azure-cloud-security-project/file-20260708151508718.png)
-
-`SHOW GRANTS` — `tuna_db` CRUD 한정, `GRANT OPTION` 없음
-
-**결론**: DB 계정 회수(오프보딩)가 누락돼도, VM/구독 권한이 최소화되어 있으면 인프라 전체 장악으로 이어지지 않는다.
-
----
-
 ## 정리 및 회고
 
 - 패스워드 제거보다 **VM 신원(Managed Identity) 도용 가능성**을 실제로 막아본 게 핵심 소득
 - Owner/Contributor 잔존 시 하위 RBAC가 무력화됨을 직접 확인 — **권한은 더하기보다 안 남기기가 어렵다**
 - 우회 대신 `az vm run-command`, iptables 카운터, Log Analytics 쿼리로 원인을 직접 확인하는 습관
-- **"인프라 자동화"에서 "내부자가 무엇을 할 수 있고 없는가"로** 검증의 중심을 옮긴 프로젝트
+- **"인프라 자동화"에서 "외부 침투와 내부자가 무엇을 할 수 있고 없는가"로** 검증의 중심을 옮긴 프로젝트
 - VM/Bastion 세션 로그, Key Vault 접근 로그, CI/CD 파이프라인은 설계까지 마치고 다음 과제로 남김
 - Key Vault/Storage에 Private Endpoint 적용 — 지금은 인증 기반 단일 방어, MySQL 수준의 네트워크 격리는 다음 과제
