@@ -21,15 +21,7 @@ WordPress + Azure MySQL Flexible Server + Application Gateway(WAF) + Azure Firew
 
 ## 아키텍처 설계
 
-```
-Internet → App Gateway(WAF) → Web VM(WordPress)
-                                  ↓ UDR 강제 경유
-                             Azure Firewall (FQDN 화이트리스트)
-                                  ↓
-                      MySQL Flexible Server (사설망 전용, Entra ID 인증)
-
-관리자/팀원 → Bastion(Standard) → Web VM (Entra ID SSH 로그인)
-```
+![](../../assets/images/Project/2026-07-01-azure-cloud-security-project/file-20260709101833823.png)
 
 - Web VM 아웃바운드 → **UDR로 Firewall 강제 경유** (C2/데이터 유출 차단)
 - MySQL → **delegated subnet + Private DNS Zone**, VNet 밖 이름 해석 불가
