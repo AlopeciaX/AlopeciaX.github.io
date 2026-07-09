@@ -8,7 +8,7 @@ tags:
   - kubernetes
 ---
 ---
-# Kubernetes MySQL + WordPress 배포 실습
+# Kubernetes MySQL + WordPress 배포
 
 ## 개요
 
