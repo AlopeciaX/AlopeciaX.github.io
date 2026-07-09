@@ -8,7 +8,7 @@ tags:
   - azure
   - terraform
   - security
-  - monitoring
+  - cdr
   - project
 ---
 ---
