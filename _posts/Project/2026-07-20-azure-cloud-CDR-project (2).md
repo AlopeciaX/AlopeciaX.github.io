@@ -118,6 +118,13 @@ AzureDiagnostics
 | 웹쉘 업로드 (`/upload.php`) | ✅ | ✅ (933110 → 949110) | ✅ |
 | SSRF (`/ssrf.php`) | 진행 예정 | - | - |
 | SQL Injection (`/search.php`) | 진행 예정 | - | - |
+## ssrf
+<차단됨>
+![](../../assets/images/_posts/Project/2026-07-20-azure-cloud-CDR-project%20(2)/file-20260714001304598.png)
+
+![](../../assets/images/_posts/Project/2026-07-20-azure-cloud-CDR-project%20(2)/file-20260714001805027.png)
+
+![](../../assets/images/_posts/Project/2026-07-20-azure-cloud-CDR-project%20(2)/file-20260714001809979.png)
 
 ---
 
