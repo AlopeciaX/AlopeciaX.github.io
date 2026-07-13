@@ -13,13 +13,13 @@ tags:
 
 컨트롤 노드(`cont`) 1대 + 노드 3대(`node1~3`) 구조에서 SSH 키 기반 통신 설정 → ansible 설치 → 인벤토리 작성 → ad-hoc 명령 테스트 → 플레이북 작성까지의 실습 기록.
 
-| 단계 | 내용 |
-|---|---|
-| 1. 호스트 준비 | 호스트네임 설정, SSH 키 배포 |
-| 2. ansible 설치 | epel-release 통해 설치 |
-| 3. 인벤토리 작성 | `/etc/ansible/hosts` |
-| 4. ad-hoc 명령 | `-m ping`, `-m file`, `-m shell`, `-m user` |
-| 5. playbook | `test.yml`, `user.yml` |
+| 단계            | 내용                                          |
+| ------------- | ------------------------------------------- |
+| 1. 호스트 준비     | 호스트네임 설정, SSH 키 배포                          |
+| 2. ansible 설치 | epel-release 통해 설치                          |
+| 3. 인벤토리 작성    | `/etc/ansible/hosts`                        |
+| 4. ad-hoc 명령  | `-m ping`, `-m file`, `-m shell`, `-m user` |
+| 5. playbook   | `test.yml`, `user.yml`                      |
 
 ---
 ## 1. 호스트 준비
@@ -37,12 +37,18 @@ hostnamectl set-hostname node3
 
 ```bash
 ssh-keygen -m PEM -t rsa -b 2048 -q -N ""
+```
 
+![](../../../assets/images/Cloud/KimSeongDae/2026-07-13-ansible-adhoc-user-management/file-20260713093845065.png)
+
+```bash
 scp .ssh/id_rsa.pub root@10.0.0.11:/root/.ssh/authorized_keys
 scp .ssh/id_rsa.pub root@10.0.0.12:/root/.ssh/authorized_keys
 scp .ssh/id_rsa.pub root@10.0.0.13:/root/.ssh/authorized_keys
 scp .ssh/id_rsa.pub root@10.0.0.14:/root/.ssh/authorized_keys
 ```
+
+![](../../../assets/images/Cloud/KimSeongDae/2026-07-13-ansible-adhoc-user-management/file-20260713094113024.png)
 
 ---
 ## 2. ansible 설치
@@ -52,6 +58,8 @@ dnf install -y epel-release
 dnf install -y ansible
 ansible --version
 ```
+
+![](../../../assets/images/Cloud/KimSeongDae/2026-07-13-ansible-adhoc-user-management/file-20260713094516013.png)
 
 ---
 ## 3. 인벤토리 작성
@@ -95,8 +103,15 @@ was
 ```bash
 ansible -i /etc/ansible/hosts all -m ping
 ansible all -m ping          # -i 생략 가능 (기본 경로라서 동일 동작)
+```
+
+![](../../../assets/images/Cloud/KimSeongDae/2026-07-13-ansible-adhoc-user-management/file-20260713094826216.png)
+
+```bash
 ansible http -m ping         # web + was 그룹 대상
 ```
+
+![](../../../assets/images/Cloud/KimSeongDae/2026-07-13-ansible-adhoc-user-management/file-20260713094911636.png)
 
 ### file 모듈 — 역등성 확인
 
@@ -214,6 +229,36 @@ vi user.yml
 ap user.yml
 ansible web -m shell -a "tail -5 /etc/shadow"
 ```
+
+### 5-3. 사용자 삭제 (홈 디렉토리까지 완전 삭제)
+
+`user.yml`에 태스크를 하나 더 추가해서, 계정과 사용 흔적(홈 디렉토리, 메일 스풀)까지 같이 삭제해본다.
+
+```yaml
+    - name: delete user a & directory
+      user:
+        name: a
+        remove: true
+        state: absent
+```
+
+```bash
+ap user.yml
+ansible web -m shell -a "ls -al /home"
+ansible web -m shell -a "ls -al /var/spool/mail"
+```
+
+| 옵션 | 역할 |
+|---|---|
+| `state: absent` | 계정 자체를 삭제 (`/etc/passwd`, `/etc/shadow`에서 제거) — `userdel`과 동일 |
+| `remove: true` | 계정 삭제 시 홈 디렉토리(`/home/a`), 메일 스풀(`/var/spool/mail/a`)까지 같이 삭제 — `userdel -r`과 동일 |
+
+`remove: true`가 없으면 계정만 지워지고 `/home/a`는 그대로 남는다. 확인 명령 결과에 `a` 관련 흔적이 없어야 정상이다.
+
+| shell 명령 | user 모듈 |
+|---|---|
+| `useradd a` | `user: name=a` |
+| `userdel -r a` | `user: name=a state=absent remove=true` |
 
 ---
 ## 트러블슈팅 / 자주 하는 실수
