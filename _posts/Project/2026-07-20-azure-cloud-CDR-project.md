@@ -214,6 +214,24 @@ medium: 34건
 
 
 📷 이메일 알림 수신 화면 (예정)
+![](../../assets/images/_posts/Project/2026-07-20-azure-cloud-CDR-project/file-20260714022212628.png)
+
+연결 테스트 실패 --> 연결해줘야 함
+
+![](../../assets/images/_posts/Project/2026-07-20-azure-cloud-CDR-project/file-20260714022324793.png)
+
+![](../../assets/images/_posts/Project/2026-07-20-azure-cloud-CDR-project/file-20260714023337402.png)
+
+2단계인증까지킨상태
+
+![](../../assets/images/_posts/Project/2026-07-20-azure-cloud-CDR-project/file-20260714023420230.png)
+
+
+![](../../assets/images/_posts/Project/2026-07-20-azure-cloud-CDR-project/file-20260714023433658.png)
+
+키 16자리 뜸
+
+
 
 ---
 
