@@ -186,48 +186,48 @@ SSRF(`/ssrf.php?url=http://169.254.169.254/...`)와 SQL Injection(`/search.php?q
 - MySQL 비정상 접속, 방화벽 미허용 아웃바운드, 권한 변경 규칙 3개는 아직 실제 트래픽으로 검증 전
 
 📷 Sentinel Incident 생성 화면 (예정)
-![](../../assets/images/_posts/Project/2026-07-20-azure-cloud-CDR-project/file-20260714013949939.png)
+![](../../assets/images/Project/2026-07-20-azure-cloud-CDR-project/file-20260714013949939.png)
 위협관리 아래 인시던트메뉴
 high: 1건
 medium: 34건
 --> 오탐 가능성 점검 필요
 
-![](../../assets/images/_posts/Project/2026-07-20-azure-cloud-CDR-project/file-20260714014251008.png)
+![](../../assets/images/Project/2026-07-20-azure-cloud-CDR-project/file-20260714014251008.png)
 
 오탐임 - wordpress의 백그라운드 동작으로 확인
 
-![](../../assets/images/_posts/Project/2026-07-20-azure-cloud-CDR-project/file-20260714014355436.png)
+![](../../assets/images/Project/2026-07-20-azure-cloud-CDR-project/file-20260714014355436.png)
 제외하고 다시 본 결과: 18건
 
-![](../../assets/images/_posts/Project/2026-07-20-azure-cloud-CDR-project/file-20260714014431805.png)
+![](../../assets/images/Project/2026-07-20-azure-cloud-CDR-project/file-20260714014431805.png)
 자세히 확인
 18건 모두 정상 트래픽
 
 결론: incident 35건 중 34건이 오탐
 
 새 규칙 확인
-![](../../assets/images/_posts/Project/2026-07-20-azure-cloud-CDR-project/file-20260714014850571.png)
+![](../../assets/images/Project/2026-07-20-azure-cloud-CDR-project/file-20260714014850571.png)
 
-![](../../assets/images/_posts/Project/2026-07-20-azure-cloud-CDR-project/file-20260714015438291.png)
+![](../../assets/images/Project/2026-07-20-azure-cloud-CDR-project/file-20260714015438291.png)
 
 --> 깃허브에서 뭔가 가져오는걸 거부당했다. 라는 로그
 
 
 📷 이메일 알림 수신 화면 (예정)
-![](../../assets/images/_posts/Project/2026-07-20-azure-cloud-CDR-project/file-20260714022212628.png)
+![](../../assets/images/Project/2026-07-20-azure-cloud-CDR-project/file-20260714022212628.png)
 
 연결 테스트 실패 --> 연결해줘야 함
 
-![](../../assets/images/_posts/Project/2026-07-20-azure-cloud-CDR-project/file-20260714022324793.png)
+![](../../assets/images/Project/2026-07-20-azure-cloud-CDR-project/file-20260714022324793.png)
 
-![](../../assets/images/_posts/Project/2026-07-20-azure-cloud-CDR-project/file-20260714023337402.png)
+![](../../assets/images/Project/2026-07-20-azure-cloud-CDR-project/file-20260714023337402.png)
 
 2단계인증까지킨상태
 
-![](../../assets/images/_posts/Project/2026-07-20-azure-cloud-CDR-project/file-20260714023420230.png)
+![](../../assets/images/Project/2026-07-20-azure-cloud-CDR-project/file-20260714023420230.png)
 
 
-![](../../assets/images/_posts/Project/2026-07-20-azure-cloud-CDR-project/file-20260714023433658.png)
+![](../../assets/images/Project/2026-07-20-azure-cloud-CDR-project/file-20260714023433658.png)
 
 키 16자리 뜸
 
