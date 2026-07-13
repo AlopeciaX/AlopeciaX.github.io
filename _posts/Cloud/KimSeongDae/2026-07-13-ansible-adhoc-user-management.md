@@ -273,6 +273,12 @@ ansible web -m shell -a "ls -al /var/spool/mail"
 | `gather_facs`, `ingore_errors: ture` | `gather_facts`, `ignore_errors: true` | 오타 |
 
 ---
+
+## 실습
+
+![](../../../assets/images/Cloud/KimSeongDae/2026-07-13-ansible-adhoc-user-management/file-20260713114930995.png)
+
+
 ## 정리
 
 - 인벤토리 기본 경로는 `/etc/ansible/hosts`이며, `-i` 옵션 없이도 이 경로를 자동으로 읽는다.
