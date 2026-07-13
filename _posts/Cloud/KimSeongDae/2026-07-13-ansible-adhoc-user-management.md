@@ -260,23 +260,153 @@ ansible web -m shell -a "ls -al /var/spool/mail"
 | `useradd a` | `user: name=a` |
 | `userdel -r a` | `user: name=a state=absent remove=true` |
 
----
-## 트러블슈팅 / 자주 하는 실수
+### 5-4. work.yml — 단계별로 기능을 추가하며 작성
 
-| 잘못된 표기 | 올바른 표기 | 비고 |
-|---|---|---|
-| `ansible playbook` | `ansible-playbook` | 하이픈 필수, 별도 명령어 |
-| `sjha512` | `sha512` | 해시 알고리즘명 오타 |
-| `state:touch` | `state: touch` | YAML 콜론 뒤 공백 필수 |
-| `-name make directory` | `- name: make directory` | 하이픈 뒤 공백 + `name:` 콜론 필요 |
-| `directroy` 단독 표기 | `state: directory` | key: value 형태로 명시해야 함 |
-| `gather_facs`, `ingore_errors: ture` | `gather_facts`, `ignore_errors: true` | 오타 |
+ad-hoc 명령을 하나씩 실행하던 것을 `work.yml` 플레이북으로 옮겼다. 사용자 추가 → 비밀번호 설정 → uid 지정 → 파일/디렉토리 생성 순으로 태스크를 하나씩 쌓아가며 작성했다.
+
+```bash
+cd /file
+vi work.yml
+ap work.yml     # = ansible-playbook work.yml
+```
+
+**1단계 — 사용자 a, b 추가**
+
+```yaml
+---
+- name: user add a,b & fix permission & file/directory create
+  hosts: db
+  gather_facts: false
+  ignore_errors: true
+  tasks:
+    - name: user add
+      user:
+        name: "{{ item }}"
+      with_items:
+        - a
+        - b
+```
+
+**2단계 — 비밀번호(It1) 설정 추가**
+
+```yaml
+    - name: user add
+      user:
+        name: "{{ item }}"
+        update_password: always
+        password: "{{ 'It1' | password_hash('sha512') }}"
+      with_items:
+        - a
+        - b
+```
+
+**3단계 — uid 지정 (a=2000, b=3000) 추가**
+
+```yaml
+    - name: user add
+      user:
+        name: "{{ item.user }}"
+        uid: "{{ item.uid }}"
+        update_password: always
+        password: "{{ 'It1' | password_hash('sha512') }}"
+      with_items:
+        - { user: a, uid: 2000 }
+        - { user: b, uid: 3000 }
+```
+
+**4단계 — /test 파일, /tbabo 디렉토리 생성 및 권한 설정 추가 (최종본)**
+
+```yaml
+---
+- name: user add a,b & fix permission & file/directory create
+  hosts: db
+  gather_facts: false
+  ignore_errors: true
+  tasks:
+    - name: user add
+      user:
+        name: "{{ item.user }}"
+        uid: "{{ item.uid }}"
+        update_password: always
+        password: "{{ 'It1' | password_hash('sha512') }}"
+      with_items:
+        - { user: a, uid: 2000 }
+        - { user: b, uid: 3000 }
+
+    - name: create /test file
+      file:
+        path: /test
+        owner: a
+        group: b
+        mode: '0777'
+        state: touch
+
+    - name: create /tbabo directory
+      file:
+        path: /tbabo
+        owner: a
+        group: b
+        mode: '0777'
+        state: directory
+```
+
+```bash
+ap work.yml
+ansible db -m shell -a "tail -5 /etc/passwd"
+ansible db -m shell -a "tail -5 /etc/shadow"
+ansible db -m shell -a "ls -al /"
+```
+
+`/etc/passwd`에서 `a:x:2000:...`, `b:x:3000:...`로 uid가 반영됐고, `/etc/shadow`에서 두 계정 모두 sha512 해시(`$6$`로 시작)가 채워진 것을 확인했다. `/test`(파일), `/tbabo`(디렉토리)도 소유자 `a`, 그룹 `b`, 권한 `777`로 생성됐다.
+
+**배운 점**
+
+- `with_items` + 딕셔너리 리스트(`{ key: value, ... }`)를 쓰면 반복되는 태스크를 하나로 줄이면서도 항목별로 다른 값(uid 등)을 넘길 수 있다.
+- 태스크 하나에는 모듈 하나만 실행 가능하므로, 파일 생성과 디렉토리 생성처럼 `state` 값이 다른 작업은 별도의 태스크로 분리해야 한다.
+- `password_hash` 필터는 실행할 때마다 salt를 새로 생성하므로, 이 태스크는 반복 실행 시 매번 `changed: true`가 뜬다 — 완전한 역등성은 아니라는 점을 확인.
 
 ---
+
+### 5-5. work.yml — 사용자 및 파일/디렉토리 삭제
+
+앞서 만든 사용자(a, b)와 파일/디렉토리(/test, /tbabo)를 반대로 삭제하는 플레이북도 같은 방식(`with_items`)으로 작성했다.
+
+```yaml
+---
+- name: delete user & file
+  hosts: db
+  gather_facts: false
+  ignore_errors: true
+  tasks:
+    - name: delete user
+      user:
+        name: "{{ item }}"
+        remove: yes
+        state: absent
+      with_items:
+        - a
+        - b
+
+    - name: delete file
+      file:
+        path: "{{ item }}"
+        state: absent
+      with_items:
+        - /tbabo
+        - /test
+```
+
+```bash
+ap work.yml
+ansible db -m shell -a "tail -5 /etc/passwd"
+ansible db -m shell -a "ls -al /"
+ansible db -m shell -a "ls -al /home"
+```
+
+사용자 삭제 태스크와 파일/디렉토리 삭제 태스크를 각각 `with_items`로 묶어, 계정 2개와 경로 2개를 한 태스크씩으로 처리했다. `remove: yes`로 홈 디렉토리까지 같이 삭제되고, `file` 모듈은 대상이 파일이든 디렉토리든 `state: absent` 하나로 둘 다 삭제된다.
 
 ## 실습
 
-![](../../../assets/images/Cloud/KimSeongDae/2026-07-13-ansible-adhoc-user-management/file-20260713114930995.png)
 **요구사항 (DB 호스트 대상)**
 
 1. 사용자 `a`(uid=2000), `b`(uid=3000) 생성, 비밀번호는 `It1`
