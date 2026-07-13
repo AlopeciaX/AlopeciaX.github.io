@@ -32,3 +32,18 @@ tags:
 ## sentinel
 
 ![](../../assets/images/_posts/Project/2026-07-20-azure-cloud-CDR-project/file-20260713165002280.png)
+
+### 웹 쉘 업로드 공격
+
+![](../../assets/images/_posts/Project/2026-07-20-azure-cloud-CDR-project/file-20260713172632681.png)
+
+![](../../assets/images/_posts/Project/2026-07-20-azure-cloud-CDR-project/file-20260713172642508.png)
+
+![](../../assets/images/_posts/Project/2026-07-20-azure-cloud-CDR-project/file-20260713172552416.png)
+
+OWASP CRS 933xxx(PHP Injection) 룰이 매치되고 누적 이상 점수가 임계값을 넘어서 최종적으로 Blocked됨을 확인가능 --> 웹쉘 업로드 탐지 정상 작동
+
++추가로 /wp-admin, /wp-login.php 경로 - AllowWpPaths 커스텀 룰로 Allowed 처리됨을 확인 가능 --> WordPress 정상 사용 방해하지 않는지 검증
+
+#### Sentinel 규칙 검증
+
