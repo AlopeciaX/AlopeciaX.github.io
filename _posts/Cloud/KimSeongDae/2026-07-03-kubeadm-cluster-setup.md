@@ -14,11 +14,11 @@ tags:
 
 **노드 구성**
 
-|역할|호스트명|IP|
-|---|---|---|
-|Control Plane|k8s-master|10.0.0.11|
-|Worker 1|k8s-worker1|10.0.0.12|
-|Worker 2|k8s-worker2|10.0.0.13|
+| 역할            | 호스트명        | IP        |
+| ------------- | ----------- | --------- |
+| Control Plane | k8s-master  | 10.0.0.11 |
+| Worker 1      | k8s-worker1 | 10.0.0.12 |
+| Worker 2      | k8s-worker2 | 10.0.0.13 |
 
 **구성 요소**: kubeadm, containerd, Calico(CNI), MetalLB(LoadBalancer)
 

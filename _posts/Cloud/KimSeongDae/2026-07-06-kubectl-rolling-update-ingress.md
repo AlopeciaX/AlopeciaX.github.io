@@ -7,6 +7,7 @@ comments: true
 tags:
   - kubernetes
 ---
+---
 # Kubernetes 실습 정리 — Deployment / Service / Ingress
 
 ## 1. 무중단 배포 방식
