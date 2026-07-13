@@ -205,6 +205,14 @@ medium: 34건
 
 결론: incident 35건 중 34건이 오탐
 
+새 규칙 확인
+![](../../assets/images/_posts/Project/2026-07-20-azure-cloud-CDR-project/file-20260714014850571.png)
+
+![](../../assets/images/_posts/Project/2026-07-20-azure-cloud-CDR-project/file-20260714015438291.png)
+
+--> 깃허브에서 뭔가 가져오는걸 거부당했다. 라는 로그
+
+
 📷 이메일 알림 수신 화면 (예정)
 
 ---
