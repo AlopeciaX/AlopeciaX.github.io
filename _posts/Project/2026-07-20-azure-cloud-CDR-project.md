@@ -26,6 +26,9 @@ tags:
 
 ![](../../assets/images/_posts/Project/2026-07-20-azure-cloud-CDR-project/file-20260713164704838.png)
 
+![](../../assets/images/_posts/Project/2026-07-20-azure-cloud-CDR-project/file-20260713171554616.png)
+
+워드 프레스 초기 설정
 ## sentinel
 
 ![](../../assets/images/_posts/Project/2026-07-20-azure-cloud-CDR-project/file-20260713165002280.png)
