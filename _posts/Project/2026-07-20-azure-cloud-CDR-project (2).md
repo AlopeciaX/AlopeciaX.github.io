@@ -126,6 +126,11 @@ AzureDiagnostics
 
 ![](../../assets/images/_posts/Project/2026-07-20-azure-cloud-CDR-project%20(2)/file-20260714001809979.png)
 
+sql 잡힘
+![](../../assets/images/_posts/Project/2026-07-20-azure-cloud-CDR-project%20(2)/file-20260714003046091.png)
+
+![](../../assets/images/_posts/Project/2026-07-20-azure-cloud-CDR-project%20(2)/file-20260714003150503.png)
+
 ---
 
 ## 탐지 및 대응 (진행중)
