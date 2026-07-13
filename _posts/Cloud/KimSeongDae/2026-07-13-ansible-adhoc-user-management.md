@@ -277,7 +277,36 @@ ansible web -m shell -a "ls -al /var/spool/mail"
 ## 실습
 
 ![](../../../assets/images/Cloud/KimSeongDae/2026-07-13-ansible-adhoc-user-management/file-20260713114930995.png)
+**요구사항 (DB 호스트 대상)**
 
+1. 사용자 `a`(uid=2000), `b`(uid=3000) 생성, 비밀번호는 `It1`
+2. `/test` 파일과 `/tbabo` 디렉토리 생성
+3. 2번의 파일 및 디렉토리를 `user: a`, `group: b`로 설정
+4. 권한은 `0777`로 설정
+5. `/etc/passwd`와 `ls -al /` 결과값을 ansible ad-hoc 명령어로 확인
+
+**풀이**
+
+```bash
+# 1. 사용자 a(uid=2000), b(uid=3000) 생성, 비밀번호 It1
+ansible db -m user -a "name=a uid=2000 update_password=always password={{ 'It1' | password_hash('sha512') }}"
+ansible db -m user -a "name=b uid=3000 update_password=always password={{ 'It1' | password_hash('sha512') }}"
+
+# 2. /test 파일, /tbabo 디렉토리 생성
+ansible db -m file -a "path=/test state=touch"
+ansible db -m file -a "path=/tbabo state=directory"
+
+# 3~4. 소유자 a, 그룹 b, 권한 0777로 설정
+ansible db -m file -a "path=/test owner=a group=b mode=0777"
+ansible db -m file -a "path=/tbabo owner=a group=b mode=0777"
+
+# 5. 결과 확인
+ansible db -m shell -a "tail -5 /etc/passwd"
+ansible db -m shell -a "ls -al /"
+```
+
+`uid`는 `user` 모듈 옵션으로 지정 가능하며, 이미 해당 uid를 가진 사용자가 없으면 그대로 생성된다.
+`owner`, `group`, `mode`는 `file` 모듈에서 생성과 동시에 지정할 수도 있지만, 여기서는 생성(2번)과 소유권/권한 설정(3~4번)을 구분해서 단계별로 확인하기 위해 나눠서 실행했다.
 
 ## 정리
 
