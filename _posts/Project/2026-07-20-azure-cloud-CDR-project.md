@@ -22,4 +22,10 @@ tags:
 ![](../../assets/images/_posts/Project/2026-07-20-azure-cloud-CDR-project/file-20260713162955494.png)
 
 관리자 계정으로 추가
+-> 먼가 문제..
 
+![](../../assets/images/_posts/Project/2026-07-20-azure-cloud-CDR-project/file-20260713164704838.png)
+
+## sentinel
+
+![](../../assets/images/_posts/Project/2026-07-20-azure-cloud-CDR-project/file-20260713165002280.png)
