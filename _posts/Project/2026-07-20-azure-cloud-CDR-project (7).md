@@ -239,6 +239,12 @@ SMTP 전환으로 OAuth 로그인 동의 없이 Terraform만으로 자동화가 
 ![](../../assets/images/_posts/Project/2026-07-20-azure-cloud-CDR-project%20(7)/file-20260714091838940.png)
 값 채워주기
 
+![](../../assets/images/_posts/Project/2026-07-20-azure-cloud-CDR-project%20(7)/file-20260714093316864.png)
+incident -> 규칙 -> playbook -> 이메일 성공
+
+자동화 안한 이유: terraform 코드만으로 playbook이 sentinel 데이터를 볼 수 있음 -> 보안성 문제
+수동으로 직접 설정해야 연결되도록 초기 1회 설정 -> 이후 자동화
+
 
 - [ ] Sentinel Incident 트리거를 Designer에서 연결
 - [ ] SMTP 액션으로 이메일 발송 완성
