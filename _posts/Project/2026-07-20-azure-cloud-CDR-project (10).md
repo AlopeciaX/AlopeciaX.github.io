@@ -305,6 +305,11 @@ AzureDiagnostics
 
 ## 권한 변경
 
+![](../../assets/images/_posts/Project/2026-07-20-azure-cloud-CDR-project%20(10)/file-20260714160156010.png)
+먼저 prevention에서 detection으로 전환 --> 보안낮춤
+
+![](../../assets/images/_posts/Project/2026-07-20-azure-cloud-CDR-project%20(10)/file-20260714154550973.png)
+
 ---
 
 
