@@ -1,6 +1,6 @@
 ---
 title: 5. Azure 클라우드 행위기반 보안탐지 및 대응
-date: 2026-07-20
+date: 2026-07-14
 categories:
   - project
 comments: true
@@ -286,7 +286,7 @@ AzureDiagnostics
 
 ## 권한 변경(RBAC) 탐지 검증
 
-![](../../assets/images/_posts/Project/2026-07-20-azure-cloud-CDR-project%20(11)/file-20260714161401271.png)
+![](../../assets/images/Project/2026-07-20-azure-cloud-CDR-project/file-20260714161401271.png)
 <sub>[Prevention → Detection 모드 전환 결과]</sub>
 
 ```bash
@@ -297,7 +297,7 @@ az network application-gateway waf-policy update \
 
 원래 규칙은 `AzureDiagnostics` 테이블을 봤는데, 실제 Activity Log는 **`AzureActivity`라는 별도 테이블**에 쌓였다. 필드명도 `Category`가 아니라 `CategoryValue`, `OperationName`이 아니라 `OperationNameValue`였고 값도 전부 대문자였다.
 
-![](../../assets/images/_posts/Project/2026-07-20-azure-cloud-CDR-project%20(11)/file-20260714161334871.png)
+![](../../assets/images/Project/2026-07-20-azure-cloud-CDR-project/file-20260714161334871.png)
 <sub>[AzureActivity 원본 로그 - 실제 필드명 확인]</sub>
 
 정확한 스키마로 규칙을 다시 짰다.
@@ -313,10 +313,10 @@ AzureActivity
 
 수정된 쿼리로 재조회하니 WAF 모드 변경 이벤트가 정확히 잡혔다. 하나의 변경이 Start → Accept → Success 3단계로 기록되는 구조까지 확인했다.
 
-![](../../assets/images/_posts/Project/2026-07-20-azure-cloud-CDR-project%20(11)/file-20260714161419855.png)
+![](../../assets/images/Project/2026-07-20-azure-cloud-CDR-project/file-20260714161419855.png)
 <sub>[수정된 쿼리 재조회 - WAF 모드 변경 이벤트 매치]</sub>
 
-![](../../assets/images/_posts/Project/2026-07-20-azure-cloud-CDR-project%20(11)/file-20260714161444990.png)
+![](../../assets/images/Project/2026-07-20-azure-cloud-CDR-project/file-20260714161444990.png)
 <sub>[WAF 모드 Prevention 복구 확인]</sub>
 
 ---
@@ -331,25 +331,25 @@ AzureActivity
 | MySQL 비정상 접속 | ✅ | - (인증 자체 거부) | ✅ (KQL 재설계) | 이메일만 (Medium) |
 | 방화벽 미허용 아웃바운드 | - | - | ✅ (오탐 34건 수정) | 이메일만 (Medium) |
 | 권한 변경 (RBAC/WAF 정책) | ✅ | - | ✅ (테이블·필드 재설계) | 이메일만 (Medium) |
-![](../../assets/images/_posts/Project/2026-07-20-azure-cloud-CDR-project%20(11)/file-20260714161653073.png)
+![](../../assets/images/Project/2026-07-20-azure-cloud-CDR-project/file-20260714161653073.png)
 <sub>[이메일 확인]</sub>
 
 ---
 
 ## 트러블슈팅
 
-| 문제 | 원인 | 해결 |
-|---|---|---|
-| Storage Account 생성 실패 | 이름이 Azure 전역에서 이미 사용 중 | 이름 교체 후 재배포 |
-| WordPress DB 연결 오류 | 등록 스크립트가 내부 실패를 감지 못해 조용히 실패 | 로그인 계정 검증 + ERROR 감지, OID 자동 갱신 |
-| 웹쉘 규칙 결과 0건 | 매치(933110)와 차단(949110)이 다른 로그 줄이라 AND 조건에 안 걸림 | 933110 매치 자체를 탐지 조건으로 수정 |
-| Incident 35건 중 34건 오탐 | 방화벽 규칙이 정상 배경 트래픽까지 탐지 | 정상 트래픽 제외 조건 추가 |
-| Office 365 이메일 연결 실패 | 사서함이 REST API 미지원 게스트 계정 | SMTP 커넥터로 전환 |
-| Playbook 재배포 시 워크플로우 초기화 | Terraform이 트리거/액션까지 관리해 apply마다 덮어씀 | Logic App은 빈 껍데기만 관리, 트리거·액션은 Designer 전담 |
-| 자동 차단 PATCH 실패 | ARM PATCH는 태그 전용 | PUT으로 전환 |
-| 자동 차단 PUT 실패 (location, 규칙셋 소실) | PUT은 전체 교체라 누락 시 소실 위험 | 기존 정책 전체 조회 후 완전한 Body로 재구성 |
-| MySQL 규칙 미탐지 | Audit Log에 성공/실패 구분 필드 자체가 없음 | 미등록 계정 접속 시도로 조건 재설계 |
-| 권한 변경 규칙 미탐지 | `AzureDiagnostics`가 아닌 `AzureActivity` 테이블, 필드명·대소문자 전부 다름 | 테이블·필드명 전면 수정 |
+| 문제                              | 원인                                                         | 해결                                        |
+| ------------------------------- | ---------------------------------------------------------- | ----------------------------------------- |
+| Storage Account 생성 실패           | 이름이 Azure 전역에서 이미 사용 중                                     | 이름 교체 후 재배포                               |
+| WordPress DB 연결 오류              | 등록 스크립트가 내부 실패를 감지 못해 조용히 실패                               | 로그인 계정 검증 + ERROR 감지, OID 자동 갱신           |
+| 웹쉘 규칙 결과 0건                     | 매치(933110)와 차단(949110)이 다른 로그 줄이라 AND 조건에 안 걸림             | 933110 매치 자체를 탐지 조건으로 수정                  |
+| Incident 35건 중 34건 오탐           | 방화벽 규칙이 정상 배경 트래픽까지 탐지                                     | 정상 트래픽 제외 조건 추가                           |
+| Office 365 이메일 연결 실패            | 사서함이 REST API 미지원 게스트 계정                                   | SMTP 커넥터로 전환                              |
+| Playbook 재배포 시 워크플로우 초기화        | Terraform이 트리거/액션까지 관리해 apply마다 덮어씀                        | Logic App은 빈 껍데기만 관리, 트리거·액션은 Designer 전담 |
+| 자동 차단 PATCH 실패                  | ARM PATCH는 태그 전용                                           | PUT으로 전환                                  |
+| 자동 차단 PUT 실패 (location, 규칙셋 소실) | PUT은 전체 교체라 누락 시 소실 위험                                     | 기존 정책 전체 조회 후 완전한 Body로 재구성               |
+| MySQL 규칙 미탐지                    | Audit Log에 성공/실패 구분 필드 자체가 없음                              | 미등록 계정 접속 시도로 조건 재설계                      |
+| 권한 변경 규칙 미탐지                    | `AzureDiagnostics`가 아닌 `AzureActivity` 테이블, 필드명·대소문자 전부 다름 | 테이블·필드명 전면 수정                             |
 
 ---
 
