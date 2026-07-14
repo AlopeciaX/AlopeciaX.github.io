@@ -267,6 +267,9 @@ wifi 연결 후 다른 공인 ip 받아왔을땐 접속 성공
 
 ![](../../assets/images/_posts/Project/2026-07-20-azure-cloud-CDR-project/file-20260714114418990.png)
 실패 로그 확인
+
+![](../../assets/images/_posts/Project/2026-07-20-azure-cloud-CDR-project/file-20260714150931255.png)
+Incident 실제로 생성됨
 ## 권한 변경 (RBAC/WAF 정책 수정)
 
 ## 자동 IP 차단
