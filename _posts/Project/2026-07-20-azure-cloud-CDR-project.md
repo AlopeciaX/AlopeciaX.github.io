@@ -246,7 +246,18 @@ SQL Injection을 재현해 새 Incident를 발생시킨 뒤 15분 정도 지나 
 tuna-autoblock-playbook 연결확인
 
 ![](../../assets/images/_posts/Project/2026-07-20-azure-cloud-CDR-project/file-20260714121237023.png)
+![](../../assets/images/_posts/Project/2026-07-20-azure-cloud-CDR-project/file-20260714142821718.png)
+겨우성공
 
+검증
+![](../../assets/images/_posts/Project/2026-07-20-azure-cloud-CDR-project/file-20260714143136728.png)
+공인ip 61.108.60.26로는 웹 접속 실패
+
+![](../../assets/images/_posts/Project/2026-07-20-azure-cloud-CDR-project/file-20260714143731380.png)
+wifi 연결 후 다른 공인 ip 받아왔을땐 접속 성공
+
+![](../../assets/images/_posts/Project/2026-07-20-azure-cloud-CDR-project/file-20260714143818176.png)
+61.108.60.26 공인ip만 접속 안되는걸 확인 가능
 ## mysql 비정상 접속
 
 ![](../../assets/images/_posts/Project/2026-07-20-azure-cloud-CDR-project/file-20260714113149266.png)
