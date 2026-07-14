@@ -245,30 +245,30 @@ SQL Injection을 재현해 새 Incident를 발생시킨 뒤 15분 정도 지나 
 ![](../../assets/images/Project/2026-07-20-azure-cloud-CDR-project/file-20260714101058068.png)
 tuna-autoblock-playbook 연결확인
 
-![](../../assets/images/_posts/Project/2026-07-20-azure-cloud-CDR-project/file-20260714121237023.png)
-![](../../assets/images/_posts/Project/2026-07-20-azure-cloud-CDR-project/file-20260714142821718.png)
+![](../../assets/images/Project/2026-07-20-azure-cloud-CDR-project/file-20260714121237023.png)
+![](../../assets/images/Project/2026-07-20-azure-cloud-CDR-project/file-20260714142821718.png)
 겨우성공
 
 검증
-![](../../assets/images/_posts/Project/2026-07-20-azure-cloud-CDR-project/file-20260714143136728.png)
+![](../../assets/images/Project/2026-07-20-azure-cloud-CDR-project/file-20260714143136728.png)
 공인ip 61.108.60.26로는 웹 접속 실패
 
-![](../../assets/images/_posts/Project/2026-07-20-azure-cloud-CDR-project/file-20260714143731380.png)
+![](../../assets/images/Project/2026-07-20-azure-cloud-CDR-project/file-20260714143731380.png)
 wifi 연결 후 다른 공인 ip 받아왔을땐 접속 성공
 
-![](../../assets/images/_posts/Project/2026-07-20-azure-cloud-CDR-project/file-20260714143818176.png)
+![](../../assets/images/Project/2026-07-20-azure-cloud-CDR-project/file-20260714143818176.png)
 61.108.60.26 공인ip만 접속 안되는걸 확인 가능
 ## mysql 비정상 접속
 
-![](../../assets/images/_posts/Project/2026-07-20-azure-cloud-CDR-project/file-20260714113149266.png)
+![](../../assets/images/Project/2026-07-20-azure-cloud-CDR-project/file-20260714113149266.png)
 6번의 접속 시도 및 실패
 
-![](../../assets/images/_posts/Project/2026-07-20-azure-cloud-CDR-project/file-20260714114010667.png)
+![](../../assets/images/Project/2026-07-20-azure-cloud-CDR-project/file-20260714114010667.png)
 
-![](../../assets/images/_posts/Project/2026-07-20-azure-cloud-CDR-project/file-20260714114418990.png)
+![](../../assets/images/Project/2026-07-20-azure-cloud-CDR-project/file-20260714114418990.png)
 실패 로그 확인
 
-![](../../assets/images/_posts/Project/2026-07-20-azure-cloud-CDR-project/file-20260714150931255.png)
+![](../../assets/images/Project/2026-07-20-azure-cloud-CDR-project/file-20260714150931255.png)
 Incident 실제로 생성됨
 ## 권한 변경 (RBAC/WAF 정책 수정)
 
