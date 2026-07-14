@@ -252,6 +252,8 @@ tuna-autoblock-playbook 연결확인
 
 ![](../../assets/images/_posts/Project/2026-07-20-azure-cloud-CDR-project/file-20260714114010667.png)
 
+![](../../assets/images/_posts/Project/2026-07-20-azure-cloud-CDR-project/file-20260714114418990.png)
+실패 로그 확인
 ## 권한 변경 (RBAC/WAF 정책 수정)
 
 ## 자동 IP 차단
