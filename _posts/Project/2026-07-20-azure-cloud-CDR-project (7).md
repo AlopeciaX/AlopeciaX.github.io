@@ -224,6 +224,22 @@ Incident 발생 시 이메일로 알림을 받기 위해 Sentinel Automation Rul
 
 SMTP 전환으로 OAuth 로그인 동의 없이 Terraform만으로 자동화가 가능해졌지만, Sentinel Incident 트리거 자체가 사용하는 `azuresentinel` 연결은 Azure 정책상 Portal에서 1회 수동 인증이 불가피하다는 것을 확인했다. 코드로 직접 작성한 Logic App 워크플로우가 반복적으로 구조적 오류(GUID 형식, 권한 부족, 연결 매핑 누락)를 일으켜, **Logic App 틀은 Terraform으로 배포하고 트리거·액션 배선은 Portal Designer에서 완성하는 방식**으로 전환해 진행 중이다.
 
+![](../../assets/images/_posts/Project/2026-07-20-azure-cloud-CDR-project%20(7)/file-20260714090527421.png)
+<sub>[Sentinel incident 연결하기]</sub>
+
+![](../../assets/images/_posts/Project/2026-07-20-azure-cloud-CDR-project%20(7)/file-20260714091400990.png)
+지웠다가 다시 연결
+
+![](../../assets/images/_posts/Project/2026-07-20-azure-cloud-CDR-project%20(7)/file-20260714091600031.png)
+메일 보내기 추가
+
+![](../../assets/images/_posts/Project/2026-07-20-azure-cloud-CDR-project%20(7)/file-20260714091737708.png)
+메뉴 선택
+
+![](../../assets/images/_posts/Project/2026-07-20-azure-cloud-CDR-project%20(7)/file-20260714091838940.png)
+값 채워주기
+
+
 - [ ] Sentinel Incident 트리거를 Designer에서 연결
 - [ ] SMTP 액션으로 이메일 발송 완성
 - [ ] 실제 알림 수신 테스트
