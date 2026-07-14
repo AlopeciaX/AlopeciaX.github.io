@@ -242,27 +242,35 @@ SQL Injection을 재현해 새 Incident를 발생시킨 뒤 15분 정도 지나 
 - [ ] 자동 IP 차단(`tuna-autoblock-playbook`) 동일한 방식으로 Designer에서 완성 및 검증
 - [ ] 완성된 워크플로우를 ARM 템플릿으로 export하여 Terraform에 재반영
 
-![](../../assets/images/_posts/Project/2026-07-20-azure-cloud-CDR-project/file-20260714101058068.png)
+![](../../assets/images/Project/2026-07-20-azure-cloud-CDR-project/file-20260714101058068.png)
 tuna-autoblock-playbook 연결확인
 
+## mysql 비정상 접속
 
+![](../../assets/images/_posts/Project/2026-07-20-azure-cloud-CDR-project/file-20260714113149266.png)
+6번의 접속 시도 및 실패
 
+![](../../assets/images/_posts/Project/2026-07-20-azure-cloud-CDR-project/file-20260714114010667.png)
+
+## 권한 변경 (RBAC/WAF 정책 수정)
+
+## 자동 IP 차단
 
 
 ---
 
 ## 취약점 재현 및 탐지 검증 현황
 
-| 공격 시나리오 | 재현 | WAF 차단 확인 | Sentinel 규칙 검증 |
-|---|---|---|---|
-| 웹쉘 업로드 (`/upload.php`) | ✅ | ✅ (933110 → 949110) | ✅ (KQL 수정, V6) |
-| SSRF (`/ssrf.php`) | ✅ | ✅ (931100/931130 → 949110) | ✅ (수정 불필요) |
-| SQL Injection (`/search.php`) | ✅ | ✅ (942xxx 8개 룰 → 949110) | ✅ (수정 불필요) |
-| 방화벽 미허용 아웃바운드 | - | - | ✅ 오탐 34건 원인 규명 및 규칙 수정 (V7), 실제 공격 재현은 미실시 |
-| MySQL 비정상 접속 | 미착수 | - | - |
-| 권한 변경 (RBAC/WAF 정책 수정) | 미착수 | - | - |
-| 알림 자동화 (Playbook) | - | - | ✅ Incident → 이메일 자동 발송 파이프라인 전체 검증 완료 |
-| 자동 IP 차단 (Playbook) | - | - | 미검증 |
+| 공격 시나리오                       | 재현  | WAF 차단 확인                  | Sentinel 규칙 검증                             |
+| ----------------------------- | --- | -------------------------- | ------------------------------------------ |
+| 웹쉘 업로드 (`/upload.php`)        | ✅   | ✅ (933110 → 949110)        | ✅ (KQL 수정, V6)                             |
+| SSRF (`/ssrf.php`)            | ✅   | ✅ (931100/931130 → 949110) | ✅ (수정 불필요)                                 |
+| SQL Injection (`/search.php`) | ✅   | ✅ (942xxx 8개 룰 → 949110)   | ✅ (수정 불필요)                                 |
+| 방화벽 미허용 아웃바운드                 | -   | -                          | ✅ 오탐 34건 원인 규명 및 규칙 수정 (V7), 실제 공격 재현은 미실시 |
+| MySQL 비정상 접속                  | 미착수 | -                          | -                                          |
+| 권한 변경 (RBAC/WAF 정책 수정)        | 미착수 | -                          | -                                          |
+| 알림 자동화 (Playbook)             | -   | -                          | ✅ Incident → 이메일 자동 발송 파이프라인 전체 검증 완료      |
+| 자동 IP 차단 (Playbook)           | -   | -                          | 미검증                                        |
 
 ---
 
