@@ -242,6 +242,13 @@ SQL Injection을 재현해 새 Incident를 발생시킨 뒤 15분 정도 지나 
 - [ ] 자동 IP 차단(`tuna-autoblock-playbook`) 동일한 방식으로 Designer에서 완성 및 검증
 - [ ] 완성된 워크플로우를 ARM 템플릿으로 export하여 Terraform에 재반영
 
+![](../../assets/images/_posts/Project/2026-07-20-azure-cloud-CDR-project%20(8)/file-20260714101058068.png)
+tuna-autoblock-playbook 연결확인
+
+
+
+
+
 ---
 
 ## 취약점 재현 및 탐지 검증 현황
