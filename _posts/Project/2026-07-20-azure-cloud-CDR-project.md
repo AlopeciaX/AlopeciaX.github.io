@@ -245,6 +245,8 @@ SQL Injection을 재현해 새 Incident를 발생시킨 뒤 15분 정도 지나 
 ![](../../assets/images/Project/2026-07-20-azure-cloud-CDR-project/file-20260714101058068.png)
 tuna-autoblock-playbook 연결확인
 
+![](../../assets/images/_posts/Project/2026-07-20-azure-cloud-CDR-project/file-20260714121237023.png)
+
 ## mysql 비정상 접속
 
 ![](../../assets/images/_posts/Project/2026-07-20-azure-cloud-CDR-project/file-20260714113149266.png)
