@@ -164,7 +164,7 @@ AzureDiagnostics
 
 수정 후 재확인하니 오탐 34건이 `raw.githubusercontent.com` 관련 1건으로 줄었다. 반복되지 않는 일회성이라 우선순위는 낮지만, 원인은 아직 미확인이다.
 
-![484](../../assets/images/Project/2026-07-15-azure-cloud-CDR-project/file-20260714014850571.png)
+![](../../assets/images/_posts/Project/2026-07-15-azure-cloud-CDR-project%20(2)/file-20260715154815256.png)
 <sub>[수정 규칙 재조회 — 34건 → 1건]</sub>
 
 ![](../../assets/images/Project/2026-07-15-azure-cloud-CDR-project/file-20260714015438291.png)
