@@ -150,7 +150,7 @@ Sentinel 사고 메뉴에서 Incident 35건을 확인했다 (High 1, Medium 34).
 
 **Incident 35건 중 34건(97%)이 오탐**이었다. 정상 트래픽 목적지를 제외 조건에 추가해 규칙을 수정했다.
 
-```
+```bash
 AzureDiagnostics
 | where Category in ("AzureFirewallApplicationRule", "AzureFirewallNetworkRule")
 | where msg_s has "Deny"
@@ -500,7 +500,7 @@ az network application-gateway waf-policy update \
 
 정확한 스키마로 규칙을 다시 짰다.
 
-```
+```bash
 AzureActivity
 | where CategoryValue == "Administrative"
 | where OperationNameValue has "ROLEASSIGNMENTS"
