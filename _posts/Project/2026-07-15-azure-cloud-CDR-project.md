@@ -202,7 +202,7 @@ Sentinel Incident 트리거(`azuresentinel` 커넥터)는 Azure 정책상 사람
 <sub>[메일 발송 액션 매개변수 선택]</sub>
 
 ![](../../assets/images/Project/2026-07-15-azure-cloud-CDR-project/file-20260714091737708.png)
-<sub>[받는사람/제목/본문 선택 완료]</sub>
+<sub>[받는사람/제목/본문 입력 완료]</sub>
 
 SQL Injection을 재현해 새 Incident를 발생시킨 뒤, 실제로 메일이 도착하는 것을 확인했다.
 
@@ -529,6 +529,7 @@ AzureActivity
 | MySQL 비정상 접속        | ✅   | - (인증 자체 거부)      | ✅ (KQL 재설계)    | 이메일만 (Medium)   |
 | 방화벽 미허용 아웃바운드       | -   | -                 | ✅ (오탐 34건 수정)  | 이메일만 (Medium)   |
 | 권한 변경 (RBAC/WAF 정책) | ✅   | -                 | ✅ (테이블·필드 재설계) | 이메일만 (Medium)   |
+
 ![](../../assets/images/Project/2026-07-15-azure-cloud-CDR-project/file-20260714161653073.png)
 <sub>[이메일 확인]</sub>
 
