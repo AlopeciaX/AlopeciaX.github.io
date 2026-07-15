@@ -468,7 +468,7 @@ MySQL Audit Log를 조회하니 `event_class_s`/`event_subclass_s`가 예상("CO
 
 "실패 유추" 대신 **정식 계정 목록에 없는 사용자명으로 접속 시도한 것 자체**를 탐지 조건으로 바꿨다.
 
-```
+```bash
 AzureDiagnostics
 | where Category == "MySqlAuditLogs"
 | where event_class_s == "connection_log" and event_subclass_s == "CONNECT"
