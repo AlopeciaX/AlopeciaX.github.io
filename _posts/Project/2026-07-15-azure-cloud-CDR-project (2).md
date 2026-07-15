@@ -207,6 +207,7 @@ Sentinel Incident 트리거(`azuresentinel` 커넥터)는 Azure 정책상 사람
 ![](../../assets/images/Project/2026-07-15-azure-cloud-CDR-project/file-20260714091737708.png)
 <sub>[받는사람/제목/본문 입력 완료]</sub>
 
+여기부터는 밑의 코드를 붙여넣기해서 Publish 해도 된다.
 SQL Injection을 재현해 새 Incident를 발생시킨 뒤, 실제로 메일이 도착하는 것을 확인했다.
 
 ![](../../assets/images/Project/2026-07-15-azure-cloud-CDR-project/file-20260715143802130.png)
