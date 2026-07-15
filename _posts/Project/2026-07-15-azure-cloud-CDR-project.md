@@ -195,22 +195,19 @@ Office 365 Outlook 커넥터로 먼저 시도했으나, 사용 계정이 REST AP
 
 Sentinel Incident 트리거(`azuresentinel` 커넥터)는 Azure 정책상 사람이 Portal에서 1회 로그인 승인해야 연결된다. Terraform으로 트리거·액션 내용까지 관리하면 재배포할 때마다 이 연결이 초기화되는 문제를 겪었다. 그래서 **Logic App은 Terraform으로 빈 껍데기만 만들고, 트리거·액션은 Portal Designer에서 완성**하는 방식으로 확정했다.
 
-![](../../assets/images/Project/2026-07-20-azure-cloud-CDR-project/file-20260714090527421.png)
-<sub>[SMTP 연결 생성]</sub>
-
 ![](../../assets/images/Project/2026-07-20-azure-cloud-CDR-project/file-20260714091400990.png)
-<sub>[메일 발송 액션 매개변수 선택]</sub>
+<sub>[Microsoft Sentinel 인시던트 추가]</sub>
 
 ![](../../assets/images/Project/2026-07-20-azure-cloud-CDR-project/file-20260714091600031.png)
-<sub>[받는사람/제목/본문 입력 완료]</sub>
+<sub>[메일 발송 액션 매개변수 선택]</sub>
 
 ![](../../assets/images/Project/2026-07-20-azure-cloud-CDR-project/file-20260714091737708.png)
-<sub>[Publish 완료]</sub>
+<sub>[받는사람/제목/본문 입력 완료]</sub>
 
 SQL Injection을 재현해 새 Incident를 발생시킨 뒤, 실제로 메일이 도착하는 것을 확인했다.
 
 ![](../../assets/images/_posts/Project/2026-07-15-azure-cloud-CDR-project/file-20260715143802130.png)
-<sub>[Automation Rule — Playbook 연결 확인]</sub>
+<sub>[받는사람/제목/본문 입력 완료]</sub>
 
 ```bash
 {
