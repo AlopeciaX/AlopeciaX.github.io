@@ -438,7 +438,7 @@ SSRF를 재현하고 실행 기록을 확인하니, 여러 번 실패 끝에 성
 
 WAF 정책을 직접 조회해 `AutoBlock` 룰에 실제 공격자 IP가 등록된 걸 확인했다.
 
-![](../../assets/images/Project/2026-07-15-azure-cloud-CDR-project/file-20260714143818176.png)
+![](../../assets/images/_posts/Project/2026-07-15-azure-cloud-CDR-project%20(2)/file-20260715154902429.png)
 <sub>[`AutoBlock` 룰에 공격자 IP 등록 확인]</sub>
 
 같은 IP로는 접속이 차단되고, 와이파이를 바꿔 다른 공인 IP로는 정상 접속되는 것까지 확인했다. (중간에 `https://` 접속이 안 됐던 건 WAF 차단이 아니라 443 포트 리스너 자체가 없어서였다.)
