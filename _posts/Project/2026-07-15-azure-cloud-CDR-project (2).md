@@ -198,6 +198,9 @@ Sentinel Incident 트리거(`azuresentinel` 커넥터)는 Azure 정책상 사람
 ![](../../assets/images/Project/2026-07-15-azure-cloud-CDR-project/file-20260714091400990.png)
 <sub>[Microsoft Sentinel 인시던트 추가]</sub>
 
+![](../../assets/images/_posts/Project/2026-07-15-azure-cloud-CDR-project%20(2)/file-20260715160911128.png)
+<sub>[Microsoft Sentinel 인시던트 수동으로 계정 연결]</sub>
+
 ![](../../assets/images/Project/2026-07-15-azure-cloud-CDR-project/file-20260714091600031.png)
 <sub>[메일 발송 액션 매개변수 선택]</sub>
 
