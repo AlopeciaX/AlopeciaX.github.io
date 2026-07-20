@@ -1,6 +1,6 @@
 ---
 title: 5. Azure 클라우드 행위기반 보안탐지 및 대응
-date: 2026-07-15
+date: 2026-07-20
 categories:
   - project
 comments: true
@@ -198,7 +198,7 @@ Sentinel Incident 트리거(`azuresentinel` 커넥터)는 Azure 정책상 사람
 ![](../../assets/images/Project/2026-07-15-azure-cloud-CDR-project/file-20260714091400990.png)
 <sub>[Microsoft Sentinel 인시던트 추가]</sub>
 
-![](../../assets/images/_posts/Project/2026-07-15-azure-cloud-CDR-project/file-20260715160911128.png)
+![](../../assets/images/_posts/Project/2026-07-20-azure-cloud-CDR-project/file-20260715160911128.png)
 <sub>[Microsoft Sentinel 인시던트 수동으로 계정 연결]</sub>
 
 ![](../../assets/images/Project/2026-07-15-azure-cloud-CDR-project/file-20260714091600031.png)
